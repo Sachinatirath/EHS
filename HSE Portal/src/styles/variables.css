@@ -1,0 +1,53 @@
+:root {
+  /* Core palette — inspired by the reference EHS Portal screens, refreshed */
+  --navy-950: #0a1128;
+  --navy-900: #0d1730;
+  --navy-800: #111f3d;
+  --navy-700: #17294f;
+  --navy-600: #1e3564;
+
+  --blue-700: #1d4ed8;
+  --blue-600: #2563eb;
+  --blue-500: #3b6df0;
+  --blue-400: #5b8bff;
+  --blue-100: #dbe7ff;
+  --blue-50: #eef4ff;
+
+  --green-600: #15803d;
+  --green-500: #16a34a;
+  --green-100: #d9f6e4;
+
+  --amber-600: #b45309;
+  --amber-500: #f59e0b;
+  --amber-100: #fef1d6;
+
+  --red-600: #dc2626;
+  --red-500: #ef4444;
+  --red-100: #fde0e0;
+
+  --slate-900: #101828;
+  --slate-700: #344054;
+  --slate-500: #667085;
+  --slate-400: #98a2b3;
+  --slate-200: #e4e7ec;
+  --slate-100: #f0f2f7;
+  --slate-50: #f7f9fc;
+
+  --bg-app: #eef1f8;
+  --bg-card: #ffffff;
+
+  --sidebar-width: 268px;
+  --header-height: 64px;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
+  --shadow-md: 0 4px 10px rgba(16, 24, 40, 0.06), 0 2px 4px rgba(16, 24, 40, 0.08);
+  --shadow-lg: 0 12px 28px rgba(13, 23, 48, 0.14);
+  --shadow-glow: 0 8px 20px rgba(37, 99, 235, 0.35);
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
