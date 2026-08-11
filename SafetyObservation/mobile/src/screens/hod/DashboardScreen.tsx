@@ -4,12 +4,12 @@ import { DimensionValue, FlatList, LayoutChangeEvent, Pressable, RefreshControl,
 import { BarChart, LineChart, PieChart } from 'react-native-gifted-charts';
 
 import { Card, EmptyState, FadeSlideIn, Icon, Screen, Skeleton, StaggeredItem, StatusBadge } from '@/components';
-import { dashboardApi, violationsApi } from '@/api';
-import type { HodSummary, ViolationRecord } from '@/types';
+import { dashboardApi, observationsApi } from '@/api';
+import type { HodSummary, ObservationRecord } from '@/types';
 import type { HodTabNavProp } from '@/navigation/types';
 import { colors, spacing, fontSize, radius, shadow } from '@/theme';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
-import { buildDepartmentBreakdown, buildMonthlyTrend, buildTypeBreakdown } from '@/utils/violationCharts';
+import { buildCategoryBreakdown, buildDepartmentBreakdown, buildMonthlyTrend } from '@/utils/observationCharts';
 
 type Nav = HodTabNavProp<'Dashboard'>;
 
@@ -21,7 +21,7 @@ interface StatDef {
 }
 
 const STAT_DEFS: StatDef[] = [
-  { key: 'total_violations', label: 'Total Violations', icon: 'clipboard', accent: colors.primary },
+  { key: 'total_observations', label: 'Total Observations', icon: 'clipboard', accent: colors.primary },
   { key: 'open_count', label: 'Open', icon: 'alertTriangle', accent: colors.warning },
   { key: 'under_review_count', label: 'Under Review', icon: 'clock', accent: colors.info },
   { key: 'reported_this_month', label: 'Reported This Month', icon: 'checkCircle', accent: colors.success },
@@ -35,8 +35,8 @@ export function DashboardScreen() {
   const navigation = useNavigation<Nav>();
   const { isTabletUp, width } = useBreakpoint();
   const [summary, setSummary] = useState<HodSummary | null>(null);
-  const [allViolations, setAllViolations] = useState<ViolationRecord[]>([]);
-  const [active, setActive] = useState<ViolationRecord[]>([]);
+  const [allObservations, setAllObservations] = useState<ObservationRecord[]>([]);
+  const [active, setActive] = useState<ObservationRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [barPanelWidth, setBarPanelWidth] = useState(0);
@@ -49,10 +49,10 @@ export function DashboardScreen() {
   const [chartCycle, setChartCycle] = useState(0);
 
   const load = useCallback(async () => {
-    const [s, all] = await Promise.all([dashboardApi.hodDashboardSummary(), violationsApi.allViolations()]);
+    const [s, all] = await Promise.all([dashboardApi.hodDashboardSummary(), observationsApi.allObservations()]);
     setSummary(s);
-    setAllViolations(all);
-    setActive(all.filter((v) => v.status === 'open' || v.status === 'under_review').slice(0, 8));
+    setAllObservations(all);
+    setActive(all.filter((o) => o.status === 'open' || o.status === 'under_review').slice(0, 8));
   }, []);
 
   useFocusEffect(
@@ -72,9 +72,9 @@ export function DashboardScreen() {
 
   const statWidth = (isTabletUp ? `${100 / STAT_DEFS.length - 1.5}%` : '47%') as DimensionValue;
 
-  const { departments, series } = buildDepartmentBreakdown(allViolations);
-  const typeSlices = buildTypeBreakdown(allViolations);
-  const monthlyTrend = buildMonthlyTrend(allViolations);
+  const { departments, series } = buildDepartmentBreakdown(allObservations);
+  const categorySlices = buildCategoryBreakdown(allObservations);
+  const monthlyTrend = buildMonthlyTrend(allObservations);
 
   const barChartWidth = Math.max(200, (barPanelWidth || width) - spacing.lg * 2);
   const lineChartWidth = Math.max(200, (linePanelWidth || width) - spacing.lg * 2);
@@ -104,7 +104,7 @@ export function DashboardScreen() {
       label: seriesIdx === series.length - 1 ? dept : undefined,
     })),
   );
-  const pieData = typeSlices.map((s) => ({ value: s.value, color: s.color, text: '' }));
+  const pieData = categorySlices.map((s) => ({ value: s.value, color: s.color, text: '' }));
   const lineData = monthlyTrend.map((p) => ({ value: p.value, label: p.month }));
   const lineInitialSpacing = 16;
   const lineEndSpacing = 16;
@@ -124,7 +124,7 @@ export function DashboardScreen() {
             HOD Dashboard
           </Text>
           <Text style={{ fontSize: fontSize.sm, color: colors.textSecondary, marginTop: 2 }}>
-            Plant-wide safety violation reporting
+            Plant-wide safety observation reporting
           </Text>
         </FadeSlideIn>
 
@@ -166,7 +166,7 @@ export function DashboardScreen() {
 
         <View style={{ flexDirection: isTabletUp ? 'row' : 'column', gap: spacing.md }}>
           <View onLayout={onBarPanelLayout} style={[{ flex: 1, backgroundColor: colors.surface, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.border, padding: spacing.lg }, shadow.card]}>
-            <Text style={{ fontSize: fontSize.sm, fontWeight: '700', color: colors.textPrimary }}>Violations by Department</Text>
+            <Text style={{ fontSize: fontSize.sm, fontWeight: '700', color: colors.textPrimary }}>Observations by Department</Text>
             <Text style={{ fontSize: fontSize.xs, color: colors.textMuted, marginTop: 2, marginBottom: spacing.md }}>By review status</Text>
             {loading ? (
               <Skeleton height={220} borderRadius={radius.md} />
@@ -202,7 +202,7 @@ export function DashboardScreen() {
           </View>
 
           <View style={[{ flex: 1, backgroundColor: colors.surface, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.border, padding: spacing.lg, alignItems: 'center' }, shadow.card]}>
-            <Text style={{ fontSize: fontSize.sm, fontWeight: '700', color: colors.textPrimary, alignSelf: 'flex-start' }}>Violations by Type</Text>
+            <Text style={{ fontSize: fontSize.sm, fontWeight: '700', color: colors.textPrimary, alignSelf: 'flex-start' }}>Observations by Category</Text>
             <Text style={{ fontSize: fontSize.xs, color: colors.textMuted, marginTop: 2, marginBottom: spacing.md, alignSelf: 'flex-start' }}>All departments</Text>
             {loading ? (
               <Skeleton width={isTabletUp ? 160 : 136} height={isTabletUp ? 160 : 136} borderRadius={999} />
@@ -221,7 +221,7 @@ export function DashboardScreen() {
               />
             )}
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginTop: spacing.md, justifyContent: 'center' }}>
-              {typeSlices.map((s) => (
+              {categorySlices.map((s) => (
                 <View key={s.label} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                   <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: s.color }} />
                   <Text style={{ fontSize: 11, color: colors.textSecondary, fontWeight: '600' }}>{s.label}</Text>
@@ -232,7 +232,7 @@ export function DashboardScreen() {
         </View>
 
         <View onLayout={onLinePanelLayout} style={[{ backgroundColor: colors.surface, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.border, padding: spacing.lg }, shadow.card]}>
-          <Text style={{ fontSize: fontSize.sm, fontWeight: '700', color: colors.textPrimary }}>Violations Reported</Text>
+          <Text style={{ fontSize: fontSize.sm, fontWeight: '700', color: colors.textPrimary }}>Observations Reported</Text>
           <Text style={{ fontSize: fontSize.xs, color: colors.textMuted, marginTop: 2, marginBottom: spacing.md }}>Last 6 months</Text>
           {loading ? (
             <Skeleton height={220} borderRadius={radius.md} />
@@ -279,9 +279,9 @@ export function DashboardScreen() {
             }}
           >
             <Text style={{ fontSize: fontSize.md, fontWeight: '700', color: colors.textPrimary }}>
-              Active Violations
+              Active Observations
             </Text>
-            <Pressable onPress={() => navigation.navigate('Violations')}>
+            <Pressable onPress={() => navigation.navigate('Observations')}>
               <Text style={{ fontSize: fontSize.xs, color: colors.primary, fontWeight: '700' }}>View All</Text>
             </Pressable>
           </View>
@@ -292,7 +292,7 @@ export function DashboardScreen() {
               <Skeleton height={72} style={{ borderRadius: radius.md }} />
             </View>
           ) : active.length === 0 ? (
-            <EmptyState icon="checkCircle" title="No active violations" message="Everything is up to date." />
+            <EmptyState icon="checkCircle" title="No active observations" message="Everything is up to date." />
           ) : isTabletUp ? (
             <View
               style={[
@@ -310,17 +310,17 @@ export function DashboardScreen() {
                   borderBottomColor: colors.border,
                 }}
               >
-                <Text style={[tableStyles.th, { flex: 1.3 }]}>VIOLATION NO</Text>
+                <Text style={[tableStyles.th, { flex: 1.3 }]}>OBSERVATION NO</Text>
                 <Text style={[tableStyles.th, { flex: 1 }]}>AGENT</Text>
                 <Text style={[tableStyles.th, { flex: 1.1 }]}>DEPARTMENT</Text>
-                <Text style={[tableStyles.th, { flex: 1.3 }]}>TYPE</Text>
+                <Text style={[tableStyles.th, { flex: 1.3 }]}>CATEGORY</Text>
                 <Text style={[tableStyles.th, { flex: 0.9 }]}>STATUS</Text>
                 <Text style={[tableStyles.th, { flex: 0.9 }]}>FILED</Text>
                 <Text style={[tableStyles.th, { width: 70, textAlign: 'right' }]}> </Text>
               </View>
               {active.map((item, index) => (
                 <StaggeredItem key={item.id} index={index}>
-                  <Pressable onPress={() => navigation.navigate('ViolationDetail', { violationId: item.id })}>
+                  <Pressable onPress={() => navigation.navigate('ObservationDetail', { observationId: item.id })}>
                     {({ pressed }) => (
                       <View
                         style={{
@@ -334,11 +334,11 @@ export function DashboardScreen() {
                         }}
                       >
                         <Text style={[tableStyles.td, { flex: 1.3, fontWeight: '700', color: colors.textPrimary }]}>
-                          {item.violation_no}
+                          {item.observation_no}
                         </Text>
                         <Text style={[tableStyles.td, { flex: 1 }]} numberOfLines={1}>{item.agent.name}</Text>
-                        <Text style={[tableStyles.td, { flex: 1.1 }]}>{item.department}</Text>
-                        <Text style={[tableStyles.td, { flex: 1.3 }]} numberOfLines={1}>{item.violation_type}</Text>
+                        <Text style={[tableStyles.td, { flex: 1.1 }]}>{item.department ?? '-'}</Text>
+                        <Text style={[tableStyles.td, { flex: 1.3 }]} numberOfLines={1}>{item.category}</Text>
                         <View style={{ flex: 0.9 }}>
                           <StatusBadge status={item.status} pulse={item.status === 'open'} />
                         </View>
@@ -360,7 +360,7 @@ export function DashboardScreen() {
               ItemSeparatorComponent={() => <View style={{ height: spacing.sm }} />}
               renderItem={({ item, index }) => (
                 <StaggeredItem index={index}>
-                  <Pressable onPress={() => navigation.navigate('ViolationDetail', { violationId: item.id })}>
+                  <Pressable onPress={() => navigation.navigate('ObservationDetail', { observationId: item.id })}>
                     {({ pressed }) => (
                       <View
                         style={[
@@ -390,14 +390,14 @@ export function DashboardScreen() {
                             justifyContent: 'center',
                           }}
                         >
-                          <Icon name="alertTriangle" size={18} color={colors.primaryDark} />
+                          <Icon name="eye" size={18} color={colors.primaryDark} />
                         </View>
                         <View style={{ flex: 1 }}>
                           <Text style={{ fontSize: fontSize.sm, fontWeight: '700', color: colors.textPrimary }}>
-                            {item.violation_no}
+                            {item.observation_no}
                           </Text>
                           <Text style={{ fontSize: fontSize.xs, color: colors.textMuted, marginTop: 2 }} numberOfLines={1}>
-                            {item.agent.name} · {item.department} · {item.violation_type}
+                            {item.agent.name} · {item.department ?? 'No department'} · {item.category}
                           </Text>
                         </View>
                         <StatusBadge status={item.status} pulse={item.status === 'open'} />
