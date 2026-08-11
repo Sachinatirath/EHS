@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Incident Report",
+    "slug": "incident-report",
+    "version": "1.0.0",
+    "orientation": "default",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {}
+  }
+}
