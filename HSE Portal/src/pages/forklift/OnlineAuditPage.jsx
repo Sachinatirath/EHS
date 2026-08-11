@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { IconTablet } from '../../components/icons';
 import { FORKLIFTS, AUDIT_TYPES, AUDIT_CHECKPOINTS } from '../../data/forkliftData';
 
@@ -104,95 +105,93 @@ export default function OnlineAuditPage({ pushToast, onNavigate }) {
         </div>
       </div>
 
-      <div className="panel" style={{ margin: 0 }}>
-        <div className="panel-body">
-          <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Forklift Safety Checklist</h3>
-          <p style={{ fontSize: 12.5, color: 'var(--slate-500)', marginBottom: 16 }}>
-            Critical failures in brakes, forks, steering, hydraulic leakage, seat belt or reverse alarm can result in REJECT / DO NOT OPERATE.
-          </p>
+      <Panel noMargin>
+        <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Forklift Safety Checklist</h3>
+        <p style={{ fontSize: 12.5, color: 'var(--slate-500)', marginBottom: 16 }}>
+          Critical failures in brakes, forks, steering, hydraulic leakage, seat belt or reverse alarm can result in REJECT / DO NOT OPERATE.
+        </p>
 
-          <div className="table-wrap">
-            <table className="data-table radio-table">
-              <thead>
-                <tr>
-                  <th>Audit Check Point</th>
-                  <th style={{ width: 70, textAlign: 'center' }}>OK</th>
-                  <th style={{ width: 90, textAlign: 'center' }}>NOT OK</th>
-                  <th style={{ width: 70, textAlign: 'center' }}>N/A</th>
-                  <th style={{ width: 80 }}>Critical</th>
+        <div className="table-wrap">
+          <table className="data-table radio-table">
+            <thead>
+              <tr>
+                <th>Audit Check Point</th>
+                <th style={{ width: 70, textAlign: 'center' }}>OK</th>
+                <th style={{ width: 90, textAlign: 'center' }}>NOT OK</th>
+                <th style={{ width: 70, textAlign: 'center' }}>N/A</th>
+                <th style={{ width: 80 }}>Critical</th>
+              </tr>
+            </thead>
+            <tbody>
+              {AUDIT_CHECKPOINTS.map(([label, critical], idx) => (
+                <tr key={label} className={answers[idx] ? 'answered' : ''}>
+                  <td>{idx + 1}. {label}</td>
+                  {['OK', 'NOT OK', 'N/A'].map((opt) => (
+                    <td className="radio-cell" key={opt}>
+                      <input
+                        type="radio"
+                        name={`chk-${idx}`}
+                        checked={answers[idx] === opt}
+                        onChange={() => setAnswer(idx, opt)}
+                      />
+                    </td>
+                  ))}
+                  <td className={critical ? 'critical-yes' : 'critical-no'}>{critical ? 'YES' : 'NO'}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {AUDIT_CHECKPOINTS.map(([label, critical], idx) => (
-                  <tr key={label} className={answers[idx] ? 'answered' : ''}>
-                    <td>{idx + 1}. {label}</td>
-                    {['OK', 'NOT OK', 'N/A'].map((opt) => (
-                      <td className="radio-cell" key={opt}>
-                        <input
-                          type="radio"
-                          name={`chk-${idx}`}
-                          checked={answers[idx] === opt}
-                          onChange={() => setAnswer(idx, opt)}
-                        />
-                      </td>
-                    ))}
-                    <td className={critical ? 'critical-yes' : 'critical-no'}>{critical ? 'YES' : 'NO'}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-          <div className="completion-strip">
-            <div className="completion-pct">{completion}%</div>
-            <div>
-              <div className="completion-label">Complete checklist</div>
-              <div className="completion-sub">{answeredCount} / {AUDIT_CHECKPOINTS.length} answered</div>
-            </div>
-            <div className="progress-track" style={{ flex: 1 }}>
-              <div className="progress-fill" style={{ width: `${completion}%` }} />
-            </div>
+        <div className="completion-strip">
+          <div className="completion-pct">{completion}%</div>
+          <div>
+            <div className="completion-label">Complete checklist</div>
+            <div className="completion-sub">{answeredCount} / {AUDIT_CHECKPOINTS.length} answered</div>
           </div>
-
-          <div className="field" style={{ marginBottom: 18 }}>
-            <label>Observation / Remarks</label>
-            <textarea
-              value={remarks}
-              onChange={(e) => setRemarks(e.target.value)}
-              placeholder="Enter defects, unsafe condition, unsafe act and recommendation..."
-              style={{ minHeight: 90 }}
-            />
-          </div>
-
-          <div className="form-grid form-grid-3">
-            <div className="field">
-              <label>Photo Evidence</label>
-              <input type="file" />
-            </div>
-            <div className="field">
-              <label>Critical Defect</label>
-              <select value={criticalDefect} onChange={(e) => setCriticalDefect(e.target.value)}>
-                <option>No</option>
-                <option>Yes</option>
-              </select>
-            </div>
-            <div className="field">
-              <label>Recommended Action</label>
-              <select value={recommendedAction} onChange={(e) => setRecommendedAction(e.target.value)}>
-                <option>Continue Operation</option>
-                <option>Conditional — Monitor</option>
-                <option>Stop Operation — Repair</option>
-                <option>Reject — Do Not Operate</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="btn-row" style={{ justifyContent: 'flex-end', marginTop: 20 }}>
-            <button type="button" className="btn btn-ghost" onClick={handleReset}>Reset</button>
-            <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit Audit</button>
+          <div className="progress-track" style={{ flex: 1 }}>
+            <div className="progress-fill" style={{ width: `${completion}%` }} />
           </div>
         </div>
-      </div>
+
+        <div className="field" style={{ marginBottom: 18 }}>
+          <label>Observation / Remarks</label>
+          <textarea
+            value={remarks}
+            onChange={(e) => setRemarks(e.target.value)}
+            placeholder="Enter defects, unsafe condition, unsafe act and recommendation..."
+            style={{ minHeight: 90 }}
+          />
+        </div>
+
+        <div className="form-grid form-grid-3">
+          <div className="field">
+            <label>Photo Evidence</label>
+            <input type="file" />
+          </div>
+          <div className="field">
+            <label>Critical Defect</label>
+            <select value={criticalDefect} onChange={(e) => setCriticalDefect(e.target.value)}>
+              <option>No</option>
+              <option>Yes</option>
+            </select>
+          </div>
+          <div className="field">
+            <label>Recommended Action</label>
+            <select value={recommendedAction} onChange={(e) => setRecommendedAction(e.target.value)}>
+              <option>Continue Operation</option>
+              <option>Conditional — Monitor</option>
+              <option>Stop Operation — Repair</option>
+              <option>Reject — Do Not Operate</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="btn-row" style={{ justifyContent: 'flex-end', marginTop: 20 }}>
+          <button type="button" className="btn btn-ghost" onClick={handleReset}>Reset</button>
+          <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit Audit</button>
+        </div>
+      </Panel>
     </div>
   );
 }

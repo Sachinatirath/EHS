@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Panel from '../../components/Panel';
 import { IconAlertTriangle, IconClipboard, IconTool, IconFileText, IconUser } from '../../components/icons';
 import { nextViolationId, EHS_DEPARTMENTS, VIOLATION_TYPES, OFFENCE_LEVELS, CORRECTIVE_ACTIONS } from '../../data/formOptions';
 
@@ -37,9 +38,8 @@ export default function SafetyViolationPage({ pushToast }) {
     <div className="page-enter">
       <h1 className="page-title">SAFETY VIOLATION NOTICE</h1>
 
-      <div className="panel">
-        <div className="panel-header"><IconAlertTriangle size={17} /> Violation Information</div>
-        <div className="panel-body form-grid">
+      <Panel title="Violation Information" icon={<IconAlertTriangle size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Violation No</label>
             <input value={violationNo} readOnly style={{ background: 'var(--slate-100)', color: 'var(--slate-500)', fontWeight: 700 }} />
@@ -75,11 +75,10 @@ export default function SafetyViolationPage({ pushToast }) {
             <input value={info.jobTitle || ''} onChange={setInfoField('jobTitle')} />
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconClipboard size={17} /> Violation Details</div>
-        <div className="panel-body form-grid">
+      <Panel title="Violation Details" icon={<IconClipboard size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Violation Type</label>
             <select value={details.violationType} onChange={setDetailsField('violationType')}>
@@ -93,56 +92,41 @@ export default function SafetyViolationPage({ pushToast }) {
             </select>
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconTool size={17} /> Corrective Action</div>
-        <div className="panel-body">
-          <div className="checkbox-group">
-            {CORRECTIVE_ACTIONS.map((item) => (
-              <label key={item}>
-                <input type="checkbox" checked={actions.has(item)} onChange={() => toggleAction(item)} />
-                {item}
-              </label>
-            ))}
-          </div>
+      <Panel title="Corrective Action" icon={<IconTool size={17} />}>
+        <div className="checkbox-group">
+          {CORRECTIVE_ACTIONS.map((item) => (
+            <label key={item}>
+              <input type="checkbox" checked={actions.has(item)} onChange={() => toggleAction(item)} />
+              {item}
+            </label>
+          ))}
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconFileText size={17} /> Description</div>
-        <div className="panel-body">
-          <div className="field">
-            <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Enter Violation Description..." />
-          </div>
+      <Panel title="Description" icon={<IconFileText size={17} />}>
+        <div className="field">
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Enter Violation Description..." />
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconUser size={17} /> Employee Explanation</div>
-        <div className="panel-body">
-          <div className="field">
-            <textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} />
-          </div>
+      <Panel title="Employee Explanation" icon={<IconUser size={17} />}>
+        <div className="field">
+          <textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} />
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconFileText size={17} /> Evidence Photo</div>
-        <div className="panel-body">
-          <div className="field"><input type="file" /></div>
-        </div>
-      </div>
+      <Panel title="Evidence Photo" icon={<IconFileText size={17} />}>
+        <div className="field"><input type="file" /></div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconUser size={17} /> Digital Signature</div>
-        <div className="panel-body">
-          <div className="signature-box" onClick={handleSign} style={{ cursor: 'pointer' }}>
-            {signed ? <span style={{ fontFamily: 'cursive', fontSize: 22, color: 'var(--blue-700)' }}>Signed</span> : 'Click to sign'}
-          </div>
-          <button type="button" className="btn btn-outline" onClick={handleClearSignature}>Clear</button>
+      <Panel title="Digital Signature" icon={<IconUser size={17} />}>
+        <div className="signature-box" onClick={handleSign} style={{ cursor: 'pointer' }}>
+          {signed ? <span style={{ fontFamily: 'cursive', fontSize: 22, color: 'var(--blue-700)' }}>Signed</span> : 'Click to sign'}
         </div>
-      </div>
+        <button type="button" className="btn btn-outline" onClick={handleClearSignature}>Clear</button>
+      </Panel>
 
       <div className="btn-row">
         <button type="button" className="btn btn-outline" onClick={handleDraft}>Save Draft</button>

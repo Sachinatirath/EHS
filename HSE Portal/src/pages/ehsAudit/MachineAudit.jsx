@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Panel from '../../components/Panel';
 import { IconTool, IconCheckSquare, IconFileText } from '../../components/icons';
 
 const CHECKLIST_ITEMS = [
@@ -56,52 +57,46 @@ export default function MachineAudit({ pushToast }) {
         </div>
       </div>
 
-      <div className="panel">
-        <div className="panel-header"><IconCheckSquare size={17} /> Safety Checklist</div>
-        <div className="panel-body" style={{ paddingTop: 16 }}>
-          <div className="table-wrap">
-            <table className="data-table">
-              <thead>
-                <tr><th style={{ width: 48 }}>No</th><th>Checklist Item</th><th style={{ width: 130 }}>Status</th><th>Remarks</th></tr>
-              </thead>
-              <tbody>
-                {CHECKLIST_ITEMS.map((item, idx) => (
-                  <tr key={item}>
-                    <td>{idx + 1}</td>
-                    <td>{item}</td>
-                    <td>
-                      <select
-                        className={`checklist-select ${statusClass(rows[idx].status)}`}
-                        value={rows[idx].status}
-                        onChange={setRow(idx, 'status')}
-                      >
-                        <option>Yes</option>
-                        <option>No</option>
-                        <option>N/A</option>
-                      </select>
-                    </td>
-                    <td>
-                      <textarea rows={1} value={rows[idx].remarks} onChange={setRow(idx, 'remarks')} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      <Panel title="Safety Checklist" icon={<IconCheckSquare size={17} />} bodyStyle={{ paddingTop: 16 }}>
+        <div className="table-wrap">
+          <table className="data-table">
+            <thead>
+              <tr><th style={{ width: 48 }}>No</th><th>Checklist Item</th><th style={{ width: 130 }}>Status</th><th>Remarks</th></tr>
+            </thead>
+            <tbody>
+              {CHECKLIST_ITEMS.map((item, idx) => (
+                <tr key={item}>
+                  <td>{idx + 1}</td>
+                  <td>{item}</td>
+                  <td>
+                    <select
+                      className={`checklist-select ${statusClass(rows[idx].status)}`}
+                      value={rows[idx].status}
+                      onChange={setRow(idx, 'status')}
+                    >
+                      <option>Yes</option>
+                      <option>No</option>
+                      <option>N/A</option>
+                    </select>
+                  </td>
+                  <td>
+                    <textarea rows={1} value={rows[idx].remarks} onChange={setRow(idx, 'remarks')} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconFileText size={17} /> Overall Observation</div>
-        <div className="panel-body">
-          <textarea
-            style={{ width: '100%', minHeight: 110, border: '1.5px solid var(--slate-200)', borderRadius: 8, padding: 12, fontSize: 14 }}
-            value={observation}
-            onChange={(e) => setObservation(e.target.value)}
-            placeholder="Enter overall observation notes..."
-          />
-        </div>
-      </div>
+      <Panel title="Overall Observation" icon={<IconFileText size={17} />}>
+        <textarea
+          style={{ width: '100%', minHeight: 110, border: '1.5px solid var(--slate-200)', borderRadius: 8, padding: 12, fontSize: 14 }}
+          value={observation}
+          onChange={(e) => setObservation(e.target.value)}
+          placeholder="Enter overall observation notes..."
+        />
+      </Panel>
 
       <div className="btn-row">
         <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit Audit</button>

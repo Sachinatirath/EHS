@@ -1,4 +1,5 @@
 import StatCard from '../components/StatCard';
+import Panel from '../components/Panel';
 import { IconFileText, IconClock, IconCheckCircle, IconAlertTriangle } from '../components/icons';
 
 const PERMITS = [
@@ -21,43 +22,40 @@ export default function Dashboard() {
       <h1 className="page-title">Dashboard</h1>
 
       <div className="stat-grid">
-        <StatCard value={245} label="Total Permits" color="#2563eb" bg="#eef4ff" icon={<IconFileText size={19} />} delay={0} />
-        <StatCard value={18} label="Pending" color="#b45309" bg="#fef1d6" icon={<IconClock size={19} />} delay={60} />
-        <StatCard value={210} label="Approved" color="#15803d" bg="#d9f6e4" icon={<IconCheckCircle size={19} />} delay={120} />
-        <StatCard value={17} label="Rejected" color="#dc2626" bg="#fde0e0" icon={<IconAlertTriangle size={19} />} delay={180} />
+        <StatCard value={245} label="Total Permits" variant="blue" icon={<IconFileText size={19} />} delay={0} />
+        <StatCard value={18} label="Pending" variant="amber" icon={<IconClock size={19} />} delay={60} />
+        <StatCard value={210} label="Approved" variant="green" icon={<IconCheckCircle size={19} />} delay={120} />
+        <StatCard value={17} label="Rejected" variant="red" icon={<IconAlertTriangle size={19} />} delay={180} />
       </div>
 
-      <div className="panel">
-        <div className="panel-header"><IconFileText size={17} /> Recent Work Permits</div>
-        <div className="panel-body" style={{ paddingTop: 16 }}>
-          <div className="table-wrap">
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>SL No</th><th>Permit No</th><th>Type</th><th>Dept</th>
-                  <th>Work Description</th><th>Location</th><th>E. Contact Number</th>
-                  <th>Status</th><th>Remark</th>
+      <Panel title="Recent Work Permits" icon={<IconFileText size={17} />} bodyStyle={{ paddingTop: 16 }}>
+        <div className="table-wrap">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>SL No</th><th>Permit No</th><th>Type</th><th>Dept</th>
+                <th>Work Description</th><th>Location</th><th>E. Contact Number</th>
+                <th>Status</th><th>Remark</th>
+              </tr>
+            </thead>
+            <tbody>
+              {PERMITS.map((p) => (
+                <tr key={p.id}>
+                  <td>{p.no}</td>
+                  <td>{p.id}</td>
+                  <td>{p.type}</td>
+                  <td>{p.dept}</td>
+                  <td>{p.desc}</td>
+                  <td>{p.loc}</td>
+                  <td>{p.contact}</td>
+                  <td><span className={`pill ${STATUS_PILL[p.status]}`}>{p.status}</span></td>
+                  <td>{p.remark}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {PERMITS.map((p) => (
-                  <tr key={p.id}>
-                    <td>{p.no}</td>
-                    <td>{p.id}</td>
-                    <td>{p.type}</td>
-                    <td>{p.dept}</td>
-                    <td>{p.desc}</td>
-                    <td>{p.loc}</td>
-                    <td>{p.contact}</td>
-                    <td><span className={`pill ${STATUS_PILL[p.status]}`}>{p.status}</span></td>
-                    <td>{p.remark}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

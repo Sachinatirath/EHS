@@ -22,12 +22,23 @@ class UserOut(BaseModel):
     name: str
     role: Role
     department: Optional[str] = None
+    phone: Optional[str] = None
+    email: Optional[str] = None
+    address: Optional[str] = None
 
 
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
     user: UserOut
+
+
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    department: Optional[str] = None
+    phone: Optional[str] = None
+    email: Optional[str] = None
+    address: Optional[str] = None
 
 
 # ---------- Boxes ----------
@@ -44,6 +55,13 @@ class BoxOut(BaseModel):
 class BoxDetailOut(BoxOut):
     last_inspection_at: Optional[datetime.datetime] = None
     last_inspection_outcome: Optional[str] = None
+
+
+class BoxCreate(BaseModel):
+    box_number: str
+    department: str
+    area: str
+    location: str
 
 
 # ---------- Inspections ----------
@@ -98,6 +116,21 @@ class InspectionSummaryOut(BaseModel):
     outcome: str
 
 
+class InspectionRecordOut(BaseModel):
+    """Plant-wide inspection record for the OHC Records view — like
+    InspectionSummaryOut but includes the inspector, since OHC needs to see
+    who inspected each box across all departments, not just their own."""
+
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    box: BoxOut
+    inspector: UserOut
+    created_at: datetime.datetime
+    outcome: str
+    refill_request: Optional[RefillRequestBrief] = None
+
+
 # ---------- Refill Requests ----------
 class RefillItemIn(BaseModel):
     inspection_item_id: int
@@ -140,6 +173,7 @@ class RefillRequestSummaryOut(BaseModel):
     created_at: datetime.datetime
     box: BoxOut
     flagged_item_count: int
+    flagged_items: List[str]
 
 
 class VerifyDecisionRequest(BaseModel):

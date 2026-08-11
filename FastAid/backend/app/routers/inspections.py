@@ -81,6 +81,21 @@ def create_inspection(
     return inspection
 
 
+@router.get("", response_model=list[schemas.InspectionRecordOut])
+def list_all_inspections(
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(require_role("ohc")),
+):
+    """Plant-wide inspection history for the OHC Records screen — every
+    inspection across every box/department, not just ones that produced a
+    refill request."""
+    return (
+        db.query(models.Inspection)
+        .order_by(models.Inspection.created_at.desc())
+        .all()
+    )
+
+
 @router.get("/mine", response_model=list[schemas.InspectionSummaryOut])
 def my_inspections(
     db: Session = Depends(get_db),

@@ -22,7 +22,7 @@ def list_refills(
 
     results = []
     for r in requests:
-        flagged_count = sum(1 for i in r.inspection.items if i.status != "ok")
+        flagged = [i.item_name for i in r.inspection.items if i.status != "ok"]
         results.append(
             schemas.RefillRequestSummaryOut(
                 id=r.id,
@@ -30,7 +30,8 @@ def list_refills(
                 status=r.status,
                 created_at=r.created_at,
                 box=schemas.BoxOut.model_validate(r.inspection.box),
-                flagged_item_count=flagged_count,
+                flagged_item_count=len(flagged),
+                flagged_items=flagged,
             )
         )
     return results

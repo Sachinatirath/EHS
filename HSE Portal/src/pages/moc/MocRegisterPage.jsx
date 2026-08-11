@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { IconPlus, IconSearch, IconDownload } from '../../components/icons';
 import { MOC_REGISTER, MOC_CATEGORIES, MOC_DEPARTMENTS, RISK_PILL, STATUS_PILL } from '../../data/mocData';
 
@@ -54,7 +55,7 @@ export default function MocRegisterPage({ pushToast, onNavigate }) {
         </button>
       </div>
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -89,7 +90,7 @@ export default function MocRegisterPage({ pushToast, onNavigate }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

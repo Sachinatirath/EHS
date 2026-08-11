@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PageHeader from '../../components/PageHeader';
 import Modal from '../../components/Modal';
+import Panel from '../../components/Panel';
 import { IconPlus } from '../../components/icons';
 import { CORRECTIVE_ACTIONS, FINDINGS, FS_DEPARTMENTS, STATUS_PILL, nextActionId } from '../../data/fireSafetyData';
 
@@ -38,30 +39,28 @@ export default function CorrectiveActionsPage({ pushToast }) {
         )}
       />
 
-      <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--amber-500)' }}>
-        <div className="panel-body">
-          <div className="spec-row">
-            <div className="spec-item">
-              <div className="spec-label">Department</div>
-              <div className="spec-value">Mandatory</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Owner</div>
-              <div className="spec-value">Named person</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Due date</div>
-              <div className="spec-value">Mandatory</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Evidence</div>
-              <div className="spec-value">Photo / document</div>
-            </div>
+      <Panel noMargin style={{ borderLeft: '3px solid var(--amber-500)' }}>
+        <div className="spec-row">
+          <div className="spec-item">
+            <div className="spec-label">Department</div>
+            <div className="spec-value">Mandatory</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Owner</div>
+            <div className="spec-value">Named person</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Due date</div>
+            <div className="spec-value">Mandatory</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Evidence</div>
+            <div className="spec-value">Photo / document</div>
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin bodyStyle={{ padding: 0 }}>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -88,7 +87,7 @@ export default function CorrectiveActionsPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
 
       <Modal open={modalOpen} title="Assign Corrective Action" onClose={() => setModalOpen(false)} width={640}>
         <form onSubmit={handleSubmit}>

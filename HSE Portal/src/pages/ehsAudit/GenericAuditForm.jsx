@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Panel from '../../components/Panel';
 import { IconCheckSquare, IconFileText, IconGauge } from '../../components/icons';
 
 const CHECKLIST_ITEMS = [
@@ -70,40 +71,37 @@ export default function GenericAuditForm({ title, icon, pushToast }) {
         </div>
       </div>
 
-      <div className="panel">
-        <div className="panel-header"><IconCheckSquare size={17} /> Audit Checklist</div>
-        <div className="panel-body" style={{ paddingTop: 16 }}>
-          <div className="table-wrap">
-            <table className="data-table">
-              <thead>
-                <tr><th style={{ width: 48 }}>No</th><th>Checklist Item</th><th style={{ width: 130 }}>Status</th><th>Remarks</th></tr>
-              </thead>
-              <tbody>
-                {CHECKLIST_ITEMS.map((item, idx) => (
-                  <tr key={item}>
-                    <td>{idx + 1}</td>
-                    <td>{item}</td>
-                    <td>
-                      <select
-                        className={`checklist-select ${statusClass(rows[idx].status)}`}
-                        value={rows[idx].status}
-                        onChange={setRow(idx, 'status')}
-                      >
-                        <option>Yes</option>
-                        <option>No</option>
-                        <option>N/A</option>
-                      </select>
-                    </td>
-                    <td>
-                      <textarea rows={1} value={rows[idx].remarks} onChange={setRow(idx, 'remarks')} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      <Panel title="Audit Checklist" icon={<IconCheckSquare size={17} />} bodyStyle={{ paddingTop: 16 }}>
+        <div className="table-wrap">
+          <table className="data-table">
+            <thead>
+              <tr><th style={{ width: 48 }}>No</th><th>Checklist Item</th><th style={{ width: 130 }}>Status</th><th>Remarks</th></tr>
+            </thead>
+            <tbody>
+              {CHECKLIST_ITEMS.map((item, idx) => (
+                <tr key={item}>
+                  <td>{idx + 1}</td>
+                  <td>{item}</td>
+                  <td>
+                    <select
+                      className={`checklist-select ${statusClass(rows[idx].status)}`}
+                      value={rows[idx].status}
+                      onChange={setRow(idx, 'status')}
+                    >
+                      <option>Yes</option>
+                      <option>No</option>
+                      <option>N/A</option>
+                    </select>
+                  </td>
+                  <td>
+                    <textarea rows={1} value={rows[idx].remarks} onChange={setRow(idx, 'remarks')} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </div>
+      </Panel>
 
       <div className="panel">
         <div className="panel-header"><IconFileText size={17} /> Findings &amp; Recommendations</div>

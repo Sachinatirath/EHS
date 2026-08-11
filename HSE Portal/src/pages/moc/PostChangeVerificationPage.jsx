@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { VERIFICATION_CHECKLIST, VERIFICATION_RESULTS, VERIFICATION_QUEUE, STATUS_PILL } from '../../data/mocData';
 
 export default function PostChangeVerificationPage({ pushToast }) {
@@ -22,46 +23,40 @@ export default function PostChangeVerificationPage({ pushToast }) {
       />
 
       <div className="two-col">
-        <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--blue-500)' }}>
-          <div className="panel-body">
-            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>Post-Change Verification Checklist</h3>
-            {checklist.map((item, idx) => (
-              <div className="check-list-row" key={item.text}>
-                <label>
-                  <input type="checkbox" checked={item.checked} onChange={() => toggle(idx)} />
-                  {item.text}
-                </label>
-                <span className="tag-text">{item.tag}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Panel noMargin plain title="Post-Change Verification Checklist" style={{ borderLeft: '3px solid var(--blue-500)' }}>
+          {checklist.map((item, idx) => (
+            <div className="check-list-row" key={item.text}>
+              <label>
+                <input type="checkbox" checked={item.checked} onChange={() => toggle(idx)} />
+                {item.text}
+              </label>
+              <span className="tag-text">{item.tag}</span>
+            </div>
+          ))}
+        </Panel>
 
-        <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--amber-500)' }}>
-          <div className="panel-body">
-            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 14 }}>Closure Decision</h3>
-            <div className="field">
-              <label>Verification Result</label>
-              <select value={result} onChange={(e) => setResult(e.target.value)}>
-                {VERIFICATION_RESULTS.map((r) => <option key={r}>{r}</option>)}
-              </select>
-            </div>
-            <div className="field" style={{ marginTop: 14 }}>
-              <label>Verification Comments</label>
-              <textarea value={comments} onChange={(e) => setComments(e.target.value)} placeholder="Mention field verification, observations, test results and remaining actions..." />
-            </div>
-            <div className="field" style={{ marginTop: 14 }}>
-              <label>Evidence</label>
-              <input type="file" multiple />
-            </div>
-            <button type="button" className="btn btn-success" style={{ width: '100%', marginTop: 8 }} onClick={handleSubmit}>
-              Submit for Closure
-            </button>
+        <Panel noMargin plain title="Closure Decision" style={{ borderLeft: '3px solid var(--amber-500)' }}>
+          <div className="field">
+            <label>Verification Result</label>
+            <select value={result} onChange={(e) => setResult(e.target.value)}>
+              {VERIFICATION_RESULTS.map((r) => <option key={r}>{r}</option>)}
+            </select>
           </div>
-        </div>
+          <div className="field" style={{ marginTop: 14 }}>
+            <label>Verification Comments</label>
+            <textarea value={comments} onChange={(e) => setComments(e.target.value)} placeholder="Mention field verification, observations, test results and remaining actions..." />
+          </div>
+          <div className="field" style={{ marginTop: 14 }}>
+            <label>Evidence</label>
+            <input type="file" multiple />
+          </div>
+          <button type="button" className="btn btn-success" style={{ width: '100%', marginTop: 8 }} onClick={handleSubmit}>
+            Submit for Closure
+          </button>
+        </Panel>
       </div>
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -89,7 +84,7 @@ export default function PostChangeVerificationPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

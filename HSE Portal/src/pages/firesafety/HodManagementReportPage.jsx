@@ -1,4 +1,5 @@
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { DEPARTMENT_PERFORMANCE, ESCALATION_FLOW } from '../../data/fireSafetyData';
 
 export default function HodManagementReportPage({ pushToast }) {
@@ -42,47 +43,41 @@ export default function HodManagementReportPage({ pushToast }) {
       </div>
 
       <div className="two-col">
-        <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--blue-500)' }}>
-          <div className="panel-body">
-            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Department Performance</h3>
-            <div className="table-wrap">
-              <table className="data-table">
-                <thead>
-                  <tr><th>Department</th><th>Assets</th><th>Audited</th><th>Findings</th><th>Overdue</th><th>Closure</th></tr>
-                </thead>
-                <tbody>
-                  {DEPARTMENT_PERFORMANCE.map((d) => (
-                    <tr key={d.department}>
-                      <td style={{ fontWeight: 600, color: 'var(--slate-900)' }}>{d.department}</td>
-                      <td>{d.assets}</td>
-                      <td>{d.audited}</td>
-                      <td>{d.findings}</td>
-                      <td>{d.overdue}</td>
-                      <td>{d.closure}%</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+        <Panel noMargin plain title="Department Performance" style={{ borderLeft: '3px solid var(--blue-500)' }}>
+          <div className="table-wrap">
+            <table className="data-table">
+              <thead>
+                <tr><th>Department</th><th>Assets</th><th>Audited</th><th>Findings</th><th>Overdue</th><th>Closure</th></tr>
+              </thead>
+              <tbody>
+                {DEPARTMENT_PERFORMANCE.map((d) => (
+                  <tr key={d.department}>
+                    <td style={{ fontWeight: 600, color: 'var(--slate-900)' }}>{d.department}</td>
+                    <td>{d.assets}</td>
+                    <td>{d.audited}</td>
+                    <td>{d.findings}</td>
+                    <td>{d.overdue}</td>
+                    <td>{d.closure}%</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </div>
+        </Panel>
 
-        <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--amber-500)' }}>
-          <div className="panel-body">
-            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 6 }}>Management Escalation Flow</h3>
-            <ul className="workflow-list">
-              {ESCALATION_FLOW.map((s) => (
-                <li key={s.title} style={{ cursor: 'pointer' }} onClick={() => pushToast(s.title, 'info')}>
-                  <span className="step-dot" />
-                  <div>
-                    <div className="step-title">{s.title}</div>
-                    <div className="step-desc">{s.desc}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <Panel noMargin plain title="Management Escalation Flow" style={{ borderLeft: '3px solid var(--amber-500)' }}>
+          <ul className="workflow-list">
+            {ESCALATION_FLOW.map((s) => (
+              <li key={s.title} style={{ cursor: 'pointer' }} onClick={() => pushToast(s.title, 'info')}>
+                <span className="step-dot" />
+                <div>
+                  <div className="step-title">{s.title}</div>
+                  <div className="step-desc">{s.desc}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Panel>
       </div>
     </div>
   );

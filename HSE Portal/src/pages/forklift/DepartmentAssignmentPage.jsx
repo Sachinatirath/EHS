@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import ObservationModal from '../../components/ObservationModal';
 import { IconPlus } from '../../components/icons';
 import { OBSERVATIONS, OBS_STATUS_PILL, PRIORITY_PILL, OBSERVATION_WORKFLOW, nextObservationId } from '../../data/forkliftData';
@@ -36,20 +37,18 @@ export default function DepartmentAssignmentPage({ pushToast }) {
         )}
       />
 
-      <div className="panel">
-        <div className="panel-body" style={{ borderLeft: '3px solid var(--amber-500)' }}>
-          <h3 style={{ fontSize: 14.5, fontWeight: 700, marginBottom: 14 }}>Recommended Workflow</h3>
-          <div className="workflow-grid">
-            {OBSERVATION_WORKFLOW.map((step, idx) => (
-              <div className="workflow-step" key={step.title}>
-                <div className="step-index">Step {idx + 1}</div>
-                <div className="step-title">{step.title}</div>
-                <div style={{ fontSize: 12.5, color: 'var(--slate-500)', marginTop: 4 }}>{step.desc}</div>
-              </div>
-            ))}
-          </div>
+      <Panel bodyStyle={{ borderLeft: '3px solid var(--amber-500)' }}>
+        <h3 style={{ fontSize: 14.5, fontWeight: 700, marginBottom: 14 }}>Recommended Workflow</h3>
+        <div className="workflow-grid">
+          {OBSERVATION_WORKFLOW.map((step, idx) => (
+            <div className="workflow-step" key={step.title}>
+              <div className="step-index">Step {idx + 1}</div>
+              <div className="step-title">{step.title}</div>
+              <div style={{ fontSize: 12.5, color: 'var(--slate-500)', marginTop: 4 }}>{step.desc}</div>
+            </div>
+          ))}
         </div>
-      </div>
+      </Panel>
 
       <div className="panel" style={{ margin: 0 }}>
         <div className="table-wrap">

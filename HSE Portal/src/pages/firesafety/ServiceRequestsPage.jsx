@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import AmcRequestModal from './AmcRequestModal';
 import { IconPlus, IconSearch, IconDownload } from '../../components/icons';
 import { AMC_SERVICES, STATUS_PILL } from '../../data/fireSafetyData';
@@ -88,7 +89,7 @@ export default function ServiceRequestsPage({ pushToast }) {
         </button>
       </div>
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin bodyStyle={{ padding: 0 }}>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -121,7 +122,7 @@ export default function ServiceRequestsPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
 
       <AmcRequestModal open={modalOpen} onClose={() => setModalOpen(false)} onSave={handleSave} />
     </div>

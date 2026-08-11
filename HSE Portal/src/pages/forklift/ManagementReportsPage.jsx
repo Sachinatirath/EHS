@@ -1,5 +1,6 @@
 import PageHeader from '../../components/PageHeader';
 import StatCard from '../../components/StatCard';
+import Panel from '../../components/Panel';
 import {
   IconPrinter, IconDownload, IconForklift, IconClock, IconPercent,
   IconAlertTriangle, IconArrowUpRight, IconCheckCircle,
@@ -25,56 +26,52 @@ export default function ManagementReportsPage({ pushToast }) {
       />
 
       <div className="stat-grid">
-        <StatCard value={32} label="Forklifts" color="#2563eb" bg="#eef4ff" icon={<IconForklift size={18} />} delay={0} />
-        <StatCard value={29} label="Audited" color="#b45309" bg="#fef1d6" icon={<IconClock size={18} />} delay={40} />
-        <StatCard value="93.8%" label="Compliance" color="#15803d" bg="#d9f6e4" icon={<IconPercent size={18} />} delay={80} />
-        <StatCard value={18} label="Observations" color="#dc2626" bg="#fde0e0" icon={<IconAlertTriangle size={18} />} delay={120} />
-        <StatCard value={9} label="Open Actions" color="#2563eb" bg="#eef4ff" icon={<IconArrowUpRight size={18} />} delay={160} />
-        <StatCard value="50%" label="Closure" color="#15803d" bg="#d9f6e4" icon={<IconCheckCircle size={18} />} delay={200} />
+        <StatCard value={32} label="Forklifts" variant="blue" icon={<IconForklift size={18} />} delay={0} />
+        <StatCard value={29} label="Audited" variant="amber" icon={<IconClock size={18} />} delay={40} />
+        <StatCard value="93.8%" label="Compliance" variant="green" icon={<IconPercent size={18} />} delay={80} />
+        <StatCard value={18} label="Observations" variant="red" icon={<IconAlertTriangle size={18} />} delay={120} />
+        <StatCard value={9} label="Open Actions" variant="blue" icon={<IconArrowUpRight size={18} />} delay={160} />
+        <StatCard value="50%" label="Closure" variant="green" icon={<IconCheckCircle size={18} />} delay={200} />
       </div>
 
       <div className="two-col">
-        <div className="panel" style={{ margin: 0 }}>
-          <div className="panel-body">
-            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Department Closure Performance</h3>
-            {DEPT_CLOSURE_PERFORMANCE.map((d) => (
-              <div className="dept-bar-row" key={d.dept}>
-                <div className="dept-bar-head">
-                  <span>{d.dept}</span>
-                  <span>{d.value}%</span>
-                </div>
-                <div className="progress-track">
-                  <div className="progress-fill" style={{ width: `${d.value}%` }} />
-                </div>
+        <Panel noMargin>
+          <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Department Closure Performance</h3>
+          {DEPT_CLOSURE_PERFORMANCE.map((d) => (
+            <div className="dept-bar-row" key={d.dept}>
+              <div className="dept-bar-head">
+                <span>{d.dept}</span>
+                <span>{d.value}%</span>
               </div>
-            ))}
-          </div>
-        </div>
+              <div className="progress-track">
+                <div className="progress-fill" style={{ width: `${d.value}%` }} />
+              </div>
+            </div>
+          ))}
+        </Panel>
 
-        <div className="panel" style={{ margin: 0, borderTop: '3px solid var(--amber-500)' }}>
-          <div className="panel-body">
-            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Recommended Management Workflow</h3>
-            <ul className="workflow-list">
-              {MANAGEMENT_WORKFLOW.map((step) => (
-                <li key={step.title}>
-                  <span className="step-dot" />
-                  <div>
-                    <div className="step-title">{step.title}</div>
-                    <div className="step-desc">{step.desc}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <button
-              type="button"
-              className="btn btn-primary"
-              style={{ width: '100%', marginTop: 14 }}
-              onClick={() => pushToast('Management report generated.', 'success')}
-            >
-              Generate Management Report
-            </button>
-          </div>
-        </div>
+        <Panel noMargin accent="amber">
+          <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Recommended Management Workflow</h3>
+          <ul className="workflow-list">
+            {MANAGEMENT_WORKFLOW.map((step) => (
+              <li key={step.title}>
+                <span className="step-dot" />
+                <div>
+                  <div className="step-title">{step.title}</div>
+                  <div className="step-desc">{step.desc}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <button
+            type="button"
+            className="btn btn-primary"
+            style={{ width: '100%', marginTop: 14 }}
+            onClick={() => pushToast('Management report generated.', 'success')}
+          >
+            Generate Management Report
+          </button>
+        </Panel>
       </div>
     </div>
   );

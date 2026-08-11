@@ -65,11 +65,11 @@ export default function CorrectiveActionsPage({ pushToast }) {
       />
 
       <div className="stat-grid">
-        <StatCard value={stats.open} label="Open" color="#2563eb" bg="#eef4ff" icon={<IconAlertTriangle size={18} />} delay={0} />
-        <StatCard value={stats.inProgress} label="In Progress" color="#b45309" bg="#fef1d6" icon={<IconClock size={18} />} delay={40} />
-        <StatCard value={stats.overdue} label="Overdue" color="#15803d" bg="#d9f6e4" icon={<IconAlertTriangle size={18} />} delay={80} />
-        <StatCard value={stats.closed} label="Closed" color="#dc2626" bg="#fde0e0" icon={<IconCheckCircle size={18} />} delay={120} />
-        <StatCard value={stats.critical} label="Critical" color="#b45309" bg="#fef1d6" icon={<IconAlertTriangle size={18} />} delay={160} />
+        <StatCard value={stats.open} label="Open" variant="blue" icon={<IconAlertTriangle size={18} />} delay={0} />
+        <StatCard value={stats.inProgress} label="In Progress" variant="amber" icon={<IconClock size={18} />} delay={40} />
+        <StatCard value={stats.overdue} label="Overdue" variant="green" icon={<IconAlertTriangle size={18} />} delay={80} />
+        <StatCard value={stats.closed} label="Closed" variant="red" icon={<IconCheckCircle size={18} />} delay={120} />
+        <StatCard value={stats.critical} label="Critical" variant="amber" icon={<IconAlertTriangle size={18} />} delay={160} />
       </div>
 
       <div className="panel" style={{ margin: 0 }}>

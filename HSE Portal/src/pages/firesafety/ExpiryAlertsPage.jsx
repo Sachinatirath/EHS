@@ -1,4 +1,5 @@
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { ALERT_RULES } from '../../data/fireSafetyData';
 
 export default function ExpiryAlertsPage({ pushToast, onNavigate }) {
@@ -37,19 +38,16 @@ export default function ExpiryAlertsPage({ pushToast, onNavigate }) {
         </div>
       </div>
 
-      <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--green-500)' }}>
-        <div className="panel-body">
-          <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Alert Rules</h3>
-          <div className="spec-row">
-            {ALERT_RULES.map((r) => (
-              <div className="spec-item" key={r.days}>
-                <div className="spec-label">{r.days}</div>
-                <div className="spec-value">{r.action}</div>
-              </div>
-            ))}
-          </div>
+      <Panel noMargin plain title="Alert Rules" style={{ borderLeft: '3px solid var(--green-500)' }}>
+        <div className="spec-row">
+          {ALERT_RULES.map((r) => (
+            <div className="spec-item" key={r.days}>
+              <div className="spec-label">{r.days}</div>
+              <div className="spec-value">{r.action}</div>
+            </div>
+          ))}
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

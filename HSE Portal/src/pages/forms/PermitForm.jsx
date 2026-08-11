@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Panel from '../../components/Panel';
 import { IconClipboard, IconFileText, IconAlertTriangle, IconCheckSquare, IconUser } from '../../components/icons';
 import { nextPermitId, PPE_ITEMS } from '../../data/formOptions';
 
@@ -34,9 +35,8 @@ export default function PermitForm({ title, pushToast }) {
     <div className="page-enter">
       <h1 className="page-title">{title}</h1>
 
-      <div className="panel">
-        <div className="panel-header"><IconClipboard size={17} /> Permit Information</div>
-        <div className="panel-body form-grid">
+      <Panel title="Permit Information" icon={<IconClipboard size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Permit No</label>
             <input value={permitNo} readOnly style={{ background: 'var(--slate-100)', color: 'var(--slate-500)', fontWeight: 700 }} />
@@ -62,20 +62,16 @@ export default function PermitForm({ title, pushToast }) {
             <input type="date" value={info.validUntil || ''} onChange={setInfoField('validUntil')} />
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconFileText size={17} /> Job Description</div>
-        <div className="panel-body">
-          <div className="field">
-            <textarea value={jobDescription} onChange={(e) => setJobDescription(e.target.value)} placeholder="Describe the job to be performed..." />
-          </div>
+      <Panel title="Job Description" icon={<IconFileText size={17} />}>
+        <div className="field">
+          <textarea value={jobDescription} onChange={(e) => setJobDescription(e.target.value)} placeholder="Describe the job to be performed..." />
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconAlertTriangle size={17} /> Hazard Assessment</div>
-        <div className="panel-body form-grid">
+      <Panel title="Hazard Assessment" icon={<IconAlertTriangle size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Hazard Identified</label>
             <textarea value={hazard.identified} onChange={setHazardField('identified')} />
@@ -85,25 +81,21 @@ export default function PermitForm({ title, pushToast }) {
             <textarea value={hazard.controls} onChange={setHazardField('controls')} />
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconCheckSquare size={17} /> PPE Required</div>
-        <div className="panel-body">
-          <div className="checkbox-group">
-            {PPE_ITEMS.map((item) => (
-              <label key={item}>
-                <input type="checkbox" checked={ppe.has(item)} onChange={() => togglePpe(item)} />
-                {item}
-              </label>
-            ))}
-          </div>
+      <Panel title="PPE Required" icon={<IconCheckSquare size={17} />}>
+        <div className="checkbox-group">
+          {PPE_ITEMS.map((item) => (
+            <label key={item}>
+              <input type="checkbox" checked={ppe.has(item)} onChange={() => togglePpe(item)} />
+              {item}
+            </label>
+          ))}
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconUser size={17} /> Authorization</div>
-        <div className="panel-body form-grid">
+      <Panel title="Authorization" icon={<IconUser size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Permit Issuer</label>
             <input value={auth.issuer || ''} onChange={setAuthField('issuer')} />
@@ -121,7 +113,7 @@ export default function PermitForm({ title, pushToast }) {
             <input type="date" value={auth.validDate || ''} onChange={setAuthField('validDate')} />
           </div>
         </div>
-      </div>
+      </Panel>
 
       <div className="btn-row">
         <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit Permit</button>

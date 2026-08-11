@@ -50,11 +50,11 @@ export default function CertificatesExpiryPage({ pushToast }) {
       />
 
       <div className="stat-grid">
-        <StatCard value="1,182" label="Valid" color="#2563eb" bg="#eef4ff" icon={<IconCheckCircle size={18} />} delay={0} />
-        <StatCard value={19} label="Expiring ≤30 Days" color="#b45309" bg="#fef1d6" icon={<IconClock size={18} />} delay={40} />
-        <StatCard value={8} label="Expired" color="#15803d" bg="#d9f6e4" icon={<IconAlertTriangle size={18} />} delay={80} />
-        <StatCard value={14} label="Renewal Pending" color="#dc2626" bg="#fde0e0" icon={<IconArrowUpRight size={18} />} delay={120} />
-        <StatCard value={31} label="Reminder Sent" color="#b45309" bg="#fef1d6" icon={<IconBell size={18} />} delay={160} />
+        <StatCard value="1,182" label="Valid" variant="blue" icon={<IconCheckCircle size={18} />} delay={0} />
+        <StatCard value={19} label="Expiring ≤30 Days" variant="amber" icon={<IconClock size={18} />} delay={40} />
+        <StatCard value={8} label="Expired" variant="green" icon={<IconAlertTriangle size={18} />} delay={80} />
+        <StatCard value={14} label="Renewal Pending" variant="red" icon={<IconArrowUpRight size={18} />} delay={120} />
+        <StatCard value={31} label="Reminder Sent" variant="amber" icon={<IconBell size={18} />} delay={160} />
       </div>
 
       <div className="filter-bar">

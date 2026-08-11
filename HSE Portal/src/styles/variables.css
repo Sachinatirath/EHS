@@ -1,39 +1,80 @@
 :root {
-  /* Core palette — inspired by the reference EHS Portal screens, refreshed */
-  --navy-950: #0a1128;
-  --navy-900: #0d1730;
-  --navy-800: #111f3d;
-  --navy-700: #17294f;
-  --navy-600: #1e3564;
+  /* Core palette — matched to the FastAid mobile app's theme (src/theme/colors.ts)
+     so both products in the EHS suite share one visual identity. */
 
-  --blue-700: #1d4ed8;
-  --blue-600: #2563eb;
-  --blue-500: #3b6df0;
-  --blue-400: #5b8bff;
-  --blue-100: #dbe7ff;
-  --blue-50: #eef4ff;
+  /* Primary brand = FastAid's teal (colors.primary / primaryDark / primaryLight).
+     Named --blue-* for backward compatibility (every button/link/focus-ring/nav
+     style in this file and across all pages already references --blue-*), but
+     the values themselves are now FastAid's teal scale, not literal blue. */
+  --blue-700: #0b5a54;
+  --blue-600: #0f766e;
+  --blue-500: #14b8a6;
+  --blue-400: #2dd4bf;
+  --blue-100: #ccfbf1;
+  --blue-50: #f0fdfa;
 
-  --green-600: #15803d;
-  --green-500: #16a34a;
-  --green-100: #d9f6e4;
+  /* Dark sidebar surface — a deep tint of the primary teal instead of navy-blue. */
+  --navy-950: #051917;
+  --navy-900: #082723;
+  --navy-800: #0b332e;
+  --navy-700: #0f423b;
+  --navy-600: #14544a;
 
-  --amber-600: #b45309;
+  /* Same teal family kept under its own name too, for any explicit --teal-* refs. */
+  --teal-700: #0b5a54;
+  --teal-600: #0f766e;
+  --teal-500: #14b8a6;
+  --teal-100: #ccfbf1;
+  --teal-50: #f0fdfa;
+
+  /* Distinct "info" accent (FastAid colors.info) — kept separate from primary
+     teal so stat cards / badges still have blue as a distinguishable hue. */
+  --info-700: #1d4ed8;
+  --info-600: #2563eb;
+  --info-500: #3b82f6;
+  --info-100: #dbeafe;
+  --info-50: #eff6ff;
+
+  /* Semantic colors — exact values from FastAid colors.success/warning/danger */
+  --green-700: #14532d;
+  --green-600: #16a34a;
+  --green-500: #22c55e;
+  --green-100: #dcfce7;
+  --green-50: #f0fdf4;
+
+  --amber-700: #92400e;
+  --amber-600: #d97706;
   --amber-500: #f59e0b;
-  --amber-100: #fef1d6;
+  --amber-100: #fef3c7;
+  --amber-50: #fffbeb;
 
+  --red-700: #991b1b;
   --red-600: #dc2626;
   --red-500: #ef4444;
-  --red-100: #fde0e0;
+  --red-100: #fee2e2;
+  --red-50: #fef2f2;
 
-  --slate-900: #101828;
-  --slate-700: #344054;
-  --slate-500: #667085;
-  --slate-400: #98a2b3;
-  --slate-200: #e4e7ec;
-  --slate-100: #f0f2f7;
-  --slate-50: #f7f9fc;
+  /* Extra accent hues — used for stat-card / category variety across sub-apps */
+  --violet-600: #7c3aed;
+  --violet-100: #ede9fe;
+  --pink-600: #db2777;
+  --pink-100: #fce7f3;
+  --orange-600: #c2410c;
+  --orange-100: #ffedd5;
+  --cyan-600: #0e7490;
+  --cyan-100: #cffafe;
 
-  --bg-app: #eef1f8;
+  /* Neutrals — exact values from FastAid colors.textPrimary/textSecondary/textMuted/border */
+  --slate-900: #0f172a;
+  --slate-700: #334155;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50: #f8fafc;
+
+  --bg-app: #f8fafc;
   --bg-card: #ffffff;
 
   --sidebar-width: 268px;
@@ -42,11 +83,13 @@
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 18px;
+  --radius-xl: 24px;
 
   --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
   --shadow-md: 0 4px 10px rgba(16, 24, 40, 0.06), 0 2px 4px rgba(16, 24, 40, 0.08);
   --shadow-lg: 0 12px 28px rgba(13, 23, 48, 0.14);
-  --shadow-glow: 0 8px 20px rgba(37, 99, 235, 0.35);
+  --shadow-glow: 0 8px 20px rgba(15, 118, 110, 0.35);
+  --shadow-focus: 0 0 0 4px rgba(15, 118, 110, 0.14);
 
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);

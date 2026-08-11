@@ -1,4 +1,5 @@
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { RISK_ASSESSMENTS, RISK_PILL, STATUS_PILL } from '../../data/mocData';
 
 export default function RiskAssessmentPage({ pushToast }) {
@@ -9,31 +10,28 @@ export default function RiskAssessmentPage({ pushToast }) {
         subtitle="Identify hazards, impacts, affected documents, controls and residual risk before approval"
       />
 
-      <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--amber-500)' }}>
-        <div className="panel-body">
-          <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Risk Assessment Method</h3>
-          <div className="spec-row">
-            <div className="spec-item">
-              <div className="spec-label">Likelihood</div>
-              <div className="spec-value">1–5</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Severity</div>
-              <div className="spec-value">1–5</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Initial Risk</div>
-              <div className="spec-value">Likelihood × Severity</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Residual Risk</div>
-              <div className="spec-value">After controls</div>
-            </div>
+      <Panel noMargin plain title="Risk Assessment Method" style={{ borderLeft: '3px solid var(--amber-500)' }}>
+        <div className="spec-row">
+          <div className="spec-item">
+            <div className="spec-label">Likelihood</div>
+            <div className="spec-value">1–5</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Severity</div>
+            <div className="spec-value">1–5</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Initial Risk</div>
+            <div className="spec-value">Likelihood × Severity</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Residual Risk</div>
+            <div className="spec-value">After controls</div>
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -62,7 +60,7 @@ export default function RiskAssessmentPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

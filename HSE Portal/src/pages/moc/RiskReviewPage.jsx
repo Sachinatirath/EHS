@@ -1,4 +1,5 @@
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { RISK_REVIEW_QUEUE, RISK_PILL, STATUS_PILL } from '../../data/mocData';
 
 export default function RiskReviewPage({ pushToast }) {
@@ -9,7 +10,7 @@ export default function RiskReviewPage({ pushToast }) {
         subtitle="Confirm whether MOC is required, identify affected disciplines and define review team"
       />
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -41,7 +42,7 @@ export default function RiskReviewPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Panel from '../../components/Panel';
 import { IconFlag, IconFileText, IconClipboard, IconTool, IconSearch, IconAlertTriangle } from '../../components/icons';
 import { nextIncidentId, EHS_DEPARTMENTS, INCIDENT_TYPES, SEVERITY_LEVELS, INCIDENT_STATUSES } from '../../data/formOptions';
 
@@ -23,9 +24,8 @@ export default function IncidentReportPage({ pushToast }) {
       <h1 className="page-title">SAFETY INCIDENT REPORT</h1>
       <p className="page-subtitle">Report all incidents immediately.</p>
 
-      <div className="panel">
-        <div className="panel-header"><IconFlag size={17} /> Incident Details</div>
-        <div className="panel-body form-grid">
+      <Panel title="Incident Details" icon={<IconFlag size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Incident No</label>
             <input value={incidentNo} readOnly style={{ background: 'var(--slate-100)', color: 'var(--slate-500)', fontWeight: 700 }} />
@@ -54,20 +54,16 @@ export default function IncidentReportPage({ pushToast }) {
             <input value={info.location || ''} onChange={setInfoField('location')} />
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconFileText size={17} /> Incident Description</div>
-        <div className="panel-body">
-          <div className="field">
-            <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-          </div>
+      <Panel title="Incident Description" icon={<IconFileText size={17} />}>
+        <div className="field">
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconClipboard size={17} /> Classification</div>
-        <div className="panel-body form-grid">
+      <Panel title="Classification" icon={<IconClipboard size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Incident Type</label>
             <select value={classification.type} onChange={setClassificationField('type')}>
@@ -81,20 +77,16 @@ export default function IncidentReportPage({ pushToast }) {
             </select>
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconTool size={17} /> Immediate Corrective Action</div>
-        <div className="panel-body">
-          <div className="field">
-            <textarea value={action} onChange={(e) => setAction(e.target.value)} />
-          </div>
+      <Panel title="Immediate Corrective Action" icon={<IconTool size={17} />}>
+        <div className="field">
+          <textarea value={action} onChange={(e) => setAction(e.target.value)} />
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconSearch size={17} /> Investigation</div>
-        <div className="panel-body form-grid">
+      <Panel title="Investigation" icon={<IconSearch size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Root Cause</label>
             <textarea value={investigation.rootCause} onChange={setInvestigationField('rootCause')} />
@@ -104,11 +96,10 @@ export default function IncidentReportPage({ pushToast }) {
             <textarea value={investigation.correctiveAction} onChange={setInvestigationField('correctiveAction')} />
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconAlertTriangle size={17} /> Attachments &amp; Status</div>
-        <div className="panel-body form-grid">
+      <Panel title="Attachments & Status" icon={<IconAlertTriangle size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Upload Photo</label>
             <input type="file" />
@@ -120,7 +111,7 @@ export default function IncidentReportPage({ pushToast }) {
             </select>
           </div>
         </div>
-      </div>
+      </Panel>
 
       <div className="btn-row">
         <button type="button" className="btn btn-outline" onClick={handleSave}>Save</button>

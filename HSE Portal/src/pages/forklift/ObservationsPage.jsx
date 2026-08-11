@@ -64,12 +64,12 @@ export default function ObservationsPage({ pushToast }) {
       />
 
       <div className="stat-grid">
-        <StatCard value={stats.total} label="Total" color="#2563eb" bg="#eef4ff" icon={<IconFileText size={18} />} delay={0} />
-        <StatCard value={stats.critical} label="Critical" color="#b45309" bg="#fef1d6" icon={<IconAlertTriangle size={18} />} delay={40} />
-        <StatCard value={stats.assigned} label="Assigned" color="#15803d" bg="#d9f6e4" icon={<IconArrowUpRight size={18} />} delay={80} />
-        <StatCard value={stats.overdue} label="Overdue" color="#dc2626" bg="#fde0e0" icon={<IconClock size={18} />} delay={120} />
-        <StatCard value={stats.closed} label="Closed" color="#15803d" bg="#d9f6e4" icon={<IconCheckCircle size={18} />} delay={160} />
-        <StatCard value={`${stats.closure}%`} label="Closure %" color="#2563eb" bg="#eef4ff" icon={<IconPercent size={18} />} delay={200} />
+        <StatCard value={stats.total} label="Total" variant="blue" icon={<IconFileText size={18} />} delay={0} />
+        <StatCard value={stats.critical} label="Critical" variant="amber" icon={<IconAlertTriangle size={18} />} delay={40} />
+        <StatCard value={stats.assigned} label="Assigned" variant="green" icon={<IconArrowUpRight size={18} />} delay={80} />
+        <StatCard value={stats.overdue} label="Overdue" variant="red" icon={<IconClock size={18} />} delay={120} />
+        <StatCard value={stats.closed} label="Closed" variant="green" icon={<IconCheckCircle size={18} />} delay={160} />
+        <StatCard value={`${stats.closure}%`} label="Closure %" variant="blue" icon={<IconPercent size={18} />} delay={200} />
       </div>
 
       <div className="filter-bar">

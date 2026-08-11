@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Panel from '../../components/Panel';
 import { IconClipboard, IconCalendarCheck, IconCap, IconPrinter } from '../../components/icons';
 import { nextPlanId, AUDIT_SCHEDULE_STATUSES } from '../../data/formOptions';
 
@@ -37,9 +38,8 @@ export default function AuditTrainingPlanPage({ pushToast }) {
     <div className="page-enter">
       <h1 className="page-title">Audit & Training Plan</h1>
 
-      <div className="panel">
-        <div className="panel-header"><IconClipboard size={17} /> Plan Information</div>
-        <div className="panel-body form-grid">
+      <Panel title="Plan Information" icon={<IconClipboard size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Plan No</label>
             <input value={planNo} readOnly style={{ background: 'var(--slate-100)', color: 'var(--slate-500)', fontWeight: 700 }} />
@@ -57,63 +57,57 @@ export default function AuditTrainingPlanPage({ pushToast }) {
             <input value={info.preparedBy || ''} onChange={setInfoField('preparedBy')} />
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconCalendarCheck size={17} /> Audit Schedule</div>
-        <div className="panel-body" style={{ paddingTop: 16 }}>
-          <div className="table-wrap">
-            <table className="data-table">
-              <thead>
-                <tr><th style={{ width: 48 }}>No</th><th>Audit Type</th><th>Area</th><th>Scheduled Date</th><th>Status</th></tr>
-              </thead>
-              <tbody>
-                {audits.map((row, idx) => (
-                  <tr key={row.type}>
-                    <td>{idx + 1}</td>
-                    <td style={{ fontWeight: 600 }}>{row.type}</td>
-                    <td>{row.area}</td>
-                    <td><input type="date" value={row.date} onChange={setAuditField(idx, 'date')} /></td>
-                    <td>
-                      <select value={row.status} onChange={setAuditField(idx, 'status')}>
-                        {AUDIT_SCHEDULE_STATUSES.map((s) => <option key={s}>{s}</option>)}
-                      </select>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      <Panel title="Audit Schedule" icon={<IconCalendarCheck size={17} />} bodyStyle={{ paddingTop: 16 }}>
+        <div className="table-wrap">
+          <table className="data-table">
+            <thead>
+              <tr><th style={{ width: 48 }}>No</th><th>Audit Type</th><th>Area</th><th>Scheduled Date</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              {audits.map((row, idx) => (
+                <tr key={row.type}>
+                  <td>{idx + 1}</td>
+                  <td style={{ fontWeight: 600 }}>{row.type}</td>
+                  <td>{row.area}</td>
+                  <td><input type="date" value={row.date} onChange={setAuditField(idx, 'date')} /></td>
+                  <td>
+                    <select value={row.status} onChange={setAuditField(idx, 'status')}>
+                      {AUDIT_SCHEDULE_STATUSES.map((s) => <option key={s}>{s}</option>)}
+                    </select>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconCap size={17} /> Training Plan</div>
-        <div className="panel-body" style={{ paddingTop: 16 }}>
-          <div className="table-wrap">
-            <table className="data-table">
-              <thead>
-                <tr><th style={{ width: 48 }}>No</th><th>Training Topic</th><th>Target Group</th><th>Date</th><th>Status</th></tr>
-              </thead>
-              <tbody>
-                {trainings.map((row, idx) => (
-                  <tr key={row.topic}>
-                    <td>{idx + 1}</td>
-                    <td style={{ fontWeight: 600 }}>{row.topic}</td>
-                    <td>{row.group}</td>
-                    <td><input type="date" value={row.date} onChange={setTrainingField(idx, 'date')} /></td>
-                    <td>
-                      <select value={row.status} onChange={setTrainingField(idx, 'status')}>
-                        {AUDIT_SCHEDULE_STATUSES.map((s) => <option key={s}>{s}</option>)}
-                      </select>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      <Panel title="Training Plan" icon={<IconCap size={17} />} bodyStyle={{ paddingTop: 16 }}>
+        <div className="table-wrap">
+          <table className="data-table">
+            <thead>
+              <tr><th style={{ width: 48 }}>No</th><th>Training Topic</th><th>Target Group</th><th>Date</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              {trainings.map((row, idx) => (
+                <tr key={row.topic}>
+                  <td>{idx + 1}</td>
+                  <td style={{ fontWeight: 600 }}>{row.topic}</td>
+                  <td>{row.group}</td>
+                  <td><input type="date" value={row.date} onChange={setTrainingField(idx, 'date')} /></td>
+                  <td>
+                    <select value={row.status} onChange={setTrainingField(idx, 'status')}>
+                      {AUDIT_SCHEDULE_STATUSES.map((s) => <option key={s}>{s}</option>)}
+                    </select>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </div>
+      </Panel>
 
       <div className="btn-row">
         <button type="button" className="btn btn-primary" onClick={handleSave}>Save Plan</button>

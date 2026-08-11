@@ -1,4 +1,5 @@
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { REFILL_RECORDS, STATUS_PILL } from '../../data/fireSafetyData';
 
 export default function RefillingHydroTestPage() {
@@ -9,7 +10,7 @@ export default function RefillingHydroTestPage() {
         subtitle="Fire extinguisher refill, cylinder test, service history and return-to-service control"
       />
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin bodyStyle={{ padding: 0 }}>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -34,7 +35,7 @@ export default function RefillingHydroTestPage() {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

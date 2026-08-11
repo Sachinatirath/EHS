@@ -1,4 +1,5 @@
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { ARCHIVE_STATS, ARCHIVED_DOCUMENTS } from '../../data/docReviewData';
 
 export default function ObsoleteArchivePage() {
@@ -9,29 +10,27 @@ export default function ObsoleteArchivePage() {
         subtitle="Superseded documents retained for legal and reference purposes"
       />
 
-      <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--amber-500)' }}>
-        <div className="panel-body">
-          <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Archive Control</h3>
-          <div className="spec-row">
-            <div className="spec-item">
-              <div className="spec-label">Archived Documents</div>
-              <div className="spec-value">{ARCHIVE_STATS.archived}</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Retention Period</div>
-              <div className="spec-value">{ARCHIVE_STATS.retention}</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Oldest Archived</div>
-              <div className="spec-value">{ARCHIVE_STATS.oldest}</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Next Purge Review</div>
-              <div className="spec-value">{ARCHIVE_STATS.nextPurge}</div>
-            </div>
+      <Panel noMargin style={{ borderLeft: '3px solid var(--amber-500)' }}>
+        <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Archive Control</h3>
+        <div className="spec-row">
+          <div className="spec-item">
+            <div className="spec-label">Archived Documents</div>
+            <div className="spec-value">{ARCHIVE_STATS.archived}</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Retention Period</div>
+            <div className="spec-value">{ARCHIVE_STATS.retention}</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Oldest Archived</div>
+            <div className="spec-value">{ARCHIVE_STATS.oldest}</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Next Purge Review</div>
+            <div className="spec-value">{ARCHIVE_STATS.nextPurge}</div>
           </div>
         </div>
-      </div>
+      </Panel>
 
       <div className="panel" style={{ margin: 0 }}>
         <div className="table-wrap">

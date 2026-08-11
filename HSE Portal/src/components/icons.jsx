@@ -74,6 +74,14 @@ export const IconEye = (p) => (
   </svg>
 );
 
+export const IconEyeOff = (p) => (
+  <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
+    <path d="M3.5 3.5l17 17" />
+    <path d="M10.6 5.2A10.7 10.7 0 0 1 12 5c6.2 0 10 7 10 7a15.5 15.5 0 0 1-3.4 4.1M6.6 6.6C4 8.3 2 12 2 12s3.8 7 10 7c1.3 0 2.5-.3 3.5-.7" />
+    <path d="M9.5 9.8a3 3 0 0 0 4.2 4.2" />
+  </svg>
+);
+
 export const IconFlag = (p) => (
   <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
     <path d="M5 3v18" />
@@ -377,5 +385,20 @@ export const IconArchive = (p) => (
     <rect x="3" y="4" width="18" height="4.5" rx="1.2" />
     <path d="M4.5 8.5V19a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V8.5" />
     <path d="M10 13h4" />
+  </svg>
+);
+
+export const IconLock = (p) => (
+  <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
+    <rect x="4.5" y="10.5" width="15" height="10" rx="2.2" />
+    <path d="M7.5 10.5V7a4.5 4.5 0 0 1 9 0v3.5" />
+    <path d="M12 14.5v3" />
+  </svg>
+);
+
+export const IconArrowRight = (p) => (
+  <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
+    <path d="M4 12h16" />
+    <path d="M13 5l7 7-7 7" />
   </svg>
 );

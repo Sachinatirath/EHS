@@ -1,5 +1,6 @@
 import PageHeader from '../../components/PageHeader';
 import StatCard from '../../components/StatCard';
+import Panel from '../../components/Panel';
 import { IconPrinter, IconPercent } from '../../components/icons';
 import { ACTION_REQUIRED } from '../../data/trainingData';
 
@@ -17,36 +18,30 @@ export default function HodReportsPage({ pushToast }) {
       />
 
       <div className="stat-grid">
-        <StatCard value="93%" label="Overall Compliance" color="#2563eb" bg="#eef4ff" icon={<IconPercent size={18} />} delay={0} />
-        <StatCard value="98%" label="Induction" color="#b45309" bg="#fef1d6" icon={<IconPercent size={18} />} delay={40} />
-        <StatCard value="91%" label="Special Training" color="#15803d" bg="#d9f6e4" icon={<IconPercent size={18} />} delay={80} />
-        <StatCard value="95%" label="Certificate Validity" color="#dc2626" bg="#fde0e0" icon={<IconPercent size={18} />} delay={120} />
-        <StatCard value={7} label="HOD Pending" color="#2563eb" bg="#eef4ff" icon={<IconPercent size={18} />} delay={160} />
+        <StatCard value="93%" label="Overall Compliance" variant="blue" icon={<IconPercent size={18} />} delay={0} />
+        <StatCard value="98%" label="Induction" variant="amber" icon={<IconPercent size={18} />} delay={40} />
+        <StatCard value="91%" label="Special Training" variant="green" icon={<IconPercent size={18} />} delay={80} />
+        <StatCard value="95%" label="Certificate Validity" variant="red" icon={<IconPercent size={18} />} delay={120} />
+        <StatCard value={7} label="HOD Pending" variant="blue" icon={<IconPercent size={18} />} delay={160} />
       </div>
 
       <div className="two-col">
-        <div className="panel" style={{ margin: 0 }}>
-          <div className="panel-body">
-            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>Management Summary</h3>
-            <p style={{ fontSize: 13.5, color: 'var(--slate-700)', lineHeight: 1.7, margin: 0 }}>
-              Training requirements are generated from job role, department, risk assessment, incidents, audits and competency needs.
-              Employee-wise records include attendance, assessment, competency, certificates, expiry and refresher tracking.
-            </p>
-          </div>
-        </div>
+        <Panel noMargin plain title="Management Summary">
+          <p style={{ fontSize: 13.5, color: 'var(--slate-700)', lineHeight: 1.7, margin: 0 }}>
+            Training requirements are generated from job role, department, risk assessment, incidents, audits and competency needs.
+            Employee-wise records include attendance, assessment, competency, certificates, expiry and refresher tracking.
+          </p>
+        </Panel>
 
-        <div className="panel" style={{ margin: 0, borderTop: '3px solid var(--amber-500)' }}>
-          <div className="panel-body">
-            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 6 }}>Action Required</h3>
-            <ul className="side-list">
-              {ACTION_REQUIRED.map((a) => (
-                <li key={a.text} style={{ cursor: 'pointer' }} onClick={() => pushToast(a.text, 'info')}>
-                  <div className="side-sub" style={{ fontSize: 13.5, color: 'var(--slate-700)' }}>{a.text}</div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <Panel noMargin plain accent="amber" title="Action Required">
+          <ul className="side-list">
+            {ACTION_REQUIRED.map((a) => (
+              <li key={a.text} style={{ cursor: 'pointer' }} onClick={() => pushToast(a.text, 'info')}>
+                <div className="side-sub" style={{ fontSize: 13.5, color: 'var(--slate-700)' }}>{a.text}</div>
+              </li>
+            ))}
+          </ul>
+        </Panel>
       </div>
     </div>
   );

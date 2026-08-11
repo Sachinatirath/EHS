@@ -1,4 +1,5 @@
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { IconDownload } from '../../components/icons';
 import { INSPECTION_HISTORY, HISTORY_STATUS_PILL, APPROVAL_PILL } from '../../data/webSlingData';
 
@@ -15,7 +16,7 @@ export default function InspectionHistoryPage({ pushToast }) {
         )}
       />
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -40,7 +41,7 @@ export default function InspectionHistoryPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

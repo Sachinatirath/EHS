@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
 import Modal from '../../components/Modal';
+import Panel from '../../components/Panel';
 import { IconPlus, IconSearch, IconDownload } from '../../components/icons';
 import { SLINGS, SWL_OPTIONS, SLING_DEPARTMENTS, SLING_STATUS_PILL } from '../../data/webSlingData';
 
@@ -65,7 +66,7 @@ export default function SlingMasterPage({ pushToast, onNavigate }) {
         </button>
       </div>
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -100,7 +101,7 @@ export default function SlingMasterPage({ pushToast, onNavigate }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
 
       <Modal open={modalOpen} title="Register New Web Sling" onClose={() => setModalOpen(false)} width={620}>
         <form onSubmit={handleRegister}>

@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import Modal from '../../components/Modal';
 import { IconPlus, IconSearch, IconDownload } from '../../components/icons';
 import { EMPLOYEES, STATUS_PILL, DEPARTMENTS, EMPLOYEE_TYPES } from '../../data/trainingData';
@@ -61,26 +62,21 @@ export default function EmployeeMasterPage({ pushToast }) {
         )}
       />
 
-      <div className="panel" style={{ margin: '0 0 18px', borderLeft: '3px solid var(--amber-500)' }}>
-        <div className="panel-body">
-          <h3 style={{ fontSize: 15, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-            <IconSearch size={16} /> Employee ID Lookup
-          </h3>
-          <p style={{ fontSize: 12.5, color: 'var(--slate-500)', margin: '0 0 14px' }}>
-            Enter Employee ID to see complete training history, pending items, certificates, expiry and compliance.
-          </p>
-          <form onSubmit={handleSearchLookup}>
-            <div className="field" style={{ maxWidth: 320, marginBottom: 12 }}>
-              <label>Employee ID</label>
-              <input value={lookupId} onChange={(e) => setLookupId(e.target.value)} placeholder="EMP-1001" />
-            </div>
-            <div className="btn-row" style={{ marginTop: 0 }}>
-              <button type="submit" className="btn btn-primary">Search</button>
-              <button type="button" className="btn btn-outline" onClick={handleClearLookup}>Clear</button>
-            </div>
-          </form>
-        </div>
-      </div>
+      <Panel plain title="Employee ID Lookup" icon={<IconSearch size={16} />} style={{ margin: '0 0 18px', borderLeft: '3px solid var(--amber-500)' }}>
+        <p style={{ fontSize: 12.5, color: 'var(--slate-500)', margin: '0 0 14px' }}>
+          Enter Employee ID to see complete training history, pending items, certificates, expiry and compliance.
+        </p>
+        <form onSubmit={handleSearchLookup}>
+          <div className="field" style={{ maxWidth: 320, marginBottom: 12 }}>
+            <label>Employee ID</label>
+            <input value={lookupId} onChange={(e) => setLookupId(e.target.value)} placeholder="EMP-1001" />
+          </div>
+          <div className="btn-row" style={{ marginTop: 0 }}>
+            <button type="submit" className="btn btn-primary">Search</button>
+            <button type="button" className="btn btn-outline" onClick={handleClearLookup}>Clear</button>
+          </div>
+        </form>
+      </Panel>
 
       <div className="filter-bar">
         <div className="search-field">

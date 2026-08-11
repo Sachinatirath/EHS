@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import LoginPage from './pages/LoginPage';
 import Sidebar from './components/Sidebar';
 import ForkliftSidebar from './components/ForkliftSidebar';
 import WebSlingSidebar from './components/WebSlingSidebar';
@@ -35,6 +36,7 @@ const SUB_APPS = {
 };
 
 export default function App() {
+  const [authed, setAuthed] = useState(() => localStorage.getItem('ehs-portal-authed') === '1');
   const [appMode, setAppMode] = useState('portal'); // 'portal' | one of the SUB_APPS keys
   const [portalView, setPortalView] = useState('dashboard');
   const [subViews, setSubViews] = useState(() => (
@@ -42,6 +44,13 @@ export default function App() {
   ));
   const [expanded, setExpanded] = useState(() => new Set());
   const { toasts, push: pushToast, dismiss } = useToasts();
+
+  const handleLoginSuccess = (remember) => {
+    if (remember) localStorage.setItem('ehs-portal-authed', '1');
+    setAuthed(true);
+    setAppMode('portal');
+    setPortalView('dashboard');
+  };
 
   const toggleExpand = (id) => {
     setExpanded((prev) => {
@@ -67,10 +76,17 @@ export default function App() {
 
   const handleSubNavigate = (appKey) => (id) => setSubViews((prev) => ({ ...prev, [appKey]: id }));
   const handleBackToPortal = () => setAppMode('portal');
-  const handleLogout = () => pushToast('This is a UI preview — logout is not wired to a backend yet.', 'info');
+  const handleLogout = () => {
+    localStorage.removeItem('ehs-portal-authed');
+    setAuthed(false);
+  };
 
   const activeSubApp = SUB_APPS[appMode];
   const title = activeSubApp ? activeSubApp.titles[subViews[appMode]] : (PAGE_TITLES[portalView] || 'EHS Portal');
+
+  if (!authed) {
+    return <LoginPage onLogin={handleLoginSuccess} />;
+  }
 
   return (
     <div className="app-shell">

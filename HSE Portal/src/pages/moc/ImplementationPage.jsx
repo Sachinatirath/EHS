@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { PSSR_CHECKLIST, IMPLEMENTATION_QUEUE, STATUS_PILL } from '../../data/mocData';
 
 export default function ImplementationPage({ pushToast }) {
@@ -19,25 +20,22 @@ export default function ImplementationPage({ pushToast }) {
         subtitle="Approved MOC execution, pre-startup safety review and change implementation checklist"
       />
 
-      <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--amber-500)' }}>
-        <div className="panel-body">
-          <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>Pre-Implementation / PSSR Checklist</h3>
-          {checklist.map((item, idx) => (
-            <div className="check-list-row" key={item.text}>
-              <label>
-                <input type="checkbox" checked={item.checked} onChange={() => toggle(idx)} />
-                {item.text}
-              </label>
-              <span className="tag-text">{item.tag}</span>
-            </div>
-          ))}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
-            <button type="button" className="btn btn-primary" onClick={handleSave}>Save PSSR</button>
+      <Panel noMargin plain title="Pre-Implementation / PSSR Checklist" style={{ borderLeft: '3px solid var(--amber-500)' }}>
+        {checklist.map((item, idx) => (
+          <div className="check-list-row" key={item.text}>
+            <label>
+              <input type="checkbox" checked={item.checked} onChange={() => toggle(idx)} />
+              {item.text}
+            </label>
+            <span className="tag-text">{item.tag}</span>
           </div>
+        ))}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
+          <button type="button" className="btn btn-primary" onClick={handleSave}>Save PSSR</button>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -65,7 +63,7 @@ export default function ImplementationPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

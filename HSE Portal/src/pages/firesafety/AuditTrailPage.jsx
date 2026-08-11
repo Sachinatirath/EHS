@@ -1,4 +1,5 @@
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { IconDownload } from '../../components/icons';
 import { AUDIT_TRAIL, STATUS_PILL } from '../../data/fireSafetyData';
 
@@ -15,7 +16,7 @@ export default function AuditTrailPage({ pushToast }) {
         )}
       />
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin bodyStyle={{ padding: 0 }}>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -37,7 +38,7 @@ export default function AuditTrailPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

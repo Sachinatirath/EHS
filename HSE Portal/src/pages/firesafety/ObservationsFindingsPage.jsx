@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { IconSearch, IconDownload } from '../../components/icons';
 import { FINDINGS, RISK_LEVELS, STATUS_PILL } from '../../data/fireSafetyData';
 
@@ -45,7 +46,7 @@ export default function ObservationsFindingsPage({ pushToast }) {
         </select>
       </div>
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin bodyStyle={{ padding: 0 }}>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -77,7 +78,7 @@ export default function ObservationsFindingsPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

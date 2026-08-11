@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
 import Modal from '../../components/Modal';
+import Panel from '../../components/Panel';
 import { IconPlus, IconSearch, IconDownload } from '../../components/icons';
 import { FIRE_PUMPS, PUMP_TYPES, STATUS_PILL } from '../../data/fireSafetyData';
 
@@ -105,7 +106,7 @@ export default function FirePumpsAuditPage({ pushToast }) {
         </button>
       </div>
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin bodyStyle={{ padding: 0 }}>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -136,7 +137,7 @@ export default function FirePumpsAuditPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
 
       <Modal open={modalOpen} title="New Fire Pump Audit" onClose={() => setModalOpen(false)} width={640}>
         <form onSubmit={handleSubmit}>

@@ -4,9 +4,31 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from .. import models, schemas
-from ..deps import get_db, get_current_user
+from ..deps import get_db, get_current_user, require_role
 
 router = APIRouter(prefix="/boxes", tags=["boxes"])
+
+
+@router.post("", response_model=schemas.BoxOut, status_code=201)
+def create_box(
+    payload: schemas.BoxCreate,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(require_role("ohc")),
+):
+    box_number = payload.box_number.strip()
+    if db.query(models.Box).filter(models.Box.box_number == box_number).first():
+        raise HTTPException(status_code=400, detail=f"Box {box_number} already exists")
+
+    box = models.Box(
+        box_number=box_number,
+        department=payload.department.strip(),
+        area=payload.area.strip(),
+        location=payload.location.strip(),
+    )
+    db.add(box)
+    db.commit()
+    db.refresh(box)
+    return box
 
 
 @router.get("", response_model=list[schemas.BoxOut])

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
 import Modal from '../../components/Modal';
+import Panel from '../../components/Panel';
 import { IconPlus, IconSearch, IconDownload } from '../../components/icons';
 import { FIRE_ASSETS, FIRE_ASSET_TYPES, FS_DEPARTMENTS, STATUS_PILL } from '../../data/fireSafetyData';
 
@@ -66,7 +67,7 @@ export default function FireAssetRegisterPage({ pushToast }) {
         </button>
       </div>
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin bodyStyle={{ padding: 0 }}>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -100,7 +101,7 @@ export default function FireAssetRegisterPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
 
       <Modal open={modalOpen} title="Register Fire Asset" onClose={() => setModalOpen(false)} width={640}>
         <form onSubmit={handleRegister}>

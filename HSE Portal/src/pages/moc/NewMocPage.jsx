@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import {
   nextMocId, MOC_CATEGORIES, MOC_DEPARTMENTS, CHANGE_TYPES, IMPACT_AREAS, PROCEDURE_COVERAGE, NEW_MOC_STEPS,
 } from '../../data/mocData';
@@ -30,9 +31,8 @@ export default function NewMocPage({ pushToast, onNavigate }) {
         badge={<span className="pill pill-amber">DRAFT</span>}
       />
 
-      <div className="panel">
-        <div className="panel-body">
-          <div className="step-progress">
+      <Panel>
+        <div className="step-progress">
             {NEW_MOC_STEPS.map((step, i) => (
               <div key={step} style={{ display: 'flex', alignItems: 'center', flex: i === NEW_MOC_STEPS.length - 1 ? '0 0 auto' : 1 }}>
                 <div className={`step${i === 0 ? ' active' : ''}`}>
@@ -141,12 +141,11 @@ export default function NewMocPage({ pushToast, onNavigate }) {
             <input type="file" multiple />
           </div>
 
-          <div className="btn-row" style={{ justifyContent: 'flex-end' }}>
-            <button type="button" className="btn btn-outline" onClick={handleDraft}>Save Draft</button>
-            <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit for Screening</button>
-          </div>
+        <div className="btn-row" style={{ justifyContent: 'flex-end' }}>
+          <button type="button" className="btn btn-outline" onClick={handleDraft}>Save Draft</button>
+          <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit for Screening</button>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

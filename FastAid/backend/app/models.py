@@ -27,6 +27,9 @@ class User(Base):
     password_hash = Column(String, nullable=False)
     role = Column(String, nullable=False)  # "area_incharge" | "ohc"
     department = Column(String, nullable=True)
+    phone = Column(String, nullable=True)
+    email = Column(String, nullable=True)
+    address = Column(String, nullable=True)
 
     inspections = relationship("Inspection", back_populates="inspector")
 

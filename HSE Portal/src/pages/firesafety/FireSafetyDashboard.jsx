@@ -1,5 +1,6 @@
 import PageHeader from '../../components/PageHeader';
 import StatCard from '../../components/StatCard';
+import Panel from '../../components/Panel';
 import {
   IconPlus, IconFlame, IconCheckCircle, IconAlertTriangle, IconTool,
 } from '../../components/icons';
@@ -19,63 +20,54 @@ export default function FireSafetyDashboard({ pushToast, onNavigate }) {
       />
 
       <div className="stat-grid">
-        <StatCard value={286} label="Total Fire Assets" color="#2563eb" bg="#eef4ff" icon={<IconFlame size={18} />} delay={0} />
-        <StatCard value={241} label="Audited This Month" color="#b45309" bg="#fef1d6" icon={<IconCheckCircle size={18} />} delay={40} />
-        <StatCard value={218} label="Compliant" color="#15803d" bg="#d9f6e4" icon={<IconCheckCircle size={18} />} delay={80} />
-        <StatCard value={23} label="Open Findings" color="#dc2626" bg="#fde0e0" icon={<IconAlertTriangle size={18} />} delay={120} />
-        <StatCard value={7} label="Critical / High" color="#dc2626" bg="#fde0e0" icon={<IconAlertTriangle size={18} />} delay={160} />
-        <StatCard value={12} label="AMC / Test Due" color="#2563eb" bg="#eef4ff" icon={<IconTool size={18} />} delay={200} />
+        <StatCard value={286} label="Total Fire Assets" variant="blue" icon={<IconFlame size={18} />} delay={0} />
+        <StatCard value={241} label="Audited This Month" variant="amber" icon={<IconCheckCircle size={18} />} delay={40} />
+        <StatCard value={218} label="Compliant" variant="green" icon={<IconCheckCircle size={18} />} delay={80} />
+        <StatCard value={23} label="Open Findings" variant="red" icon={<IconAlertTriangle size={18} />} delay={120} />
+        <StatCard value={7} label="Critical / High" variant="red" icon={<IconAlertTriangle size={18} />} delay={160} />
+        <StatCard value={12} label="AMC / Test Due" variant="blue" icon={<IconTool size={18} />} delay={200} />
       </div>
 
       <div className="two-col">
-        <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--blue-500)' }}>
-          <div className="panel-body">
-            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Asset Compliance by Equipment</h3>
-            {ASSET_COMPLIANCE.map((a) => (
-              <div className="dept-bar-row" key={a.label}>
-                <div className="dept-bar-head">
-                  <span>{a.label} — {a.count}</span>
-                  <span>{a.value}%</span>
-                </div>
-                <div className="progress-track">
-                  <div className="progress-fill progress-fill-red" style={{ width: `${a.value}%` }} />
-                </div>
+        <Panel noMargin plain title="Asset Compliance by Equipment" style={{ borderLeft: '3px solid var(--blue-500)' }}>
+          {ASSET_COMPLIANCE.map((a) => (
+            <div className="dept-bar-row" key={a.label}>
+              <div className="dept-bar-head">
+                <span>{a.label} — {a.count}</span>
+                <span>{a.value}%</span>
               </div>
-            ))}
-          </div>
-        </div>
+              <div className="progress-track">
+                <div className="progress-fill progress-fill-red" style={{ width: `${a.value}%` }} />
+              </div>
+            </div>
+          ))}
+        </Panel>
 
-        <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--amber-500)' }}>
-          <div className="panel-body">
-            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 6 }}>Critical Alerts</h3>
-            {CRITICAL_ALERTS.map((f) => (
-              <div key={f.id} className="finding-item" onClick={() => pushToast(`${f.id} opened.`, 'info')}>
-                <div className="finding-title">
-                  {f.id} — {f.title} <span className={`pill ${STATUS_PILL[f.tag]}`} style={{ marginLeft: 6 }}>{f.tag}</span>
-                </div>
-                <div className="finding-meta">{f.meta}</div>
+        <Panel noMargin plain title="Critical Alerts" style={{ borderLeft: '3px solid var(--amber-500)' }}>
+          {CRITICAL_ALERTS.map((f) => (
+            <div key={f.id} className="finding-item" onClick={() => pushToast(`${f.id} opened.`, 'info')}>
+              <div className="finding-title">
+                {f.id} — {f.title} <span className={`pill ${STATUS_PILL[f.tag]}`} style={{ marginLeft: 6 }}>{f.tag}</span>
               </div>
-            ))}
-            <button type="button" className="btn btn-primary" style={{ width: '100%', marginTop: 14 }} onClick={() => onNavigate('fs-observations')}>
-              Open Findings
-            </button>
-          </div>
-        </div>
+              <div className="finding-meta">{f.meta}</div>
+            </div>
+          ))}
+          <button type="button" className="btn btn-primary" style={{ width: '100%', marginTop: 14 }} onClick={() => onNavigate('fs-observations')}>
+            Open Findings
+          </button>
+        </Panel>
       </div>
 
-      <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--red-500)' }}>
-        <div className="panel-body">
-          <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Fire Safety Audit Workflow</h3>
-          <div className="workflow-grid">
-            {WORKFLOW_STEPS.map((step, i) => (
-              <div className="workflow-step" key={step}>
-                <div className="step-index">{i + 1}</div>
-                <div className="step-title">{step}</div>
-              </div>
-            ))}
-          </div>
+      <Panel noMargin plain title="Fire Safety Audit Workflow" style={{ borderLeft: '3px solid var(--red-500)' }}>
+        <div className="workflow-grid">
+          {WORKFLOW_STEPS.map((step, i) => (
+            <div className="workflow-step" key={step}>
+              <div className="step-index">{i + 1}</div>
+              <div className="step-title">{step}</div>
+            </div>
+          ))}
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }

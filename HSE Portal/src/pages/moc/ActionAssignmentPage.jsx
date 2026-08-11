@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PageHeader from '../../components/PageHeader';
 import Modal from '../../components/Modal';
+import Panel from '../../components/Panel';
 import { IconPlus } from '../../components/icons';
 import { MOC_ACTIONS, MOC_REGISTER, MOC_DEPARTMENTS, STATUS_PILL, nextActionId } from '../../data/mocData';
 
@@ -37,31 +38,28 @@ export default function ActionAssignmentPage({ pushToast }) {
         )}
       />
 
-      <div className="panel" style={{ margin: 0, borderLeft: '3px solid var(--amber-500)' }}>
-        <div className="panel-body">
-          <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Action control rules</h3>
-          <div className="spec-row">
-            <div className="spec-item">
-              <div className="spec-label">Owner</div>
-              <div className="spec-value">Named person required</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Due Date</div>
-              <div className="spec-value">Mandatory</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Evidence</div>
-              <div className="spec-value">Upload before closure</div>
-            </div>
-            <div className="spec-item">
-              <div className="spec-label">Verification</div>
-              <div className="spec-value">EHS / Reviewer</div>
-            </div>
+      <Panel noMargin plain title="Action control rules" style={{ borderLeft: '3px solid var(--amber-500)' }}>
+        <div className="spec-row">
+          <div className="spec-item">
+            <div className="spec-label">Owner</div>
+            <div className="spec-value">Named person required</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Due Date</div>
+            <div className="spec-value">Mandatory</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Evidence</div>
+            <div className="spec-value">Upload before closure</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-label">Verification</div>
+            <div className="spec-value">EHS / Reviewer</div>
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -88,7 +86,7 @@ export default function ActionAssignmentPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
 
       <Modal open={modalOpen} title="Assign MOC Action" onClose={() => setModalOpen(false)} width={640}>
         <form onSubmit={handleSubmit}>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Panel from '../../components/Panel';
 import { IconUser, IconClipboard, IconEye, IconAlertTriangle, IconTool, IconFileText } from '../../components/icons';
 import { OBSERVATION_CATEGORIES, SEVERITY_LEVELS, OBSERVATION_STATUSES } from '../../data/formOptions';
 
@@ -38,9 +39,8 @@ export default function SafetyObservationPage({ pushToast }) {
     <div className="page-enter">
       <h1 className="page-title">Safety Observation Report</h1>
 
-      <div className="panel">
-        <div className="panel-header"><IconUser size={17} /> Reporter Information</div>
-        <div className="panel-body form-grid">
+      <Panel title="Reporter Information" icon={<IconUser size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Observer Name</label>
             <input value={reporter.name || ''} onChange={setReporterField('name')} placeholder="Enter name" />
@@ -58,11 +58,10 @@ export default function SafetyObservationPage({ pushToast }) {
             <input type="date" value={reporter.date || ''} onChange={setReporterField('date')} />
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconClipboard size={17} /> Observation Details</div>
-        <div className="panel-body form-grid">
+      <Panel title="Observation Details" icon={<IconClipboard size={17} />}>
+        <div className="form-grid">
           <div className="field">
             <label>Plant / Site</label>
             <input value={details.plant || ''} onChange={setDetailsField('plant')} />
@@ -80,66 +79,51 @@ export default function SafetyObservationPage({ pushToast }) {
             <input type="time" value={details.time || ''} onChange={setDetailsField('time')} />
           </div>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconEye size={17} /> Observation Information</div>
-        <div className="panel-body">
-          <div className="field" style={{ marginBottom: 16 }}>
-            <label>Observation Category</label>
-            <select value={category} onChange={(e) => setCategory(e.target.value)}>
-              <option value="">Select Category</option>
-              {OBSERVATION_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
-            </select>
-          </div>
-          <div className="field">
-            <label>Description</label>
-            <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe the observation in detail..." />
-          </div>
+      <Panel title="Observation Information" icon={<IconEye size={17} />}>
+        <div className="field" style={{ marginBottom: 16 }}>
+          <label>Observation Category</label>
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="">Select Category</option>
+            {OBSERVATION_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+          </select>
         </div>
-      </div>
+        <div className="field">
+          <label>Description</label>
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe the observation in detail..." />
+        </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconAlertTriangle size={17} /> Risk Assessment</div>
-        <div className="panel-body">
-          <div className="field" style={{ maxWidth: 320 }}>
-            <label>Severity</label>
-            <select value={severity} onChange={(e) => setSeverity(e.target.value)}>
-              {SEVERITY_LEVELS.map((s) => <option key={s}>{s}</option>)}
-            </select>
-          </div>
+      <Panel title="Risk Assessment" icon={<IconAlertTriangle size={17} />}>
+        <div className="field" style={{ maxWidth: 320 }}>
+          <label>Severity</label>
+          <select value={severity} onChange={(e) => setSeverity(e.target.value)}>
+            {SEVERITY_LEVELS.map((s) => <option key={s}>{s}</option>)}
+          </select>
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconTool size={17} /> Immediate Corrective Action</div>
-        <div className="panel-body">
-          <div className="field">
-            <textarea value={action} onChange={(e) => setAction(e.target.value)} placeholder="Action taken immediately..." />
-          </div>
+      <Panel title="Immediate Corrective Action" icon={<IconTool size={17} />}>
+        <div className="field">
+          <textarea value={action} onChange={(e) => setAction(e.target.value)} placeholder="Action taken immediately..." />
         </div>
-      </div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconFileText size={17} /> Attach Evidence</div>
-        <div className="panel-body">
-          <div className="field"><input type="file" /></div>
-        </div>
-      </div>
+      <Panel title="Attach Evidence" icon={<IconFileText size={17} />}>
+        <div className="field"><input type="file" /></div>
+      </Panel>
 
-      <div className="panel">
-        <div className="panel-header"><IconClipboard size={17} /> Observation Status</div>
-        <div className="panel-body">
-          <div className="radio-group">
-            {OBSERVATION_STATUSES.map((s) => (
-              <label key={s}>
-                <input type="radio" name="observation-status" checked={status === s} onChange={() => setStatus(s)} />
-                {s}
-              </label>
-            ))}
-          </div>
+      <Panel title="Observation Status" icon={<IconClipboard size={17} />}>
+        <div className="radio-group">
+          {OBSERVATION_STATUSES.map((s) => (
+            <label key={s}>
+              <input type="radio" name="observation-status" checked={status === s} onChange={() => setStatus(s)} />
+              {s}
+            </label>
+          ))}
         </div>
-      </div>
+      </Panel>
 
       <div className="btn-row">
         <button type="button" className="btn btn-outline" onClick={handleReset}>Reset</button>

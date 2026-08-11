@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
+import Panel from '../../components/Panel';
 import { IconCheckCircle, IconClose } from '../../components/icons';
 import { HOD_APPROVALS } from '../../data/webSlingData';
 
@@ -29,7 +30,7 @@ export default function HodApprovalsPage({ pushToast }) {
         actions={badge}
       />
 
-      <div className="panel" style={{ margin: 0 }}>
+      <Panel noMargin>
         <div className="table-wrap">
           <table className="data-table">
             <thead>
@@ -65,7 +66,7 @@ export default function HodApprovalsPage({ pushToast }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Panel>
     </div>
   );
 }
