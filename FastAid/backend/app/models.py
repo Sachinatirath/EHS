@@ -55,6 +55,7 @@ class Inspection(Base):
     created_at = Column(DateTime, default=now)
     # ok | refill_requested | closed_ok
     outcome = Column(String, nullable=False, default="ok")
+    signature_data = Column(Text, nullable=True)
 
     box = relationship("Box", back_populates="inspections")
     inspector = relationship("User", back_populates="inspections")

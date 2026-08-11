@@ -75,6 +75,7 @@ class InspectionItemIn(BaseModel):
 class InspectionCreate(BaseModel):
     box_id: int
     items: List[InspectionItemIn]
+    signature_data: Optional[str] = None
 
 
 class InspectionItemOut(BaseModel):
@@ -105,6 +106,7 @@ class InspectionOut(BaseModel):
     outcome: str
     items: List[InspectionItemOut]
     refill_request: Optional[RefillRequestBrief] = None
+    signature_data: Optional[str] = None
 
 
 class InspectionSummaryOut(BaseModel):

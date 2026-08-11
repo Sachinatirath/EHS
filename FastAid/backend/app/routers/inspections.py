@@ -43,7 +43,10 @@ def create_inspection(
     outcome = "refill_requested" if has_flagged else "ok"
 
     inspection = models.Inspection(
-        box_id=box.id, inspector_id=current_user.id, outcome=outcome
+        box_id=box.id,
+        inspector_id=current_user.id,
+        outcome=outcome,
+        signature_data=payload.signature_data,
     )
     db.add(inspection)
     db.flush()
