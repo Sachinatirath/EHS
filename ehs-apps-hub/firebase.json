@@ -1,0 +1,12 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      { "source": "/FastAid/**", "destination": "/FastAid/index.html" },
+      { "source": "/SafetyViolation/**", "destination": "/SafetyViolation/index.html" },
+      { "source": "/SafetyObservation/**", "destination": "/SafetyObservation/index.html" },
+      { "source": "/IncidentReport/**", "destination": "/IncidentReport/index.html" }
+    ]
+  }
+}

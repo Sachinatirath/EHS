@@ -11,6 +11,9 @@
     "android": {
       "predictiveBackGestureEnabled": false
     },
-    "web": {}
+    "web": {},
+    "experiments": {
+      "baseUrl": "/SafetyViolation"
+    }
   }
 }

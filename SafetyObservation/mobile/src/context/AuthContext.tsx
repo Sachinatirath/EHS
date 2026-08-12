@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { authApi } from '@/api';
-import { TOKEN_STORAGE_KEY } from '@/api/client';
+import { DEMO_USERS, USER_STORAGE_KEY } from '@/api/demoUsers';
 import type { User } from '@/types';
 
 interface AuthContextValue {
@@ -32,13 +31,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     (async () => {
-      const token = await AsyncStorage.getItem(TOKEN_STORAGE_KEY);
-      if (token) {
+      const stored = await AsyncStorage.getItem(USER_STORAGE_KEY);
+      if (stored) {
         try {
-          const me = await authApi.fetchMe();
-          setUser(me);
+          setUser(JSON.parse(stored));
         } catch {
-          await AsyncStorage.removeItem(TOKEN_STORAGE_KEY);
+          await AsyncStorage.removeItem(USER_STORAGE_KEY);
         }
       }
       setIsLoading(false);
@@ -46,20 +44,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = async (employeeId: string, password: string, expectedRole?: 'agent' | 'hod') => {
-    const res = await authApi.login(employeeId, password);
-    if (expectedRole && res.user.role !== expectedRole) {
-      const actualLabel = ROLE_LABELS[res.user.role] ?? res.user.role;
-      if (res.user.role !== 'agent' && res.user.role !== 'hod') {
-        throw new Error(`This account (${actualLabel}) isn't a Safety Agent or HOD account, so this app has nothing to show for it.`);
-      }
+    const match = DEMO_USERS.find((u) => u.employee_id === employeeId && u.password === password);
+    if (!match) {
+      throw new Error('Invalid employee ID or password.');
+    }
+    const { password: _password, ...record } = match;
+
+    if (expectedRole && record.role !== expectedRole) {
+      const actualLabel = ROLE_LABELS[record.role] ?? record.role;
       throw new Error(`This account is registered as ${actualLabel}. Select "${actualLabel}" above and sign in again.`);
     }
-    await AsyncStorage.setItem(TOKEN_STORAGE_KEY, res.access_token);
-    setUser(res.user);
+
+    await AsyncStorage.setItem(USER_STORAGE_KEY, JSON.stringify(record));
+    setUser(record);
   };
 
   const logout = async () => {
-    await AsyncStorage.removeItem(TOKEN_STORAGE_KEY);
+    await AsyncStorage.removeItem(USER_STORAGE_KEY);
     setUser(null);
   };
 

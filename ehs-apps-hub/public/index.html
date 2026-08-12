@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EHS Apps</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 20px;
+    }
+    h1 { font-size: 28px; margin-bottom: 4px; }
+    p.subtitle { color: #94a3b8; margin-top: 0; margin-bottom: 40px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+    }
+    a.card {
+      display: block;
+      text-decoration: none;
+      border-radius: 16px;
+      padding: 24px;
+      color: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.15s ease;
+    }
+    a.card:hover { transform: translateY(-4px); }
+    a.card h2 { margin: 0 0 8px; font-size: 20px; }
+    a.card p { margin: 0; font-size: 14px; opacity: 0.9; }
+    .fastaid { background: linear-gradient(135deg, #0d9488, #0f766e); }
+    .violation { background: linear-gradient(135deg, #dc2626, #991b1b); }
+    .observation { background: linear-gradient(135deg, #1d4ed8, #1e40af); }
+    .incident { background: linear-gradient(135deg, #c2410c, #9a3412); }
+  </style>
+</head>
+<body>
+  <h1>EHS Apps</h1>
+  <p class="subtitle">Field-reporting suite &mdash; pick an app to continue</p>
+  <div class="grid">
+    <a class="card fastaid" href="/FastAid/">
+      <h2>FastAid</h2>
+      <p>First aid box inspections &amp; refill requests</p>
+    </a>
+    <a class="card violation" href="/SafetyViolation/">
+      <h2>Safety Violation</h2>
+      <p>Report and review safety violation notices</p>
+    </a>
+    <a class="card observation" href="/SafetyObservation/">
+      <h2>Safety Observation</h2>
+      <p>Log and track safety observations</p>
+    </a>
+    <a class="card incident" href="/IncidentReport/">
+      <h2>Incident Report</h2>
+      <p>Report and investigate incidents</p>
+    </a>
+  </div>
+</body>
+</html>
