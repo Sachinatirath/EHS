@@ -75,20 +75,20 @@ export default function ForkliftMasterPage({ pushToast, onNavigate }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>ID</th><th>Type</th><th>Capacity</th><th>Location</th><th>Department</th>
-                <th>Status</th><th>Next Due</th><th>Actions</th>
+                <th>ID</th><th>Next Due</th><th>Type</th><th>Capacity</th><th>Location</th>
+                <th>Department</th><th>Status</th><th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((f) => (
                 <tr key={f.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{f.id}</td>
+                  <td>{f.nextDue}</td>
                   <td>{f.type}</td>
                   <td>{f.capacity}</td>
                   <td>{f.location}</td>
                   <td>{f.department}</td>
                   <td><span className={`pill ${MASTER_STATUS_PILL[f.status]}`}>{f.status}</span></td>
-                  <td>{f.nextDue}</td>
                   <td>
                     <div style={{ display: 'flex', gap: 8 }}>
                       <button type="button" className="btn btn-ghost" style={{ padding: '6px 12px' }} onClick={() => pushToast(`Viewing ${f.id}.`, 'info')}>View</button>

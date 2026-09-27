@@ -71,21 +71,21 @@ export default function SlingMasterPage({ pushToast, onNavigate }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Sling ID</th><th>SWL</th><th>Length</th><th>Width</th><th>Department</th>
-                <th>Location</th><th>Status</th><th>Next Due</th><th>Actions</th>
+                <th>Sling ID</th><th>Next Due</th><th>SWL</th><th>Length</th><th>Width</th>
+                <th>Department</th><th>Location</th><th>Status</th><th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((s) => (
                 <tr key={s.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{s.id}</td>
+                  <td>{s.nextDue}</td>
                   <td style={{ color: 'var(--blue-700)', fontWeight: 600 }}>{s.swl}</td>
                   <td>{s.length}</td>
                   <td>{s.width}</td>
                   <td>{s.department}</td>
                   <td>{s.location}</td>
                   <td><span className={`pill ${SLING_STATUS_PILL[s.status]}`}>{s.status}</span></td>
-                  <td>{s.nextDue}</td>
                   <td>
                     <div style={{ display: 'flex', gap: 8 }}>
                       <button type="button" className="btn btn-ghost" style={{ padding: '6px 12px' }} onClick={() => pushToast(`Viewing ${s.id}.`, 'info')}>View</button>

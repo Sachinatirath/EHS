@@ -60,21 +60,21 @@ export default function MocRegisterPage({ pushToast, onNavigate }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>MOC No.</th><th>Change Title</th><th>Category</th><th>Department</th>
-                <th>HOD</th><th>Risk</th><th>Status</th><th>Raised</th><th>Target</th><th>Action</th>
+                <th>MOC No.</th><th>Raised</th><th>Change Title</th><th>Category</th>
+                <th>Department</th><th>HOD</th><th>Risk</th><th>Status</th><th>Target</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((r) => (
                 <tr key={r.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.id}</td>
+                  <td>{r.raised}</td>
                   <td style={{ fontWeight: 600 }}>{r.title}</td>
                   <td>{r.category}</td>
                   <td>{r.department}</td>
                   <td>{r.hod}</td>
                   <td><span className={`pill ${RISK_PILL[r.risk]}`}>{r.risk}</span></td>
                   <td><span className={`pill ${STATUS_PILL[r.status]}`}>{r.status}</span></td>
-                  <td>{r.raised}</td>
                   <td>{r.target}</td>
                   <td>
                     <div style={{ display: 'flex', gap: 8 }}>

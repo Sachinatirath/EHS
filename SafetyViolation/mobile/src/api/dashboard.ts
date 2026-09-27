@@ -1,1 +1,1 @@
-export { myDashboardSummary, hodDashboardSummary } from './mockStore';
+export { myDashboardSummary, hodDashboardSummary } from './mockDb';

@@ -1,0 +1,280 @@
+{
+  "areaInchargeUser": {
+    "id": 1,
+    "employee_id": "AI001",
+    "name": "Rahul Sharma",
+    "role": "area_incharge",
+    "department": "Assembly Line 1",
+    "phone": "+91 98765 43210",
+    "email": "rahul.sharma@example.com",
+    "address": "Plot 14, Industrial Estate, Pune"
+  },
+  "ohcUser": {
+    "id": 3,
+    "employee_id": "OHC001",
+    "name": "Dr. Anita Verma",
+    "role": "ohc",
+    "department": "Occupational Health Center",
+    "phone": "+91 98765 43212",
+    "email": "anita.verma@example.com",
+    "address": "OHC Building, Plant Campus, Pune"
+  },
+  "otherAreaIncharge": {
+    "id": 2,
+    "employee_id": "AI002",
+    "name": "Priya Nair",
+    "role": "area_incharge",
+    "department": "Warehouse",
+    "phone": "+91 98765 43211",
+    "email": "priya.nair@example.com",
+    "address": "Sector 5, Warehouse Complex, Pune"
+  },
+  "boxes": [
+    {
+      "id": 1,
+      "box_number": "FAB-101",
+      "department": "Assembly Line 1",
+      "area": "Zone A",
+      "location": "Near Gate 2"
+    },
+    {
+      "id": 2,
+      "box_number": "FAB-102",
+      "department": "Assembly Line 1",
+      "area": "Zone B",
+      "location": "Near Break Room"
+    },
+    {
+      "id": 3,
+      "box_number": "FAB-201",
+      "department": "Warehouse",
+      "area": "Zone C",
+      "location": "Loading Dock"
+    },
+    {
+      "id": 4,
+      "box_number": "FAB-202",
+      "department": "Warehouse",
+      "area": "Zone D",
+      "location": "Racking Aisle 4"
+    },
+    {
+      "id": 5,
+      "box_number": "FAB-301",
+      "department": "Quality Control",
+      "area": "Zone E",
+      "location": "Lab Entrance"
+    }
+  ],
+  "inspections": [
+    {
+      "id": 1,
+      "box_id": 3,
+      "inspectorRef": "areaIncharge",
+      "created_at": "2026-09-15T08:00:00.000Z",
+      "outcome": "refill_requested",
+      "signature_data": null,
+      "items": [
+        {
+          "id": 1,
+          "item_name": "Bandages Available",
+          "status": "missing",
+          "note": "Box empty since last week",
+          "photo_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNjQwIDQyMCI+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI0MjAiIGZpbGw9IiNkYzI2MjYiLz48cmVjdCB4PSIxNzAiIHk9IjExMCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIxOCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTMyMCAxNTB2MTIwTTI2MCAyMTBoMTIwIiBzdHJva2U9IiNkYzI2MjYiIHN0cm9rZS13aWR0aD0iMjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjx0ZXh0IHg9IjMyMCIgeT0iMzQ1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkJhbmRhZ2VzPC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMzc4IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii44NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SW5zcGVjdG9yIHBob3RvIMK3IG1pc3Npbmc8L3RleHQ+PC9zdmc+"
+        },
+        {
+          "id": 2,
+          "item_name": "Antiseptic Solution Available",
+          "status": "expired",
+          "note": "Expired 12/2025",
+          "photo_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNjQwIDQyMCI+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI0MjAiIGZpbGw9IiNkOTc3MDYiLz48cmVjdCB4PSIxNzAiIHk9IjExMCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIxOCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTMyMCAxNTB2MTIwTTI2MCAyMTBoMTIwIiBzdHJva2U9IiNkOTc3MDYiIHN0cm9rZS13aWR0aD0iMjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjx0ZXh0IHg9IjMyMCIgeT0iMzQ1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkFudGlzZXB0aWMgU29sdXRpb248L3RleHQ+PHRleHQgeD0iMzIwIiB5PSIzNzgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JbnNwZWN0b3IgcGhvdG8gwrcgZXhwaXJlZDwvdGV4dD48L3N2Zz4="
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "box_id": 5,
+      "inspectorRef": "otherAreaIncharge",
+      "created_at": "2026-09-17T08:00:00.000Z",
+      "outcome": "refill_requested",
+      "signature_data": null,
+      "items": [
+        {
+          "id": 3,
+          "item_name": "Gloves Available",
+          "status": "missing",
+          "note": "Only 1 pair left",
+          "photo_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNjQwIDQyMCI+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI0MjAiIGZpbGw9IiNkYzI2MjYiLz48cmVjdCB4PSIxNzAiIHk9IjExMCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIxOCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTMyMCAxNTB2MTIwTTI2MCAyMTBoMTIwIiBzdHJva2U9IiNkYzI2MjYiIHN0cm9rZS13aWR0aD0iMjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjx0ZXh0IHg9IjMyMCIgeT0iMzQ1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkdsb3ZlczwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjM3OCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkluc3BlY3RvciBwaG90byDCtyBtaXNzaW5nPC90ZXh0Pjwvc3ZnPg=="
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "box_id": 2,
+      "inspectorRef": "areaIncharge",
+      "created_at": "2026-09-18T08:00:00.000Z",
+      "outcome": "refill_requested",
+      "signature_data": null,
+      "items": [
+        {
+          "id": 4,
+          "item_name": "Cotton Available",
+          "status": "expired",
+          "note": "Expired stock",
+          "photo_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNjQwIDQyMCI+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI0MjAiIGZpbGw9IiNkOTc3MDYiLz48cmVjdCB4PSIxNzAiIHk9IjExMCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIxOCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTMyMCAxNTB2MTIwTTI2MCAyMTBoMTIwIiBzdHJva2U9IiNkOTc3MDYiIHN0cm9rZS13aWR0aD0iMjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjx0ZXh0IHg9IjMyMCIgeT0iMzQ1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNvdHRvbjwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjM3OCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkluc3BlY3RvciBwaG90byDCtyBleHBpcmVkPC90ZXh0Pjwvc3ZnPg=="
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "box_id": 1,
+      "inspectorRef": "otherAreaIncharge",
+      "created_at": "2026-09-12T08:00:00.000Z",
+      "outcome": "closed_ok",
+      "signature_data": null,
+      "items": [
+        {
+          "id": 5,
+          "item_name": "Burn Dressing Available",
+          "status": "missing",
+          "note": "Not restocked after last use",
+          "photo_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNjQwIDQyMCI+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI0MjAiIGZpbGw9IiNkYzI2MjYiLz48cmVjdCB4PSIxNzAiIHk9IjExMCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIxOCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTMyMCAxNTB2MTIwTTI2MCAyMTBoMTIwIiBzdHJva2U9IiNkYzI2MjYiIHN0cm9rZS13aWR0aD0iMjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjx0ZXh0IHg9IjMyMCIgeT0iMzQ1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkJ1cm4gRHJlc3Npbmc8L3RleHQ+PHRleHQgeD0iMzIwIiB5PSIzNzgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JbnNwZWN0b3IgcGhvdG8gwrcgbWlzc2luZzwvdGV4dD48L3N2Zz4="
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "box_id": 4,
+      "inspectorRef": "areaIncharge",
+      "created_at": "2026-09-19T08:00:00.000Z",
+      "outcome": "ok",
+      "signature_data": null,
+      "items": [
+        {
+          "id": 6,
+          "item_name": "First Aid Box Clean Condition",
+          "status": "ok",
+          "note": null,
+          "photo_url": null
+        },
+        {
+          "id": 7,
+          "item_name": "Box Accessible",
+          "status": "ok",
+          "note": null,
+          "photo_url": null
+        },
+        {
+          "id": 8,
+          "item_name": "Box Lock/Seal Condition",
+          "status": "ok",
+          "note": null,
+          "photo_url": null
+        },
+        {
+          "id": 9,
+          "item_name": "Medicine Availability",
+          "status": "ok",
+          "note": null,
+          "photo_url": null
+        }
+      ]
+    }
+  ],
+  "refills": [
+    {
+      "id": 1,
+      "inspection_id": 1,
+      "request_code": "RFQ-0001-DEMO",
+      "status": "pending",
+      "rejection_reason": null,
+      "created_at": "2026-09-15T08:00:00.000Z",
+      "updated_at": "2026-09-15T08:00:00.000Z",
+      "refill_items": []
+    },
+    {
+      "id": 2,
+      "inspection_id": 2,
+      "request_code": "RFQ-0002-DEMO",
+      "status": "awaiting_verification",
+      "rejection_reason": null,
+      "created_at": "2026-09-17T08:00:00.000Z",
+      "updated_at": "2026-09-17T08:00:00.000Z",
+      "refill_items": []
+    },
+    {
+      "id": 3,
+      "inspection_id": 3,
+      "request_code": "RFQ-0003-DEMO",
+      "status": "pending",
+      "rejection_reason": null,
+      "created_at": "2026-09-18T08:00:00.000Z",
+      "updated_at": "2026-09-18T08:00:00.000Z",
+      "refill_items": []
+    },
+    {
+      "id": 4,
+      "inspection_id": 4,
+      "request_code": "RFQ-0004-DEMO",
+      "status": "closed",
+      "rejection_reason": null,
+      "created_at": "2026-09-12T08:00:00.000Z",
+      "updated_at": "2026-09-12T08:00:00.000Z",
+      "refill_items": [
+        {
+          "id": 1,
+          "inspection_item_id": 5,
+          "replacement_note": "Replaced with new stock",
+          "photo_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNjQwIDQyMCI+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI0MjAiIGZpbGw9IiMwZjc2NmUiLz48cmVjdCB4PSIxNzAiIHk9IjExMCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIxOCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTMyMCAxNTB2MTIwTTI2MCAyMTBoMTIwIiBzdHJva2U9IiMwZjc2NmUiIHN0cm9rZS13aWR0aD0iMjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjx0ZXh0IHg9IjMyMCIgeT0iMzQ1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlJlZmlsbGVkPC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMzc4IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii44NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+T0hDIHJlZmlsbCBldmlkZW5jZTwvdGV4dD48L3N2Zz4="
+        }
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "message": "New refill request RFQ-0001-DEMO for box FAB-201",
+      "refill_request_id": 1,
+      "is_read": false,
+      "created_at": "2026-09-15T08:00:00.000Z",
+      "target_role": "ohc",
+      "target_user_id": null
+    },
+    {
+      "id": 2,
+      "message": "New refill request RFQ-0002-DEMO for box FAB-301",
+      "refill_request_id": 2,
+      "is_read": false,
+      "created_at": "2026-09-17T08:00:00.000Z",
+      "target_role": "ohc",
+      "target_user_id": null
+    },
+    {
+      "id": 3,
+      "message": "New refill request RFQ-0003-DEMO for box FAB-102",
+      "refill_request_id": 3,
+      "is_read": false,
+      "created_at": "2026-09-18T08:00:00.000Z",
+      "target_role": "ohc",
+      "target_user_id": null
+    },
+    {
+      "id": 4,
+      "message": "New refill request RFQ-0004-DEMO for box FAB-101",
+      "refill_request_id": 4,
+      "is_read": true,
+      "created_at": "2026-09-12T08:00:00.000Z",
+      "target_role": "ohc",
+      "target_user_id": null
+    },
+    {
+      "id": 5,
+      "message": "RFQ-0004-DEMO for box FAB-101 was accepted and closed.",
+      "refill_request_id": 4,
+      "is_read": true,
+      "created_at": "2026-09-12T09:00:00.000Z",
+      "target_role": "ohc",
+      "target_user_id": null
+    }
+  ]
+}

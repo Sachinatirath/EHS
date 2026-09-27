@@ -94,7 +94,7 @@ export default function ServiceRequestsPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Service ID</th><th>Client</th><th>Original Asset</th><th>Complaint</th><th>Request Time</th>
+                <th>Service ID</th><th>Request Time</th><th>Client</th><th>Original Asset</th><th>Complaint</th>
                 <th>Engineer</th><th>Temporary Spare</th><th>Spare Installed</th><th>Status</th><th>Workshop Job</th><th>Action</th>
               </tr>
             </thead>
@@ -102,10 +102,10 @@ export default function ServiceRequestsPage({ pushToast }) {
               {filtered.map((r) => (
                 <tr key={r.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.id}</td>
+                  <td>{r.requestTime}</td>
                   <td>{r.client}</td>
                   <td style={{ color: 'var(--blue-700)', fontWeight: 600 }}>{r.assetId}</td>
                   <td>{r.complaint}</td>
-                  <td>{r.requestTime}</td>
                   <td>{r.engineer}</td>
                   <td style={{ color: 'var(--blue-700)', fontWeight: 600 }}>{r.spareId}</td>
                   <td>{r.spareInstalled}</td>

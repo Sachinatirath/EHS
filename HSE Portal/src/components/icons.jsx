@@ -14,6 +14,13 @@ export const IconUser = (p) => (
   </svg>
 );
 
+export const IconHome = (p) => (
+  <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
+    <path d="M3 10.5 12 3l9 7.5" />
+    <path d="M5 9v11a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9" />
+  </svg>
+);
+
 export const IconGrid = (p) => (
   <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
     <rect x="3" y="3" width="7" height="7" rx="1.4" />
@@ -370,6 +377,13 @@ export const IconHardHat = (p) => (
     <path d="M4 15.5a8 8 0 0 1 16 0" />
     <path d="M12 6v3.5" />
     <rect x="2" y="15.5" width="20" height="3" rx="1.5" />
+  </svg>
+);
+
+export const IconFirstAid = (p) => (
+  <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
+    <rect x="3" y="5" width="18" height="15" rx="2.5" />
+    <path d="M12 9.5v6M9 12.5h6" />
   </svg>
 );
 

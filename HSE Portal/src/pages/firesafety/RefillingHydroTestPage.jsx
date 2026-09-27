@@ -15,7 +15,7 @@ export default function RefillingHydroTestPage() {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Asset</th><th>Extinguisher Type</th><th>Capacity</th><th>Last Refill</th>
+                <th>Asset</th><th>Last Refill</th><th>Extinguisher Type</th><th>Capacity</th>
                 <th>Hydro Test</th><th>Next Due</th><th>Certificate</th><th>Status</th>
               </tr>
             </thead>
@@ -23,9 +23,9 @@ export default function RefillingHydroTestPage() {
               {REFILL_RECORDS.map((r) => (
                 <tr key={r.assetId}>
                   <td style={{ fontWeight: 700, color: 'var(--blue-700)' }}>{r.assetId}</td>
+                  <td>{r.lastRefill}</td>
                   <td>{r.extType}</td>
                   <td>{r.capacity}</td>
-                  <td>{r.lastRefill}</td>
                   <td>{r.hydroTest}</td>
                   <td>{r.nextDue}</td>
                   <td>{r.certificate}</td>

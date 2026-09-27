@@ -37,15 +37,15 @@ export default function ObsoleteArchivePage() {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Doc. No.</th><th>Original Title</th><th>Type</th><th>Superseded By</th>
-                <th>Archived Date</th><th>Retention Until</th><th>Reason</th><th>Action</th>
+                <th>Doc. No.</th><th>Archived Date</th><th>Original Title</th><th>Type</th>
+                <th>Superseded By</th><th>Retention Until</th><th>Reason</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {ARCHIVED_DOCUMENTS.map((d) => (
                 <tr key={d.id}>
-                  <td>{d.id}</td><td>{d.title}</td><td>{d.type}</td><td>{d.supersededBy}</td>
-                  <td>{d.archivedDate}</td><td>{d.retentionUntil}</td><td>{d.reason}</td>
+                  <td>{d.id}</td><td>{d.archivedDate}</td><td>{d.title}</td><td>{d.type}</td>
+                  <td>{d.supersededBy}</td><td>{d.retentionUntil}</td><td>{d.reason}</td>
                   <td><button type="button" className="table-link">View</button></td>
                 </tr>
               ))}

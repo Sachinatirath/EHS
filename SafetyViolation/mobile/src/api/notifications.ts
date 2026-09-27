@@ -1,1 +1,1 @@
-export { listNotifications, markNotificationRead } from './mockStore';
+export { listNotifications, markNotificationRead } from './mockDb';

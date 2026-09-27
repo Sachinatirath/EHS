@@ -64,19 +64,19 @@ export default function ActionAssignmentPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Action ID</th><th>MOC</th><th>Concern / Control</th><th>Department</th>
-                <th>Owner</th><th>Due</th><th>Status</th><th>Action</th>
+                <th>Action ID</th><th>Due</th><th>MOC</th><th>Concern / Control</th>
+                <th>Department</th><th>Owner</th><th>Status</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((r) => (
                 <tr key={r.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.id}</td>
+                  <td>{r.due}</td>
                   <td>{r.mocId}</td>
                   <td>{r.control}</td>
                   <td>{r.department}</td>
                   <td>{r.owner}</td>
-                  <td>{r.due}</td>
                   <td><span className={`pill ${STATUS_PILL[r.status]}`}>{r.status}</span></td>
                   <td>
                     <button type="button" className="btn btn-outline" style={{ padding: '6px 12px' }} onClick={() => pushToast(`Viewing ${r.id}.`, 'info')}>View</button>

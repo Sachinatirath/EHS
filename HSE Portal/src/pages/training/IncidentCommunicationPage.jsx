@@ -69,18 +69,18 @@ export default function IncidentCommunicationPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Alert</th><th>Incident</th><th>Title</th><th>Departments</th>
-                <th>Issued</th><th>Status</th><th>Acknowledgement</th><th>Action</th>
+                <th>Alert</th><th>Issued</th><th>Incident</th><th>Title</th>
+                <th>Departments</th><th>Status</th><th>Acknowledgement</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((r) => (
                 <tr key={r.alert}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.alert}</td>
+                  <td>{r.issued}</td>
                   <td>{r.incident}</td>
                   <td style={{ fontWeight: 600 }}>{r.title}</td>
                   <td>{r.departments}</td>
-                  <td>{r.issued}</td>
                   <td><span className={`pill ${ALERT_STATUS_PILL[r.status] || 'pill-slate'}`}>{r.status}</span></td>
                   <td>{r.ack}%</td>
                   <td>

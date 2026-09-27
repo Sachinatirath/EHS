@@ -14,7 +14,7 @@ export default function PendingReviewPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Doc. No.</th><th>Title</th><th>Type</th><th>Version</th><th>Submitted</th>
+                <th>Doc. No.</th><th>Submitted</th><th>Title</th><th>Type</th><th>Version</th>
                 <th>Days in Review</th><th>Reviewers</th><th>Status</th><th>Action</th>
               </tr>
             </thead>
@@ -22,10 +22,10 @@ export default function PendingReviewPage({ pushToast }) {
               {PENDING_REVIEW.map((d) => (
                 <tr key={d.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{d.id}</td>
+                  <td>{d.issueDate}</td>
                   <td style={{ fontWeight: 600 }}>{d.title}</td>
                   <td><span className={`pill ${TYPE_PILL[d.type]}`}>{d.type}</span></td>
                   <td>{d.version}</td>
-                  <td>{d.issueDate}</td>
                   <td>{d.daysInReview}</td>
                   <td>
                     {(d.reviewers || []).map((r) => (

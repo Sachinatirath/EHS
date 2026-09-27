@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
 import StatCard from '../../components/StatCard';
 import Modal from '../../components/Modal';
+import CertificateDetailModal from './CertificateDetailModal';
 import { IconPlus, IconSearch, IconCheckCircle, IconClock, IconAlertTriangle, IconArrowUpRight, IconBell } from '../../components/icons';
 import { CERTIFICATES, CERT_STATUS_PILL, TRAINING_TOPICS } from '../../data/trainingData';
 
@@ -13,6 +14,7 @@ export default function CertificatesExpiryPage({ pushToast }) {
   const [statusFilter, setStatusFilter] = useState('All');
   const [modalOpen, setModalOpen] = useState(false);
   const [form, setForm] = useState(EMPTY);
+  const [selected, setSelected] = useState(null);
 
   const filtered = useMemo(() => rows.filter((r) => {
     const q = search.trim().toLowerCase();
@@ -73,26 +75,26 @@ export default function CertificatesExpiryPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Certificate</th><th>Employee ID</th><th>Name</th><th>Training</th>
-                <th>Expiry</th><th>Status</th><th>Reminder</th><th>Action</th>
+                <th>Certificate</th><th>Expiry</th><th>Employee ID</th><th>Name</th>
+                <th>Training</th><th>Status</th><th>Reminder</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((r) => (
-                <tr key={r.cert}>
+                <tr key={r.cert} className="ep-row-clickable" onClick={() => setSelected(r)} title="Click to view certificate details">
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.cert}</td>
+                  <td>{r.expiry}</td>
                   <td>{r.empId}</td>
                   <td>{r.name}</td>
                   <td>{r.training}</td>
-                  <td>{r.expiry}</td>
                   <td><span className={`pill ${CERT_STATUS_PILL[r.status] || 'pill-slate'}`}>{r.status}</span></td>
                   <td>
                     {r.status === 'Valid'
                       ? '—'
-                      : <button type="button" className="btn btn-outline" style={{ padding: '6px 12px' }} onClick={() => handleSend(r.cert)}>Send</button>}
+                      : <button type="button" className="btn btn-outline" style={{ padding: '6px 12px' }} onClick={(e) => { e.stopPropagation(); handleSend(r.cert); }}>Send</button>}
                   </td>
                   <td>
-                    <button type="button" className="btn btn-outline" style={{ padding: '6px 12px' }} onClick={() => pushToast(`Viewing ${r.cert}.`, 'info')}>View</button>
+                    <button type="button" className="btn btn-outline" style={{ padding: '6px 12px' }} onClick={(e) => { e.stopPropagation(); setSelected(r); }}>View</button>
                   </td>
                 </tr>
               ))}
@@ -103,6 +105,8 @@ export default function CertificatesExpiryPage({ pushToast }) {
           </table>
         </div>
       </div>
+
+      <CertificateDetailModal certificate={selected} onClose={() => setSelected(null)} onSendReminder={handleSend} />
 
       <Modal open={modalOpen} title="Add Training Certificate" onClose={() => setModalOpen(false)} width={640}>
         <form onSubmit={handleSave}>

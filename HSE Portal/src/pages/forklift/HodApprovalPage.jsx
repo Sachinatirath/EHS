@@ -47,19 +47,19 @@ export default function HodApprovalPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Audit / Observation</th><th>Forklift</th><th>Concern</th>
-                <th>Department</th><th>Priority</th><th>Submitted</th><th>Action</th>
+                <th>Audit / Observation</th><th>Submitted</th><th>Forklift</th>
+                <th>Concern</th><th>Department</th><th>Priority</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((r) => (
                 <tr key={r.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.id}</td>
+                  <td>{r.submitted}</td>
                   <td style={{ fontWeight: 700 }}>{r.forklift}</td>
                   <td>{r.concern}</td>
                   <td>{r.dept}</td>
                   <td><span className={`pill ${PRIORITY_PILL[r.priority]}`}>{r.priority}</span></td>
-                  <td>{r.submitted}</td>
                   <td>
                     <div style={{ display: 'flex', gap: 8 }}>
                       <button type="button" className="btn btn-outline" style={{ padding: '6px 12px' }} onClick={() => decide(r, 'accept')}>

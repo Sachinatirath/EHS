@@ -95,19 +95,19 @@ export default function ObservationsPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Observation ID</th><th>Forklift</th><th>Finding</th><th>Concern Department</th>
-                <th>HOD / Owner</th><th>Due Date</th><th>Priority</th><th>Status</th><th>Action</th>
+                <th>Observation ID</th><th>Due Date</th><th>Forklift</th><th>Finding</th>
+                <th>Concern Department</th><th>HOD / Owner</th><th>Priority</th><th>Status</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((r) => (
                 <tr key={r.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.id}</td>
+                  <td>{r.due}</td>
                   <td>{r.forklift}</td>
                   <td>{r.finding}</td>
                   <td>{r.dept}</td>
                   <td>{r.hod}</td>
-                  <td>{r.due}</td>
                   <td><span className={`pill ${PRIORITY_PILL[r.priority]}`}>{r.priority}</span></td>
                   <td><span className={`pill ${OBS_STATUS_PILL[r.status]}`}>{r.status}</span></td>
                   <td>

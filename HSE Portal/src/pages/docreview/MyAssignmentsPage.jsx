@@ -26,7 +26,7 @@ export default function MyAssignmentsPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Doc. No.</th><th>Title</th><th>Type</th><th>Assigned By</th><th>Assigned Date</th>
+                <th>Doc. No.</th><th>Assigned Date</th><th>Title</th><th>Type</th><th>Assigned By</th>
                 <th>Due Date</th><th>Priority</th><th>Status</th><th>Action</th>
               </tr>
             </thead>
@@ -34,10 +34,10 @@ export default function MyAssignmentsPage({ pushToast }) {
               {MY_ASSIGNMENTS.map((d) => (
                 <tr key={d.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{d.id}</td>
+                  <td>{d.assignedDate}</td>
                   <td style={{ fontWeight: 600 }}>{d.title}</td>
                   <td><span className={`pill ${TYPE_PILL[d.type]}`}>{d.type}</span></td>
                   <td>{d.assignedBy}</td>
-                  <td>{d.assignedDate}</td>
                   <td>{d.dueDate}</td>
                   <td><span className={`pill ${PRIORITY_PILL[d.priority]}`}>{d.priority}</span></td>
                   <td><span className={`pill ${STATUS_PILL[d.status]}`}>{d.status}</span></td>

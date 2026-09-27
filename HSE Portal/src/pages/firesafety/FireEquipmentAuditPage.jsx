@@ -46,18 +46,18 @@ export default function FireEquipmentAuditPage({ pushToast, onNavigate }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Audit No.</th><th>Asset</th><th>Type</th><th>Department</th>
-                <th>Date</th><th>Score</th><th>Result</th><th>Risk</th><th>Action</th>
+                <th>Audit No.</th><th>Date</th><th>Asset</th><th>Type</th>
+                <th>Department</th><th>Score</th><th>Result</th><th>Risk</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((a) => (
                 <tr key={a.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{a.id}</td>
+                  <td>{a.date}</td>
                   <td style={{ fontWeight: 600, color: 'var(--blue-700)' }}>{a.assetId}</td>
                   <td>{a.type}</td>
                   <td>{a.department}</td>
-                  <td>{a.date}</td>
                   <td style={{ fontWeight: 700 }}>{a.score}%</td>
                   <td><span className={`pill ${STATUS_PILL[a.result]}`}>{a.result}</span></td>
                   <td><span className={`pill ${STATUS_PILL[a.risk]}`}>{a.risk}</span></td>

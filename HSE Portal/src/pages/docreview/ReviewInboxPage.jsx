@@ -23,19 +23,19 @@ export default function ReviewInboxPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Doc. No.</th><th>Title</th><th>Type</th><th>Version</th><th>Submitted By</th>
-                <th>Date Submitted</th><th>Review Due</th><th>Priority</th><th>Status</th><th>Action</th>
+                <th>Doc. No.</th><th>Date Submitted</th><th>Title</th><th>Type</th><th>Version</th>
+                <th>Submitted By</th><th>Review Due</th><th>Priority</th><th>Status</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {REVIEW_INBOX.map((d) => (
                 <tr key={d.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{d.id}</td>
+                  <td>{d.issueDate}</td>
                   <td style={{ fontWeight: 600 }}>{d.title}</td>
                   <td><span className={`pill ${TYPE_PILL[d.type]}`}>{d.type}</span></td>
                   <td>{d.version}</td>
                   <td>{d.author}</td>
-                  <td>{d.issueDate}</td>
                   <td style={{ color: d.priority === 'OVERDUE' ? 'var(--red-600)' : undefined }}>{d.reviewDue}</td>
                   <td><span className={`pill ${PRIORITY_PILL[d.priority]}`}>{d.priority}</span></td>
                   <td><span className={`pill ${STATUS_PILL[d.status]}`}>{d.status}</span></td>

@@ -4,18 +4,21 @@
 export const PORTAL_NAV = [
   {
     section: 'Account',
-    items: [{ id: 'profile', label: 'My Profile', icon: 'user' }],
+    items: [
+      { id: 'home', label: 'Home', icon: 'home' },
+      { id: 'profile', label: 'My Profile', icon: 'user' },
+    ],
   },
   {
     section: 'My Tasks',
     items: [
-      { id: 'dashboard', label: 'Dashboard', icon: 'grid' },
+      { id: 'my-tasks', label: 'My Tasks', icon: 'checkSquare' },
       {
         id: 'ehs-audit',
         label: 'EHS Audit',
         icon: 'clipboard',
         children: [
-          { id: 'ehs-machine', label: 'Machine' },
+          { id: 'ehs-machine', label: 'Machine', isApp: true, appTarget: 'machineaudit' },
           { id: 'ehs-powertools', label: "Power Tool's" },
           { id: 'ehs-forklift', label: 'ForkLift', isApp: true, appTarget: 'forklift' },
           { id: 'ehs-outside-vehicles', label: 'Out Side Vehicles' },
@@ -29,15 +32,26 @@ export const PORTAL_NAV = [
         ],
       },
       { id: 'training', label: 'Training', icon: 'cap', isApp: true, appTarget: 'training' },
-      { id: 'audit-training-plan', label: 'Audit & Training Plan', icon: 'calendarCheck' },
-      { id: 'safety-violation', label: 'Safety Violation', icon: 'alertTriangle', badge: 12 },
-      { id: 'safety-observation', label: 'Safety Observation', icon: 'eye' },
-      { id: 'incident-report', label: 'Incident Report', icon: 'flag' },
+      {
+        id: 'audit-training-plan',
+        label: 'Audit & Training Plan',
+        icon: 'calendarCheck',
+        children: [
+          { id: 'atp-today', label: "Today's Audit & Training Plan" },
+          { id: 'atp-plan', label: 'Audit & Training Plan' },
+        ],
+      },
+      { id: 'shift-schedule', label: 'Shift Schedule', icon: 'clock', isApp: true, appTarget: 'shiftschedule' },
+      { id: 'safety-violation', label: 'Safety Violation', icon: 'alertTriangle', isApp: true, appTarget: 'safetyviolation' },
+      { id: 'safety-observation', label: 'Safety Observation', icon: 'eye', isApp: true, appTarget: 'safetyobservation' },
+      { id: 'incident-report', label: 'Incident Report', icon: 'flag', isApp: true, appTarget: 'incidentreport' },
+      { id: 'fast-aid', label: 'FastAid', icon: 'firstAid', isApp: true, appTarget: 'fastaid' },
       {
         id: 'permits',
         label: 'Permits',
         icon: 'fileText',
         children: [
+          { id: 'permits-dashboard', label: 'Dashboard' },
           { id: 'permits-general', label: 'General Permit' },
           { id: 'permits-height', label: 'Work at Height' },
           { id: 'permits-hotwork', label: 'Hot Work' },
@@ -65,8 +79,9 @@ export const PORTAL_NAV = [
 
 // Friendly page titles used by the header + placeholder pages.
 export const PAGE_TITLES = {
+  home: 'Home',
   profile: 'My Profile',
-  dashboard: 'Dashboard',
+  'permits-dashboard': 'Permits Dashboard',
   'ehs-forklift': 'ForkLift Safety',
   'ehs-machine': 'Machine Audit',
   'ehs-powertools': "Power Tool's Audit",
@@ -79,7 +94,10 @@ export const PAGE_TITLES = {
   'ehs-battery': 'Battery Charging Station Audit',
   'ehs-canteen': 'Canteen Safety Audit',
   training: 'Training',
-  'audit-training-plan': 'Audit & Training Plan',
+  'atp-today': "Today's Audit & Training Plan",
+  'atp-plan': 'Audit & Training Plan',
+  'shift-schedule': 'Shift Schedule',
+  'my-tasks': 'My Tasks',
   'safety-violation': 'Safety Violation',
   'safety-observation': 'Safety Observation',
   'incident-report': 'Incident Report',
@@ -169,7 +187,6 @@ export const TRAINING_NAV = [
   { id: 'tr-dashboard', label: 'Dashboard' },
   { id: 'tr-employees', label: 'Employee Master' },
   { id: 'tr-sessions', label: 'Training Sessions' },
-  { id: 'tr-matrix', label: 'Training Matrix' },
   { id: 'tr-certificates', label: 'Certificates & Expiry' },
   { id: 'tr-induction', label: 'Safety Induction' },
   { id: 'tr-special', label: 'Special Training' },
@@ -183,7 +200,6 @@ export const TRAINING_TITLES = {
   'tr-dashboard': 'Training Management Dashboard',
   'tr-employees': 'Employee Master & Training Profile',
   'tr-sessions': 'Training Sessions',
-  'tr-matrix': 'Training Matrix',
   'tr-certificates': 'Certificates & Expiry Tracking',
   'tr-induction': 'Safety Induction',
   'tr-special': 'Special & Job-Specific Training',
@@ -264,6 +280,82 @@ export const FIRE_NAV = [
   { id: 'fs-reports', label: 'HOD / Management Report' },
   { id: 'fs-audit-trail', label: 'Audit Trail' },
 ];
+
+export const SAFETY_VIOLATION_TITLES = {
+  'sv-welcome': 'Safety Violation',
+  'sv-agent-home': 'My Safety Violations',
+  'sv-agent-create': 'New Safety Violation',
+  'sv-agent-alerts': 'Alerts',
+  'sv-agent-profile': 'Profile',
+  'sv-hod-dashboard': 'HOD Dashboard',
+  'sv-hod-violations': 'All Violations',
+  'sv-hod-alerts': 'Alerts',
+  'sv-hod-profile': 'Profile',
+};
+
+export const SHIFT_SCHEDULE_TITLES = {
+  'ss-emp-schedule': "Today's Shift Schedule",
+  'ss-emp-new': 'Shift Change / Swap Request',
+  'ss-emp-requests': 'My Shift Requests',
+  'ss-hod-dashboard': 'Shift Schedule — HOD Dashboard',
+  'ss-hod-requests': 'Shift Requests — Approvals',
+  'ss-hod-schedule': 'Shift Schedule',
+};
+
+export const MACHINE_AUDIT_TITLES = {
+  'ma-welcome': 'Machine Audit',
+  'ma-officer-home': 'My Machine Audits',
+  'ma-officer-create': 'New Machine Audit',
+  'ma-officer-machines': 'Audited Machines',
+  'ma-officer-alerts': 'Alerts',
+  'ma-officer-profile': 'Profile',
+  'ma-incharge-home': 'Assigned Machine Audits',
+  'ma-incharge-alerts': 'Alerts',
+  'ma-incharge-profile': 'Profile',
+  'ma-hod-dashboard': 'Machine Audit — HOD Dashboard',
+  'ma-hod-machines': 'Audited Machines',
+  'ma-hod-alerts': 'Alerts',
+  'ma-hod-profile': 'Profile',
+};
+
+export const SAFETY_OBSERVATION_TITLES = {
+  'so-welcome': 'Safety Observation',
+  'so-agent-home': 'My Observations',
+  'so-agent-create': 'New Observation',
+  'so-agent-alerts': 'Alerts',
+  'so-agent-profile': 'Profile',
+  'so-hod-dashboard': 'HOD Dashboard',
+  'so-hod-observations': 'All Observations',
+  'so-hod-alerts': 'Alerts',
+  'so-hod-profile': 'Profile',
+};
+
+export const INCIDENT_REPORT_TITLES = {
+  'ir-welcome': 'Incident Report',
+  'ir-agent-home': 'My Incidents',
+  'ir-agent-create': 'New Incident',
+  'ir-agent-alerts': 'Alerts',
+  'ir-agent-profile': 'Profile',
+  'ir-hod-dashboard': 'HOD Dashboard',
+  'ir-hod-incidents': 'All Incidents',
+  'ir-hod-alerts': 'Alerts',
+  'ir-hod-profile': 'Profile',
+};
+
+export const FASTAID_TITLES = {
+  'fa-welcome': 'FastAid',
+  'fa-ai-home': 'Home',
+  'fa-ai-inspect': 'Start Inspection',
+  'fa-ai-inspections': 'My Inspections',
+  'fa-ai-alerts': 'Alerts',
+  'fa-ai-profile': 'Profile',
+  'fa-ohc-dashboard': 'OHC Dashboard',
+  'fa-ohc-boxes': 'First Aid Boxes',
+  'fa-ohc-records': 'Inspection Records',
+  'fa-ohc-refills': 'Refill Requests',
+  'fa-ohc-alerts': 'Alerts',
+  'fa-ohc-profile': 'Profile',
+};
 
 export const FIRE_TITLES = {
   'fs-dashboard': 'Fire Equipment Audit Dashboard',

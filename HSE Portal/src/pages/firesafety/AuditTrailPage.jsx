@@ -21,14 +21,14 @@ export default function AuditTrailPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Date / Time</th><th>Asset</th><th>User</th><th>Event</th><th>Comment</th><th>Result</th>
+                <th>Asset</th><th>Date / Time</th><th>User</th><th>Event</th><th>Comment</th><th>Result</th>
               </tr>
             </thead>
             <tbody>
               {AUDIT_TRAIL.map((r, i) => (
                 <tr key={`${r.ref}-${i}`}>
-                  <td>{r.datetime}</td>
                   <td style={{ fontWeight: 700, color: 'var(--blue-700)' }}>{r.ref}</td>
+                  <td>{r.datetime}</td>
                   <td>{r.user}</td>
                   <td style={{ fontWeight: 600 }}>{r.event}</td>
                   <td>{r.comment}</td>

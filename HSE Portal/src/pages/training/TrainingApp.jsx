@@ -1,7 +1,6 @@
 import TrainingDashboard from './TrainingDashboard';
 import EmployeeMasterPage from './EmployeeMasterPage';
 import TrainingSessionsPage from './TrainingSessionsPage';
-import TrainingMatrixPage from './TrainingMatrixPage';
 import CertificatesExpiryPage from './CertificatesExpiryPage';
 import SafetyInductionPage from './SafetyInductionPage';
 import SpecialTrainingPage from './SpecialTrainingPage';
@@ -20,8 +19,6 @@ export default function TrainingApp({ view, onNavigate, pushToast }) {
       return <EmployeeMasterPage pushToast={pushToast} />;
     case 'tr-sessions':
       return <TrainingSessionsPage pushToast={pushToast} />;
-    case 'tr-matrix':
-      return <TrainingMatrixPage pushToast={pushToast} />;
     case 'tr-certificates':
       return <CertificatesExpiryPage pushToast={pushToast} />;
     case 'tr-induction':

@@ -74,20 +74,20 @@ export default function EquipmentMasterPage({ pushToast, onNavigate }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>ID</th><th>Type</th><th>Capacity</th><th>Location</th><th>Department</th>
-                <th>Status</th><th>Next Due</th><th>Actions</th>
+                <th>ID</th><th>Next Due</th><th>Type</th><th>Capacity</th><th>Location</th>
+                <th>Department</th><th>Status</th><th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((eq) => (
                 <tr key={eq.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{eq.id}</td>
+                  <td>{eq.nextDue}</td>
                   <td>{eq.type}</td>
                   <td>{eq.capacity}</td>
                   <td>{eq.location}</td>
                   <td>{eq.department}</td>
                   <td><span className={`pill ${EQUIP_STATUS_PILL[eq.status]}`}>{eq.status}</span></td>
-                  <td>{eq.nextDue}</td>
                   <td>
                     <div style={{ display: 'flex', gap: 8 }}>
                       <button type="button" className="btn btn-ghost" style={{ padding: '6px 12px' }} onClick={() => pushToast(`Viewing ${eq.id}.`, 'info')}>View</button>

@@ -1,0 +1,71 @@
+/*
+ * Incident Report module theme — scoped to `.ir-theme` (applied to this
+ * sub-app's sidebar and content root) so the rest of the portal keeps its
+ * default teal branding. All three source colors live in
+ * src/styles/variables.css (--ir-primary / --ir-primary-dark /
+ * --ir-primary-light) — change them there to re-tint the whole module.
+ */
+
+.ir-theme {
+  --shadow-focus: 0 0 0 4px color-mix(in srgb, var(--ir-primary) 14%, transparent);
+}
+
+.ir-theme .page-title {
+  background: linear-gradient(120deg, var(--ir-primary-dark), var(--ir-primary) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ir-theme .btn-primary {
+  background: linear-gradient(155deg, var(--ir-primary), var(--ir-primary-dark) 120%);
+  box-shadow: 0 4px 12px rgba(194, 65, 12, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+.ir-theme .btn-primary:hover {
+  box-shadow: 0 8px 20px rgba(194, 65, 12, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.ir-theme .btn-outline {
+  color: var(--ir-primary-dark);
+  border-color: var(--ir-primary-light);
+}
+.ir-theme .btn-outline:hover {
+  background: var(--ir-primary-light);
+  border-color: var(--ir-primary);
+}
+
+.ir-theme .field input:focus,
+.ir-theme .field select:focus,
+.ir-theme .field textarea:focus {
+  border-color: var(--ir-primary);
+}
+
+.ir-theme .checkbox-group input[type='checkbox'] {
+  accent-color: var(--ir-primary);
+}
+
+.ir-theme .panel-header svg {
+  background: var(--ir-primary-light);
+  color: var(--ir-primary);
+}
+
+.ir-theme .nav-item.active {
+  background: linear-gradient(120deg, var(--ir-primary-dark), var(--ir-primary));
+  box-shadow: 0 8px 20px rgba(194, 65, 12, 0.35);
+}
+
+.ir-theme .table-link,
+.ir-theme .stage-pill.active {
+  color: var(--ir-primary-dark);
+}
+
+.ir-theme .progress-fill {
+  background: linear-gradient(90deg, var(--ir-primary-dark), var(--ir-primary));
+}
+
+.ir-skeleton {
+  display: block;
+  background: linear-gradient(90deg, var(--slate-100) 25%, var(--slate-200) 37%, var(--slate-100) 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}

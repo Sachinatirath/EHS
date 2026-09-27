@@ -111,19 +111,19 @@ export default function FirePumpsAuditPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Pump ID</th><th>Type</th><th>Location</th><th>Tag</th>
-                <th>Capacity</th><th>Last Test</th><th>Status</th><th>Score</th><th>Action</th>
+                <th>Pump ID</th><th>Last Test</th><th>Type</th><th>Location</th>
+                <th>Tag</th><th>Capacity</th><th>Status</th><th>Score</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((p) => (
                 <tr key={p.id}>
                   <td style={{ fontWeight: 700, color: 'var(--blue-700)' }}>{p.id}</td>
+                  <td>{p.lastTest}</td>
                   <td>{p.type}</td>
                   <td>{p.location}</td>
                   <td>{p.tag}</td>
                   <td>{p.capacity}</td>
-                  <td>{p.lastTest}</td>
                   <td><span className={`pill ${STATUS_PILL[p.status]}`}>{p.status}</span></td>
                   <td style={{ fontWeight: 700 }}>{p.score}%</td>
                   <td>

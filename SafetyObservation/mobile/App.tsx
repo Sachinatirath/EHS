@@ -7,6 +7,7 @@ import { Platform, UIManager } from 'react-native';
 import { AuthProvider } from '@/context/AuthContext';
 import { ToastProvider } from '@/components/Toast';
 import { RootNavigator } from '@/navigation/RootNavigator';
+import { navigationRef } from '@/navigation/navigationRef';
 import { colors } from '@/theme';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -31,7 +32,7 @@ export default function App() {
     <SafeAreaProvider>
       <AuthProvider>
         <ToastProvider>
-          <NavigationContainer>
+          <NavigationContainer ref={navigationRef}>
             <RootNavigator />
             <StatusBar style="dark" />
           </NavigationContainer>

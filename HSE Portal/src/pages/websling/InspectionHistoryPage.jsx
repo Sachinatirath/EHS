@@ -21,15 +21,15 @@ export default function InspectionHistoryPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Date</th><th>Sling</th><th>Type</th><th>Inspector</th>
+                <th>Sling</th><th>Date</th><th>Type</th><th>Inspector</th>
                 <th>Score</th><th>Status</th><th>HOD</th><th>Safety HOD</th>
               </tr>
             </thead>
             <tbody>
               {INSPECTION_HISTORY.map((r, i) => (
                 <tr key={`${r.sling}-${i}`}>
-                  <td>{r.date}</td>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.sling}</td>
+                  <td>{r.date}</td>
                   <td>{r.type}</td>
                   <td>{r.inspector}</td>
                   <td style={{ fontWeight: 700 }}>{r.score}</td>

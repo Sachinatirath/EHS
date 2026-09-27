@@ -1,41 +1,52 @@
 import { useMemo, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
-import Panel from '../../components/Panel';
 import Modal from '../../components/Modal';
+import EmployeeProfileModal from './EmployeeProfileModal';
+import { exportEmployeeTrackerExcel } from '../../utils/trainingExcel';
 import { IconPlus, IconSearch, IconDownload } from '../../components/icons';
-import { EMPLOYEES, STATUS_PILL, DEPARTMENTS, EMPLOYEE_TYPES } from '../../data/trainingData';
+import { EMPLOYEES, STATUS_PILL, DEPARTMENTS, EMPLOYEE_TYPES, EMPLOYEE_TRAINING_RECORDS } from '../../data/trainingData';
 
-const EMPTY = { id: '', name: '', department: DEPARTMENTS[0], role: '', type: EMPLOYEE_TYPES[0], joined: '', hod: '', matrix: 'Auto Assign by Role' };
+const recordCount = (empId) => EMPLOYEE_TRAINING_RECORDS.filter((r) => r.empId === empId).length;
+
+const EMPTY = { id: '', name: '', department: DEPARTMENTS[0], role: '', type: EMPLOYEE_TYPES[0], joined: '', hod: '' };
 
 export default function EmployeeMasterPage({ pushToast }) {
   const [rows, setRows] = useState(EMPLOYEES);
-  const [lookupId, setLookupId] = useState('');
-  const [appliedLookup, setAppliedLookup] = useState('');
   const [search, setSearch] = useState('');
   const [department, setDepartment] = useState('All');
   const [status, setStatus] = useState('All');
   const [modalOpen, setModalOpen] = useState(false);
   const [form, setForm] = useState(EMPTY);
+  const [profile, setProfile] = useState(null);
+  const [exporting, setExporting] = useState(false);
+
+  const handleExport = async () => {
+    if (!filtered.length) {
+      pushToast('No employees to export for the current filters.', 'error');
+      return;
+    }
+    setExporting(true);
+    try {
+      const stamp = new Date().toISOString().slice(0, 10);
+      await exportEmployeeTrackerExcel(filtered, `employee-training-tracker-${stamp}.xlsx`);
+      pushToast(`Exported ${filtered.length} employee(s) to Excel.`, 'success');
+    } catch (err) {
+      pushToast(`Export failed: ${err.message}`, 'error');
+    } finally {
+      setExporting(false);
+    }
+  };
 
   const filtered = useMemo(() => rows.filter((r) => {
     const q = search.trim().toLowerCase();
     const matchesSearch = !q || r.id.toLowerCase().includes(q) || r.name.toLowerCase().includes(q) || r.department.toLowerCase().includes(q);
     const matchesDept = department === 'All' || r.department === department;
     const matchesStatus = status === 'All' || r.status === status;
-    const matchesLookup = !appliedLookup || r.id.toLowerCase() === appliedLookup.toLowerCase();
-    return matchesSearch && matchesDept && matchesStatus && matchesLookup;
-  }), [rows, search, department, status, appliedLookup]);
+    return matchesSearch && matchesDept && matchesStatus;
+  }), [rows, search, department, status]);
 
   const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  const handleSearchLookup = (e) => {
-    e.preventDefault();
-    setAppliedLookup(lookupId.trim());
-    if (lookupId.trim() && !rows.some((r) => r.id.toLowerCase() === lookupId.trim().toLowerCase())) {
-      pushToast(`No employee found for ${lookupId.trim()}.`, 'error');
-    }
-  };
-  const handleClearLookup = () => { setLookupId(''); setAppliedLookup(''); };
 
   const openModal = () => { setForm({ ...EMPTY, id: `EMP-${1000 + rows.length + 1}` }); setModalOpen(true); };
 
@@ -47,7 +58,7 @@ export default function EmployeeMasterPage({ pushToast }) {
     }
     setRows((r) => [{ ...form, status: 'Training Due', compliance: 0, history: 0 }, ...r]);
     setModalOpen(false);
-    pushToast(`${form.id} (${form.name}) added and training matrix assigned.`, 'success');
+    pushToast(`${form.id} (${form.name}) added to Employee Master.`, 'success');
   };
 
   return (
@@ -62,22 +73,6 @@ export default function EmployeeMasterPage({ pushToast }) {
         )}
       />
 
-      <Panel plain title="Employee ID Lookup" icon={<IconSearch size={16} />} style={{ margin: '0 0 18px', borderLeft: '3px solid var(--amber-500)' }}>
-        <p style={{ fontSize: 12.5, color: 'var(--slate-500)', margin: '0 0 14px' }}>
-          Enter Employee ID to see complete training history, pending items, certificates, expiry and compliance.
-        </p>
-        <form onSubmit={handleSearchLookup}>
-          <div className="field" style={{ maxWidth: 320, marginBottom: 12 }}>
-            <label>Employee ID</label>
-            <input value={lookupId} onChange={(e) => setLookupId(e.target.value)} placeholder="EMP-1001" />
-          </div>
-          <div className="btn-row" style={{ marginTop: 0 }}>
-            <button type="submit" className="btn btn-primary">Search</button>
-            <button type="button" className="btn btn-outline" onClick={handleClearLookup}>Clear</button>
-          </div>
-        </form>
-      </Panel>
-
       <div className="filter-bar">
         <div className="search-field">
           <IconSearch size={16} />
@@ -91,8 +86,8 @@ export default function EmployeeMasterPage({ pushToast }) {
           <option value="All">All Status</option>
           {Object.keys(STATUS_PILL).map((s) => <option key={s}>{s}</option>)}
         </select>
-        <button type="button" className="btn btn-outline" onClick={() => pushToast('Employee tracker exported to CSV.', 'info')}>
-          <IconDownload size={15} /> Export Employee Tracker
+        <button type="button" className="btn btn-outline" onClick={handleExport} disabled={exporting}>
+          <IconDownload size={15} /> {exporting ? 'Exporting…' : 'Export Employee Tracker'}
         </button>
       </div>
 
@@ -107,16 +102,16 @@ export default function EmployeeMasterPage({ pushToast }) {
             </thead>
             <tbody>
               {filtered.map((r) => (
-                <tr key={r.id}>
+                <tr key={r.id} className="ep-row-clickable" onClick={() => setProfile(r)} title="Click to view training profile">
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.id}</td>
                   <td style={{ fontWeight: 600 }}>{r.name}</td>
                   <td>{r.department}</td>
                   <td>{r.role}</td>
                   <td><span className={`pill ${STATUS_PILL[r.status] || 'pill-slate'}`}>{r.status}</span></td>
                   <td>{r.compliance}%</td>
-                  <td>{r.history} records</td>
+                  <td>{recordCount(r.id)} records</td>
                   <td>
-                    <button type="button" className="btn btn-outline" style={{ padding: '6px 12px' }} onClick={() => pushToast(`Viewing training profile for ${r.id}.`, 'info')}>
+                    <button type="button" className="btn btn-outline" style={{ padding: '6px 12px' }} onClick={(e) => { e.stopPropagation(); setProfile(r); }}>
                       View Profile
                     </button>
                   </td>
@@ -129,6 +124,8 @@ export default function EmployeeMasterPage({ pushToast }) {
           </table>
         </div>
       </div>
+
+      <EmployeeProfileModal employee={profile} onClose={() => setProfile(null)} pushToast={pushToast} />
 
       <Modal open={modalOpen} title="Add Employee / Contractor" onClose={() => setModalOpen(false)} width={640}>
         <form onSubmit={handleSave}>
@@ -168,16 +165,9 @@ export default function EmployeeMasterPage({ pushToast }) {
               <label>HOD / Manager</label>
               <input value={form.hod} onChange={set('hod')} placeholder="HOD name" />
             </div>
-            <div className="field">
-              <label>Training Matrix</label>
-              <select value={form.matrix} onChange={set('matrix')}>
-                <option>Auto Assign by Role</option>
-                <option>Manual Assignment</option>
-              </select>
-            </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 18 }}>
-            <button type="submit" className="btn btn-primary">Save Employee &amp; Assign Training Matrix</button>
+            <button type="submit" className="btn btn-primary">Save Employee</button>
           </div>
         </form>
       </Modal>

@@ -75,18 +75,18 @@ export default function CorrectiveActionsPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Action ID</th><th>Sling</th><th>Finding</th><th>Responsible</th>
-                <th>Due Date</th><th>Status</th><th>Action</th>
+                <th>Action ID</th><th>Due Date</th><th>Sling</th><th>Finding</th>
+                <th>Responsible</th><th>Status</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((r) => (
                 <tr key={r.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.id}</td>
+                  <td>{r.due}</td>
                   <td style={{ fontWeight: 700 }}>{r.sling}</td>
                   <td>{r.finding}</td>
                   <td>{r.responsible}</td>
-                  <td>{r.due}</td>
                   <td><span className={`pill ${CA_STATUS_PILL[r.status]}`}>{r.status}</span></td>
                   <td>
                     <button type="button" className="btn btn-outline" style={{ padding: '6px 12px' }} onClick={() => handleRowAction(r)}>

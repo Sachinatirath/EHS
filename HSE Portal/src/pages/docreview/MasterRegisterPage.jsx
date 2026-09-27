@@ -19,18 +19,18 @@ export default function MasterRegisterPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Doc. No.</th><th>Title</th><th>Type</th><th>Version</th>
-                <th>Issue Date</th><th>Review Due</th><th>Department</th><th>Status</th><th>Action</th>
+                <th>Doc. No.</th><th>Issue Date</th><th>Title</th><th>Type</th>
+                <th>Version</th><th>Review Due</th><th>Department</th><th>Status</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {MASTER_REGISTER.map((d) => (
                 <tr key={d.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{d.id}</td>
+                  <td>{d.issueDate}</td>
                   <td style={{ fontWeight: 600 }}>{d.title}</td>
                   <td><span className={`pill ${TYPE_PILL[d.type]}`}>{d.type}</span></td>
                   <td>{d.version}</td>
-                  <td>{d.issueDate}</td>
                   <td>{d.reviewDue}</td>
                   <td>{d.department}</td>
                   <td><span className={`pill ${STATUS_PILL[d.status]}`}>{d.status}</span></td>

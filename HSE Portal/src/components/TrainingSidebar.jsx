@@ -8,7 +8,6 @@ const ICONS = {
   'tr-dashboard': IconGauge,
   'tr-employees': IconUsers,
   'tr-sessions': IconBookOpen,
-  'tr-matrix': IconGrid,
   'tr-certificates': IconAward,
   'tr-induction': IconShieldCheck,
   'tr-special': IconCap,

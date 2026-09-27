@@ -3,9 +3,12 @@ import {
   IconUser, IconGrid, IconClipboard, IconChevronDown, IconCap, IconCalendarCheck,
   IconAlertTriangle, IconEye, IconFlag, IconFileText, IconRepeat, IconCheckSquare,
   IconShieldCheck, IconLayers, IconUsers, IconMail, IconFlame, IconHardHat, IconSettings,
+  IconFirstAid, IconHome, IconClock,
 } from './icons';
 
 const ICONS = {
+  home: IconHome,
+  clock: IconClock,
   user: IconUser,
   grid: IconGrid,
   clipboard: IconClipboard,
@@ -23,6 +26,7 @@ const ICONS = {
   mail: IconMail,
   flame: IconFlame,
   hardHat: IconHardHat,
+  firstAid: IconFirstAid,
   settings: IconSettings,
 };
 
@@ -31,7 +35,7 @@ export default function Sidebar({ activeId, expanded, onToggle, onNavigate }) {
     <aside className="sidebar">
       <div className="sidebar-brand">
         <IconShieldCheck size={22} />
-        EHS PORTAL
+        SafeNextG
       </div>
       <nav className="sidebar-scroll">
         {PORTAL_NAV.map((group, groupIdx) => (
@@ -42,7 +46,6 @@ export default function Sidebar({ activeId, expanded, onToggle, onNavigate }) {
               const hasChildren = !!item.children;
               const isOpen = expanded.has(item.id);
               const isActive = !hasChildren && activeId === item.id;
-              const childActive = hasChildren && item.children.some((c) => c.id === activeId);
 
               return (
                 <div key={item.id}>
@@ -57,7 +60,7 @@ export default function Sidebar({ activeId, expanded, onToggle, onNavigate }) {
                     {hasChildren ? <span className="chevron"><IconChevronDown /></span> : null}
                   </button>
                   {hasChildren && (
-                    <div className={`nav-submenu${isOpen || childActive ? ' open' : ''}`}>
+                    <div className={`nav-submenu${isOpen ? ' open' : ''}`}>
                       {item.children.map((child) => (
                         <button
                           key={child.id}

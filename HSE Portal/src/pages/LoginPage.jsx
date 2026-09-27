@@ -30,7 +30,7 @@ export default function LoginPage({ onLogin }) {
           <IconShieldCheck size={30} />
         </div>
         <h1 className="auth-title">Welcome Back</h1>
-        <p className="auth-subtitle">Sign in to EHS Portal to continue</p>
+        <p className="auth-subtitle">Sign in to SafeNextG to continue</p>
 
         <div className="field auth-field">
           <label><IconMail size={14} /> Email</label>

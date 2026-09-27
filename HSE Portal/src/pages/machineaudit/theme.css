@@ -1,0 +1,65 @@
+/*
+ * Machine Audit module theme — scoped to `.ma-theme` (applied to this
+ * sub-app's sidebar and content root) so the rest of the portal keeps its
+ * default teal branding. All three source colors live in
+ * src/styles/variables.css (--ma-primary / --ma-primary-dark /
+ * --ma-primary-light) — change them there to re-tint the whole module.
+ */
+
+.ma-theme {
+  --shadow-focus: 0 0 0 4px color-mix(in srgb, var(--ma-primary) 14%, transparent);
+}
+
+.ma-theme .page-title {
+  background: linear-gradient(120deg, var(--ma-primary-dark), var(--ma-primary) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ma-theme .btn-primary {
+  background: linear-gradient(155deg, var(--ma-primary), var(--ma-primary-dark) 120%);
+  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+.ma-theme .btn-primary:hover {
+  box-shadow: 0 8px 20px rgba(67, 56, 202, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.ma-theme .btn-outline {
+  color: var(--ma-primary-dark);
+  border-color: var(--ma-primary-light);
+}
+.ma-theme .btn-outline:hover {
+  background: var(--ma-primary-light);
+  border-color: var(--ma-primary);
+}
+
+.ma-theme .field input:focus,
+.ma-theme .field select:focus,
+.ma-theme .field textarea:focus {
+  border-color: var(--ma-primary);
+}
+
+.ma-theme .checkbox-group input[type='checkbox'] {
+  accent-color: var(--ma-primary);
+}
+
+.ma-theme .panel-header svg {
+  background: var(--ma-primary-light);
+  color: var(--ma-primary);
+}
+
+.ma-theme .nav-item.active {
+  background: linear-gradient(120deg, var(--ma-primary-dark), var(--ma-primary));
+  box-shadow: 0 8px 20px rgba(67, 56, 202, 0.35);
+}
+
+.ma-theme .table-link,
+.ma-theme .stage-pill.active {
+  color: var(--ma-primary-dark);
+}
+
+.ma-theme .progress-fill {
+  background: linear-gradient(90deg, var(--ma-primary-dark), var(--ma-primary));
+}
+

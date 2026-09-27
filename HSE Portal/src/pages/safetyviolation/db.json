@@ -1,0 +1,241 @@
+{
+  "agentUser": {
+    "id": 1,
+    "employee_id": "AGT001",
+    "name": "Vikram Singh",
+    "role": "agent",
+    "department": "Manufacturing",
+    "phone": "+91 98765 11111",
+    "email": "vikram.singh@example.com",
+    "address": "Plot 22, Industrial Estate, Pune"
+  },
+  "hodUser": {
+    "id": 3,
+    "employee_id": "HOD001",
+    "name": "Manoj Kulkarni",
+    "role": "hod",
+    "department": "EHS",
+    "phone": "+91 98765 33333",
+    "email": "manoj.kulkarni@example.com",
+    "address": "HOD Office, Plant Campus, Pune"
+  },
+  "otherAgent": {
+    "id": 2,
+    "employee_id": "AGT002",
+    "name": "Sunita Rao",
+    "role": "agent",
+    "department": "Warehouse",
+    "phone": "+91 98765 22222",
+    "email": "sunita.rao@example.com",
+    "address": "Sector 8, Warehouse Complex, Pune"
+  },
+  "violationOptions": {
+    "departments": [
+      "Manufacturing",
+      "Production",
+      "Maintenance",
+      "Warehouse",
+      "Quality",
+      "Logistics",
+      "Utilities",
+      "Administration"
+    ],
+    "violation_types": [
+      "PPE Violation",
+      "Unsafe Act",
+      "Unsafe Condition",
+      "Procedure Violation",
+      "Housekeeping Violation",
+      "Speeding / Traffic Violation"
+    ],
+    "offence_levels": [
+      "1st Offence",
+      "2nd Offence",
+      "3rd Offence",
+      "Final Warning"
+    ],
+    "corrective_actions": [
+      "Counselling",
+      "Written Reprimand",
+      "Suspension",
+      "Termination"
+    ]
+  },
+  "violations": [
+    {
+      "id": 1,
+      "violation_no": "SVN-2026-00001-DEMO",
+      "agentRef": "agent",
+      "violation_date": "2026-09-15",
+      "company": "Acme Manufacturing Pvt Ltd",
+      "department": "Manufacturing",
+      "supervisor": "Shift Supervisor",
+      "employee_name": "Ramesh Yadav",
+      "employee_code": "EMP-2201",
+      "job_title": "Line Operator",
+      "violation_type": "PPE Violation",
+      "offence": "1st Offence",
+      "corrective_actions": [],
+      "description": "Employee found operating lathe without safety goggles.",
+      "explanation": null,
+      "photo_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNjQwIDQyMCI+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI0MjAiIGZpbGw9IiNiOTFjMWMiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIxNzAiIHI9IjcwIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuOTIiLz48cGF0aCBkPSJNMzIwIDEzMHY1Mk0zMjAgMjAwdjIiIHN0cm9rZT0iI2I5MWMxYyIgc3Ryb2tlLXdpZHRoPSIxOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHRleHQgeD0iMzIwIiB5PSIzMTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UFBFIFZpb2xhdGlvbjwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjM1MiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkV2aWRlbmNlIHBob3RvIMK3IE1hbnVmYWN0dXJpbmc8L3RleHQ+PC9zdmc+",
+      "signature_data": null,
+      "status": "open",
+      "resolution_note": null,
+      "created_at": "2026-09-15T09:20:00.000Z",
+      "updated_at": "2026-09-15T09:20:00.000Z"
+    },
+    {
+      "id": 2,
+      "violation_no": "SVN-2026-00002-DEMO",
+      "agentRef": "agent",
+      "violation_date": "2026-09-16",
+      "company": "Acme Manufacturing Pvt Ltd",
+      "department": "Manufacturing",
+      "supervisor": "Shift Supervisor",
+      "employee_name": "Ajay Patil",
+      "employee_code": "EMP-2214",
+      "job_title": "Line Operator",
+      "violation_type": "Unsafe Act",
+      "offence": "2nd Offence",
+      "corrective_actions": [
+        "Counselling"
+      ],
+      "description": "Bypassed machine guard interlock to clear a jam.",
+      "explanation": null,
+      "photo_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNjQwIDQyMCI+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI0MjAiIGZpbGw9IiNiOTFjMWMiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIxNzAiIHI9IjcwIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuOTIiLz48cGF0aCBkPSJNMzIwIDEzMHY1Mk0zMjAgMjAwdjIiIHN0cm9rZT0iI2I5MWMxYyIgc3Ryb2tlLXdpZHRoPSIxOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHRleHQgeD0iMzIwIiB5PSIzMTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VW5zYWZlIEFjdDwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjM1MiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkV2aWRlbmNlIHBob3RvIMK3IE1hbnVmYWN0dXJpbmc8L3RleHQ+PC9zdmc+",
+      "signature_data": null,
+      "status": "under_review",
+      "resolution_note": null,
+      "created_at": "2026-09-16T11:05:00.000Z",
+      "updated_at": "2026-09-17T08:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "violation_no": "SVN-2026-00003-DEMO",
+      "agentRef": "other",
+      "violation_date": "2026-09-13",
+      "company": "Acme Manufacturing Pvt Ltd",
+      "department": "Warehouse",
+      "supervisor": "Shift Supervisor",
+      "employee_name": "Deepak More",
+      "employee_code": "EMP-3105",
+      "job_title": "Line Operator",
+      "violation_type": "Housekeeping Violation",
+      "offence": "1st Offence",
+      "corrective_actions": [
+        "Written Reprimand"
+      ],
+      "description": "Aisle blocked with pallets, obstructing fire exit route.",
+      "explanation": null,
+      "photo_url": null,
+      "signature_data": null,
+      "status": "closed",
+      "resolution_note": "Aisle cleared same day; reprimand issued.",
+      "created_at": "2026-09-13T14:40:00.000Z",
+      "updated_at": "2026-09-14T09:10:00.000Z"
+    },
+    {
+      "id": 4,
+      "violation_no": "SVN-2026-00004-DEMO",
+      "agentRef": "other",
+      "violation_date": "2026-09-14",
+      "company": "Acme Manufacturing Pvt Ltd",
+      "department": "Warehouse",
+      "supervisor": "Shift Supervisor",
+      "employee_name": "Suresh Naik",
+      "employee_code": "EMP-3120",
+      "job_title": "Line Operator",
+      "violation_type": "Speeding / Traffic Violation",
+      "offence": "3rd Offence",
+      "corrective_actions": [],
+      "description": "Forklift operated above yard speed limit near pedestrian crossing.",
+      "explanation": null,
+      "photo_url": null,
+      "signature_data": null,
+      "status": "rejected",
+      "resolution_note": "Insufficient evidence to substantiate speed claim.",
+      "created_at": "2026-09-14T16:25:00.000Z",
+      "updated_at": "2026-09-15T10:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "violation_no": "SVN-2026-00005-DEMO",
+      "agentRef": "agent",
+      "violation_date": "2026-09-18",
+      "company": "Acme Manufacturing Pvt Ltd",
+      "department": "Quality",
+      "supervisor": "Shift Supervisor",
+      "employee_name": "Meena Joshi",
+      "employee_code": "EMP-2250",
+      "job_title": "Line Operator",
+      "violation_type": "Unsafe Condition",
+      "offence": "1st Offence",
+      "corrective_actions": [],
+      "description": "Loose flooring tile near QC lab entrance identified as trip hazard.",
+      "explanation": null,
+      "photo_url": null,
+      "signature_data": null,
+      "status": "open",
+      "resolution_note": null,
+      "created_at": "2026-09-18T08:50:00.000Z",
+      "updated_at": "2026-09-18T08:50:00.000Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "message": "New safety violation SVN-2026-00001-DEMO filed by Vikram Singh",
+      "violation_id": 1,
+      "is_read": false,
+      "created_at": "2026-09-15T09:20:00.000Z",
+      "target_role": "hod",
+      "target_user_id": null
+    },
+    {
+      "id": 2,
+      "message": "New safety violation SVN-2026-00002-DEMO filed by Vikram Singh",
+      "violation_id": 2,
+      "is_read": false,
+      "created_at": "2026-09-16T11:05:00.000Z",
+      "target_role": "hod",
+      "target_user_id": null
+    },
+    {
+      "id": 3,
+      "message": "SVN-2026-00002-DEMO was marked under review by HOD",
+      "violation_id": 2,
+      "is_read": false,
+      "created_at": "2026-09-17T08:00:00.000Z",
+      "target_role": null,
+      "target_user_id": 1
+    },
+    {
+      "id": 4,
+      "message": "New safety violation SVN-2026-00003-DEMO filed by Sunita Rao",
+      "violation_id": 3,
+      "is_read": true,
+      "created_at": "2026-09-13T14:40:00.000Z",
+      "target_role": "hod",
+      "target_user_id": null
+    },
+    {
+      "id": 5,
+      "message": "New safety violation SVN-2026-00004-DEMO filed by Sunita Rao",
+      "violation_id": 4,
+      "is_read": true,
+      "created_at": "2026-09-14T16:25:00.000Z",
+      "target_role": "hod",
+      "target_user_id": null
+    },
+    {
+      "id": 6,
+      "message": "New safety violation SVN-2026-00005-DEMO filed by Vikram Singh",
+      "violation_id": 5,
+      "is_read": false,
+      "created_at": "2026-09-18T08:50:00.000Z",
+      "target_role": "hod",
+      "target_user_id": null
+    }
+  ]
+}

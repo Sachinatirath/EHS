@@ -5,7 +5,7 @@ import { IconPlus, IconSearch, IconDownload } from '../../components/icons';
 import { SAFETY_INDUCTIONS, EMPLOYEE_TYPES } from '../../data/trainingData';
 
 const STATUS_PILL = { Valid: 'pill-green', Expired: 'pill-red' };
-const EMPTY = { empId: '', date: '', type: EMPLOYEE_TYPES[0], score: '', topics: '' };
+const EMPTY = { empId: '', date: '', type: EMPLOYEE_TYPES[0], topics: '' };
 
 export default function SafetyInductionPage({ pushToast }) {
   const [rows, setRows] = useState(SAFETY_INDUCTIONS);
@@ -27,15 +27,13 @@ export default function SafetyInductionPage({ pushToast }) {
       pushToast('Employee ID is required.', 'error');
       return;
     }
-    const score = Number(form.score) || 0;
     setRows((r) => [{
       id: `IND-${String(r.length + 1).padStart(3, '0')}`,
       empId: form.empId,
       name: '—',
       department: '—',
       date: form.date || 'Not set',
-      score,
-      status: score >= 80 ? 'Valid' : 'Expired',
+      status: 'Valid',
     }, ...r]);
     setModalOpen(false);
     setForm(EMPTY);
@@ -68,22 +66,21 @@ export default function SafetyInductionPage({ pushToast }) {
         <div className="table-wrap">
           <table className="data-table">
             <thead>
-              <tr><th>ID</th><th>Employee ID</th><th>Name</th><th>Department</th><th>Date</th><th>Score</th><th>Status</th></tr>
+              <tr><th>ID</th><th>Date</th><th>Employee ID</th><th>Name</th><th>Department</th><th>Status</th></tr>
             </thead>
             <tbody>
               {filtered.map((r) => (
                 <tr key={r.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.id}</td>
+                  <td>{r.date}</td>
                   <td>{r.empId}</td>
                   <td style={{ fontWeight: 600 }}>{r.name}</td>
                   <td>{r.department}</td>
-                  <td>{r.date}</td>
-                  <td>{r.score}%</td>
                   <td><span className={`pill ${STATUS_PILL[r.status] || 'pill-slate'}`}>{r.status}</span></td>
                 </tr>
               ))}
               {!filtered.length && (
-                <tr><td colSpan={7} style={{ textAlign: 'center', padding: 30, color: 'var(--slate-500)' }}>No induction records match your search.</td></tr>
+                <tr><td colSpan={6} style={{ textAlign: 'center', padding: 30, color: 'var(--slate-500)' }}>No induction records match your search.</td></tr>
               )}
             </tbody>
           </table>
@@ -106,10 +103,6 @@ export default function SafetyInductionPage({ pushToast }) {
               <select value={form.type} onChange={set('type')}>
                 {EMPLOYEE_TYPES.map((t) => <option key={t}>{t}</option>)}
               </select>
-            </div>
-            <div className="field">
-              <label>Assessment Score</label>
-              <input value={form.score} onChange={set('score')} placeholder="92%" />
             </div>
           </div>
           <div className="field" style={{ marginTop: 4 }}>

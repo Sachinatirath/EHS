@@ -55,21 +55,21 @@ export default function DepartmentAssignmentPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Observation</th><th>Forklift</th><th>Finding</th><th>Concern Department</th>
-                <th>HOD / Owner</th><th>Due Date</th><th>Status</th><th>Action</th>
+                <th>Observation</th><th>Due Date</th><th>Forklift</th><th>Finding</th>
+                <th>Concern Department</th><th>HOD / Owner</th><th>Status</th><th>Action</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((r) => (
                 <tr key={r.id}>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.id}</td>
+                  <td>{r.due}</td>
                   <td>{r.forklift}</td>
                   <td>{r.finding}</td>
                   <td>
                     {r.dept} <span className={`pill ${PRIORITY_PILL[r.priority]}`} style={{ marginLeft: 6 }}>{r.priority}</span>
                   </td>
                   <td>{r.hod}</td>
-                  <td>{r.due}</td>
                   <td><span className={`pill ${OBS_STATUS_PILL[r.status]}`}>{r.status}</span></td>
                   <td>
                     <div style={{ display: 'flex', gap: 8 }}>

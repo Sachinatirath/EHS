@@ -20,15 +20,15 @@ export default function AuditHistoryPage({ pushToast }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th>Date</th><th>Equipment</th><th>Audit Type</th><th>Inspector</th>
+                <th>Equipment</th><th>Date</th><th>Audit Type</th><th>Inspector</th>
                 <th>Score</th><th>Status</th><th>Area HOD</th><th>Safety HOD</th>
               </tr>
             </thead>
             <tbody>
               {AUDIT_HISTORY.map((r, i) => (
                 <tr key={`${r.equipment}-${i}`}>
-                  <td>{r.date}</td>
                   <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{r.equipment}</td>
+                  <td>{r.date}</td>
                   <td>{r.type}</td>
                   <td>{r.inspector}</td>
                   <td style={{ fontWeight: 700 }}>{r.score}</td>

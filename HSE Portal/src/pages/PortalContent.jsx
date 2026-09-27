@@ -1,13 +1,12 @@
 import MyProfile from './MyProfile';
 import Dashboard from './Dashboard';
-import MachineAudit from './ehsAudit/MachineAudit';
+import HomePage from './HomePage';
+import MyTasksPage from './MyTasksPage';
 import PowerToolsAudit from './ehsAudit/PowerToolsAudit';
 import GenericAuditForm from './ehsAudit/GenericAuditForm';
 import PermitForm from './forms/PermitForm';
 import AuditTrainingPlanPage from './forms/AuditTrainingPlanPage';
-import SafetyViolationPage from './forms/SafetyViolationPage';
-import SafetyObservationPage from './forms/SafetyObservationPage';
-import IncidentReportPage from './forms/IncidentReportPage';
+import TodayPlanPage from './forms/TodayPlanPage';
 import Placeholder from '../components/Placeholder';
 import { PAGE_TITLES } from '../data/navConfig';
 import { PERMIT_TYPES } from '../data/formOptions';
@@ -21,7 +20,7 @@ const SIMPLE_AUDITS = {
   'ehs-canteen': { title: 'Canteen Safety Audit', icon: <IconCanteen size={17} /> },
 };
 
-export default function PortalContent({ view, pushToast }) {
+export default function PortalContent({ view, pushToast, onNavigate, onOpenTask }) {
   if (SIMPLE_AUDITS[view]) {
     const { title, icon } = SIMPLE_AUDITS[view];
     return <GenericAuditForm title={title} icon={icon} pushToast={pushToast} />;
@@ -34,20 +33,18 @@ export default function PortalContent({ view, pushToast }) {
   switch (view) {
     case 'profile':
       return <MyProfile pushToast={pushToast} />;
-    case 'dashboard':
+    case 'my-tasks':
+      return <MyTasksPage onOpenTask={onOpenTask} />;
+    case 'home':
+      return <HomePage onNavigate={onNavigate} />;
+    case 'permits-dashboard':
       return <Dashboard />;
-    case 'ehs-machine':
-      return <MachineAudit pushToast={pushToast} />;
     case 'ehs-powertools':
       return <PowerToolsAudit pushToast={pushToast} />;
-    case 'audit-training-plan':
+    case 'atp-today':
+      return <TodayPlanPage pushToast={pushToast} />;
+    case 'atp-plan':
       return <AuditTrainingPlanPage pushToast={pushToast} />;
-    case 'safety-violation':
-      return <SafetyViolationPage pushToast={pushToast} />;
-    case 'safety-observation':
-      return <SafetyObservationPage pushToast={pushToast} />;
-    case 'incident-report':
-      return <IncidentReportPage pushToast={pushToast} />;
     default:
       return (
         <div className="page-enter">

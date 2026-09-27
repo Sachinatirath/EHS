@@ -19,7 +19,7 @@ const STATUS_PILL = {
 export default function Dashboard() {
   return (
     <div className="page-enter">
-      <h1 className="page-title">Dashboard</h1>
+      <h1 className="page-title">Permits Dashboard</h1>
 
       <div className="stat-grid">
         <StatCard value={245} label="Total Permits" variant="blue" icon={<IconFileText size={19} />} delay={0} />
