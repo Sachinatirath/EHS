@@ -67,6 +67,17 @@ const PARENT_OF = Object.fromEntries(
     .flatMap((item) => (item.children || []).map((child) => [child.id, item.id])),
 );
 
+// Labels for the header's context line: group of a portal page, or the sub-app's own name.
+const ITEM_LABEL = Object.fromEntries(
+  PORTAL_NAV.flatMap((g) => g.items).map((item) => [item.id, item.label]),
+);
+const APP_LABEL = Object.fromEntries(
+  PORTAL_NAV.flatMap((g) => g.items)
+    .flatMap((item) => [item, ...(item.children || [])])
+    .filter((item) => item.isApp)
+    .map((item) => [item.appTarget, item.label]),
+);
+
 export default function App() {
   const [authed, setAuthed] = useState(() => localStorage.getItem('ehs-portal-authed') === '1');
   const [appMode, setAppMode] = useState('portal'); // 'portal' | one of the SUB_APPS keys
@@ -138,6 +149,13 @@ export default function App() {
   const title = activeSubApp ? activeSubApp.titles[subViews[appMode]] : (PAGE_TITLES[portalView] || 'SafeNexG');
   const viewId = activeSubApp ? subViews[appMode] : portalView;
   const viewKey = `${appMode}:${viewId}`;
+  const section = activeSubApp ? APP_LABEL[appMode] : (ITEM_LABEL[PARENT_OF[portalView]] || 'SafeNexG Portal');
+
+  // Header search / user menu navigate like the portal sidebar, from any sub-app.
+  const handleHeaderNavigate = (id, item) => {
+    setAppMode('portal');
+    handlePortalNavigate(id, item);
+  };
 
   // Small screens: the sidebar is a slide-out drawer, closed after every navigation.
   const [navOpen, setNavOpen] = useState(false);
@@ -162,7 +180,14 @@ export default function App() {
       <button type="button" className="nav-backdrop" aria-label="Close menu" onClick={() => setNavOpen(false)} />
 
       <div className="main-col">
-        <Header title={title} onLogout={handleLogout} onMenu={() => setNavOpen((o) => !o)} />
+        <Header
+          title={title}
+          section={section}
+          onLogout={handleLogout}
+          onMenu={() => setNavOpen((o) => !o)}
+          onNavigate={handleHeaderNavigate}
+          onTodayPlan={openTodayPlan}
+        />
         <div className="content-scroll">
           <PageLoader viewKey={viewKey} variant={skeletonVariant(viewId)}>
           {appMode === 'portal' ? (

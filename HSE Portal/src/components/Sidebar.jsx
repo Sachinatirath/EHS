@@ -31,9 +31,12 @@ const ICONS = {
   settings: IconSettings,
 };
 
+// Running index across all groups so the entrance animation staggers top to bottom.
+const ANIM_INDEX = Object.fromEntries(PORTAL_NAV.flatMap((g) => g.items).map((item, i) => [item.id, i]));
+
 export default function Sidebar({ activeId, expanded, onToggle, onNavigate }) {
   return (
-    <aside className="sidebar">
+    <aside className="sidebar sidebar-portal">
       <div className="sidebar-brand">
         <BrandMark tone="dark" />
       </div>
@@ -48,7 +51,7 @@ export default function Sidebar({ activeId, expanded, onToggle, onNavigate }) {
               const isActive = !hasChildren && activeId === item.id;
 
               return (
-                <div key={item.id}>
+                <div key={item.id} className="nav-anim" style={{ '--i': ANIM_INDEX[item.id] }}>
                   <button
                     type="button"
                     className={`nav-item${isActive ? ' active' : ''}${isOpen ? ' expanded' : ''}`}
@@ -79,6 +82,20 @@ export default function Sidebar({ activeId, expanded, onToggle, onNavigate }) {
           </div>
         ))}
       </nav>
+      <div className="sidebar-footer">
+        <button
+          type="button"
+          className={`sidebar-user${activeId === 'profile' ? ' active' : ''}`}
+          onClick={() => onNavigate('profile')}
+        >
+          <span className="sidebar-avatar">AD</span>
+          <span className="sidebar-user-text">
+            <strong>Admin</strong>
+            <span>EHS Administrator · View profile</span>
+          </span>
+          <IconChevronDown size={16} />
+        </button>
+      </div>
     </aside>
   );
 }

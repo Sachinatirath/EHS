@@ -26,6 +26,8 @@ function dueInfo(task, now) {
 
 const isToday = (iso) => new Date(iso).toDateString() === new Date().toDateString();
 
+const initials = (name) => name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join('');
+
 /**
  * Every pending task in the portal, per person — reassigned observations and
  * violations, HOD reviews, machine-audit sign-offs, refills, shift approvals
@@ -81,20 +83,29 @@ export default function MyTasksPage({ onOpenTask }) {
       </div>
 
       <Panel title="Pending by Person" icon={<IconUser size={17} />}>
-        <div className="home-card-actions">
-          <button type="button" className="home-chip" style={person === 'all' ? { background: 'var(--blue-50)' } : undefined} onClick={() => setPerson('all')}>
-            Everyone · {tasks.length}
+        <div className="person-chips">
+          <button
+            type="button"
+            className={`person-chip${person === 'all' ? ' active' : ''}`}
+            style={{ '--i': 0 }}
+            onClick={() => setPerson('all')}
+          >
+            <span className="person-chip-avatar"><IconUsers size={16} /></span>
+            <span className="person-chip-text"><strong>Everyone</strong><span>All people</span></span>
+            <span className="person-chip-count">{tasks.length}</span>
           </button>
-          {people.map((p) => (
+          {people.map((p, idx) => (
             <button
               key={p.name}
               type="button"
-              className="home-chip"
+              className={`person-chip${person === p.name ? ' active' : ''}`}
               title={p.role}
-              style={person === p.name ? { background: 'var(--blue-50)' } : undefined}
+              style={{ '--i': idx + 1 }}
               onClick={() => setPerson(p.name)}
             >
-              {p.name} · {p.count}
+              <span className="person-chip-avatar">{initials(p.name)}</span>
+              <span className="person-chip-text"><strong>{p.name}</strong><span>{p.role}</span></span>
+              <span className="person-chip-count">{p.count}</span>
             </button>
           ))}
         </div>
