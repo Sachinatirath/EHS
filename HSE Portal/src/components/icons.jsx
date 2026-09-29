@@ -416,3 +416,35 @@ export const IconArrowRight = (p) => (
     <path d="M13 5l7 7-7 7" />
   </svg>
 );
+
+export const IconCloud = (p) => (
+  <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
+    <path d="M7 18.5h10.5a4 4 0 0 0 .6-7.96A6 6 0 0 0 6.6 9.1 4.7 4.7 0 0 0 7 18.5z" />
+    <path d="M9.5 13.8l1.8 1.8 3.4-3.4" />
+  </svg>
+);
+
+export const IconLeaf = (p) => (
+  <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
+    <path d="M5 19c0-8 5-13.5 15-14-.4 9.5-6 14.5-13.5 14" />
+    <path d="M5 19c2.5-4 5.5-6.8 9-8.5" />
+  </svg>
+);
+
+export const IconBarChart = (p) => (
+  <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
+    <path d="M4 20h16" />
+    <rect x="5.5" y="12" width="3" height="5.5" rx="0.8" />
+    <rect x="10.5" y="8" width="3" height="9.5" rx="0.8" />
+    <rect x="15.5" y="4" width="3" height="13.5" rx="0.8" />
+  </svg>
+);
+
+export const IconHeadset = (p) => (
+  <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
+    <path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2" />
+    <rect x="3.5" y="13" width="4" height="6" rx="1.6" />
+    <rect x="16.5" y="13" width="4" height="6" rx="1.6" />
+    <path d="M18.5 19c0 1.4-1.6 2.2-4.5 2.2" />
+  </svg>
+);
