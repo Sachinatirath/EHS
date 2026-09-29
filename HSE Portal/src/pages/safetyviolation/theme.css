@@ -19,10 +19,10 @@
 
 .sv-theme .btn-primary {
   background: linear-gradient(155deg, var(--sv-primary), var(--sv-primary-dark) 120%);
-  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 12px rgba(31, 78, 158, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 .sv-theme .btn-primary:hover {
-  box-shadow: 0 8px 20px rgba(185, 28, 28, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(31, 78, 158, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .sv-theme .btn-outline {
@@ -51,7 +51,7 @@
 
 .sv-theme .nav-item.active {
   background: linear-gradient(120deg, var(--sv-primary-dark), var(--sv-primary));
-  box-shadow: 0 8px 20px rgba(185, 28, 28, 0.35);
+  box-shadow: 0 8px 20px rgba(31, 78, 158, 0.35);
 }
 
 .sv-theme .table-link,

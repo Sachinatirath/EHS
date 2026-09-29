@@ -184,9 +184,9 @@ export default function HomePage({ onNavigate }) {
       <section className="home-hero">
         <div className="home-hero-icon"><IconShieldCheck size={30} /></div>
         <div>
-          <h1 className="page-title" style={{ marginBottom: 6 }}>Welcome to SafeNextG</h1>
+          <h1 className="page-title" style={{ marginBottom: 6 }}>Welcome to SafeNexG</h1>
           <p className="home-hero-text">
-            SafeNextG is a single Environment, Health &amp; Safety (EHS) portal for the plant. It brings audits,
+            SafeNexG is a single Environment, Health &amp; Safety (EHS) portal for the plant. It brings audits,
             training, incident and violation reporting, permits, change management, document control and fire
             safety into one place, so safety teams, HODs and management work from the same data.
           </p>

@@ -10,9 +10,9 @@ export default function ListFilters({
   };
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, marginBottom: 16 }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: 12 }}>{children}</div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'flex-end', gap: 12, marginLeft: 'auto' }}>
+    <div className="list-filters">
+      <div className="list-filters-group">{children}</div>
+      <div className="list-filters-group list-filters-end">
         <div className="field" style={{ minWidth: 170 }}>
           <label>{statusLabel}</label>
           <select value={status} onChange={(e) => onStatus(e.target.value)} disabled={disabled}>

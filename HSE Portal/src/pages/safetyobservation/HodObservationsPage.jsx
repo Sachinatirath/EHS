@@ -192,10 +192,10 @@ export default function HodObservationsPage({ pushToast }) {
                       return (
                         <tr key={o.id} {...focus.rowProps(o.id)} style={{ cursor: 'pointer' }} onClick={() => openDetail(o)}>
                           <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{o.observation_no}</td>
-                          <td style={{ whiteSpace: 'nowrap' }}>{formatDateTime(o.created_at)}</td>
+                          <td style={{ minWidth: 92 }}>{formatDateTime(o.created_at)}</td>
                           <td>{o.category}</td>
                           <td>{o.department || '—'}</td>
-                          <td style={{ maxWidth: 260, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={o.description || ''}>{o.description || '—'}</td>
+                          <td style={{ maxWidth: 170, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={o.description || ''}>{o.description || '—'}</td>
                           <td>{o.severity}</td>
                           <td><span className={`pill ${meta.pill}`}>{meta.label}</span></td>
                           <td style={{ fontSize: 12.5, fontWeight: 700, color: sla ? SLA_COLORS[sla.tone] : 'var(--slate-400)', whiteSpace: 'nowrap' }}>{sla ? sla.text : '—'}</td>

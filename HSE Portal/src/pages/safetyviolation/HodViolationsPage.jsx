@@ -114,7 +114,7 @@ export default function HodViolationsPage({ pushToast }) {
                           <td>{v.employee_code || '—'}</td>
                           <td style={{ whiteSpace: 'nowrap' }}>{formatDate(v.created_at)}</td>
                           <td>{v.violation_type}</td>
-                          <td style={{ maxWidth: 260, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={v.description || ''}>{v.description || '—'}</td>
+                          <td style={{ maxWidth: 170, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={v.description || ''}>{v.description || '—'}</td>
                           <td>{v.department}</td>
                           <td><span className={`pill ${meta.pill}`}>{meta.label}</span></td>
                           <td><PhotoButton src={v.photo_url} alt={`${v.violation_no} evidence`} /></td>

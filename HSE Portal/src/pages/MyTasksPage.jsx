@@ -143,7 +143,7 @@ export default function MyTasksPage({ onOpenTask }) {
                     <td style={{ fontWeight: 700, color: 'var(--slate-900)', whiteSpace: 'nowrap' }}>{t.ref}</td>
                     <td style={{ whiteSpace: 'nowrap' }}>{new Date(t.created_at).toLocaleDateString()}</td>
                     <td>{MODULES[t.module]}</td>
-                    <td style={{ maxWidth: 260, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={t.title}>{t.title}</td>
+                    <td style={{ maxWidth: 200, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={t.title}>{t.title}</td>
                     <td>
                       <div style={{ fontWeight: 600 }}>{t.assignee}</div>
                       <div style={{ fontSize: 11.5, color: 'var(--slate-500)' }}>{t.role}</div>

@@ -143,7 +143,7 @@ export default function AgentHomePage({ onNavigate, pushToast }) {
                           <td>{v.employee_code || '—'}</td>
                           <td style={{ whiteSpace: 'nowrap' }}>{formatDate(v.created_at)}</td>
                           <td>{v.violation_type} · {v.offence}</td>
-                          <td style={{ maxWidth: 260, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={v.description || ''}>{v.description || '—'}</td>
+                          <td style={{ maxWidth: 170, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={v.description || ''}>{v.description || '—'}</td>
                           <td>{v.department}</td>
                           <td><span className={`pill ${meta.pill}`}>{meta.label}</span></td>
                           <td><PhotoButton src={v.photo_url} alt={`${v.violation_no} evidence`} /></td>
@@ -155,7 +155,7 @@ export default function AgentHomePage({ onNavigate, pushToast }) {
                               disabled={opening}
                               onClick={(e) => { e.stopPropagation(); openDetail(v.id); }}
                             >
-                              <IconEye size={14} /> {v.status === 'under_review' ? 'View & Close' : 'View'}
+                              <IconEye size={14} /> {v.status === 'under_review' ? 'Close' : 'View'}
                             </button>
                           </td>
                         </tr>

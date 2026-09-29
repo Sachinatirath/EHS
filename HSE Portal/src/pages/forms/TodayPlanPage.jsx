@@ -103,8 +103,10 @@ export default function TodayPlanPage({ pushToast }) {
                       <li key={t.id} className={isDone ? 'done' : ''}>
                         <input type="checkbox" checked={isDone} onChange={() => toggleDone(t)} aria-label={`Mark ${t.name} done`} />
                         <span>{t.name}</span>
-                        {t.kind === 'training' ? <span className="pill pill-violet">Training</span> : null}
-                        <span className={`pill ${isDone ? 'pill-green' : 'pill-amber'}`}>{isDone ? 'Done' : 'Pending'}</span>
+                        <span className="atp-task-tags">
+                          {t.kind === 'training' ? <span className="pill pill-violet">Training</span> : null}
+                          <span className={`pill ${isDone ? 'pill-green' : 'pill-amber'}`}>{isDone ? 'Done' : 'Pending'}</span>
+                        </span>
                       </li>
                     );
                   })}

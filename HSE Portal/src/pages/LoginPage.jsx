@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { IconShieldCheck, IconMail, IconLock, IconArrowRight, IconEye, IconEyeOff } from '../components/icons';
+import BrandMark from '../components/BrandMark';
+import { IconMail, IconLock, IconArrowRight, IconEye, IconEyeOff } from '../components/icons';
 
 const VALID_EMAIL = 'admin';
 const VALID_PASSWORD = 'admin123';
@@ -26,11 +27,10 @@ export default function LoginPage({ onLogin }) {
   return (
     <div className="auth-shell">
       <form className="auth-card" onSubmit={handleSubmit}>
-        <div className="auth-logo">
-          <IconShieldCheck size={30} />
-        </div>
+        <div className="auth-brand"><BrandMark tone="light" /></div>
+        <p className="auth-tagline">One platform for complete workplace safety management</p>
         <h1 className="auth-title">Welcome Back</h1>
-        <p className="auth-subtitle">Sign in to SafeNextG to continue</p>
+        <p className="auth-subtitle">Sign in to SafeNexG to continue</p>
 
         <div className="field auth-field">
           <label><IconMail size={14} /> Email</label>

@@ -10,7 +10,7 @@ import { STATUS_META, SLA_COLORS, formatDateTime, slaInfo } from './statusMeta';
 import useSlaWatcher from './useSlaWatcher';
 import ObservationDetail from './ObservationDetail';
 
-const DESC_CELL = { maxWidth: 260, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' };
+const DESC_CELL = { maxWidth: 170, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' };
 import { buildDepartmentBreakdown, buildCategoryBreakdown, buildMonthlyTrend } from './chartData';
 import GroupedBarChart from './GroupedBarChart';
 import DonutChart from './DonutChart';
@@ -150,7 +150,7 @@ export default function HodDashboardPage({ onNavigate, pushToast }) {
                     return (
                       <tr key={o.id} style={{ cursor: 'pointer' }} onClick={() => openDetail(o.id)}>
                         <td style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{o.observation_no}</td>
-                        <td style={{ whiteSpace: 'nowrap' }}>{formatDateTime(o.created_at)}</td>
+                        <td style={{ minWidth: 92 }}>{formatDateTime(o.created_at)}</td>
                         <td>{o.category}</td>
                         <td>{o.department || '—'}</td>
                         <td style={DESC_CELL} title={o.description || ''}>{o.description || '—'}</td>

@@ -1,39 +1,39 @@
 :root {
-  /* Core palette — matched to the FastAid mobile app's theme (src/theme/colors.ts)
-     so both products in the EHS suite share one visual identity. */
+  /* SafeNexG brand palette — taken from the logo:
+     royal blue wordmark, green "G" / "innovation", brushed-steel backdrop.
 
-  /* Primary brand = FastAid's teal (colors.primary / primaryDark / primaryLight).
-     Named --blue-* for backward compatibility (every button/link/focus-ring/nav
-     style in this file and across all pages already references --blue-*), but
-     the values themselves are now FastAid's teal scale, not literal blue. */
-  --blue-700: #0b5a54;
-  --blue-600: #0f766e;
-  --blue-500: #14b8a6;
-  --blue-400: #2dd4bf;
-  --blue-100: #ccfbf1;
-  --blue-50: #f0fdfa;
+     --blue-* is the PRIMARY brand scale (buttons, links, focus rings, active
+     nav). The name is historical — every page already references --blue-*. */
+  --blue-700: #163a78;
+  --blue-600: #1f4e9e;
+  --blue-500: #2d62b8;
+  --blue-400: #5a86cf;
+  --blue-100: #dce7f7;
+  --blue-50: #f1f5fc;
 
-  /* Dark sidebar surface — a deep tint of the primary teal instead of navy-blue. */
-  --navy-950: #051917;
-  --navy-900: #082723;
-  --navy-800: #0b332e;
-  --navy-700: #0f423b;
-  --navy-600: #14544a;
+  /* Sidebar / dark surfaces — deep navy from the logo's shadowed blue. */
+  --navy-950: #06142e;
+  --navy-900: #0a1f45;
+  --navy-800: #0f2a57;
+  --navy-700: #163769;
+  --navy-600: #1e467f;
 
-  /* Same teal family kept under its own name too, for any explicit --teal-* refs. */
-  --teal-700: #0b5a54;
-  --teal-600: #0f766e;
-  --teal-500: #14b8a6;
-  --teal-100: #ccfbf1;
-  --teal-50: #f0fdfa;
+  /* Brand ACCENT = logo green. Kept under --teal-* because pills and
+     highlights already reference it. */
+  --teal-700: #236b2f;
+  --teal-600: #2e8b3c;
+  --teal-500: #3fa34d;
+  --teal-100: #dcf1df;
+  --teal-50: #f0f9f1;
+  --brand-green: #3fa34d;
 
   /* Distinct "info" accent (FastAid colors.info) — kept separate from primary
      teal so stat cards / badges still have blue as a distinguishable hue. */
-  --info-700: #1d4ed8;
-  --info-600: #2563eb;
-  --info-500: #3b82f6;
-  --info-100: #dbeafe;
-  --info-50: #eff6ff;
+  --info-700: #075985;
+  --info-600: #0284c7;
+  --info-500: #0ea5e9;
+  --info-100: #e0f2fe;
+  --info-50: #f0f9ff;
 
   /* Semantic colors — exact values from FastAid colors.success/warning/danger */
   --green-700: #14532d;
@@ -74,7 +74,8 @@
   --slate-100: #f1f5f9;
   --slate-50: #f8fafc;
 
-  --bg-app: #f8fafc;
+  /* Brushed-steel page background from the logo plate. */
+  --bg-app: #eef2f6;
   --bg-card: #ffffff;
 
   --sidebar-width: 268px;
@@ -88,45 +89,29 @@
   --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
   --shadow-md: 0 4px 10px rgba(16, 24, 40, 0.06), 0 2px 4px rgba(16, 24, 40, 0.08);
   --shadow-lg: 0 12px 28px rgba(13, 23, 48, 0.14);
-  --shadow-glow: 0 8px 20px rgba(15, 118, 110, 0.35);
-  --shadow-focus: 0 0 0 4px rgba(15, 118, 110, 0.14);
+  --shadow-glow: 0 8px 20px rgba(31, 78, 158, 0.32);
+  --shadow-focus: 0 0 0 4px rgba(31, 78, 158, 0.16);
 
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Safety Violation module brand — matches the standalone mobile app's own
-     red identity (colors.primary/#B91C1C) rather than the portal's teal.
-     Referenced only inside .sv-theme (src/pages/safetyviolation/theme.css)
-     so every other sub-app keeps the portal's default teal branding; change
-     these three values here to re-tint the whole module from one place. */
-  --sv-primary: #b91c1c;
-  --sv-primary-dark: #7f1d1d;
-  --sv-primary-light: #fee2e2;
+  /* Sub-app themes (.sv-/.so-/.ir-/.ma-theme) all use the SafeNexG brand
+     blue so the whole portal reads as one product; change these to give a
+     module its own tint again. */
+  --sv-primary: var(--blue-600);
+  --sv-primary-dark: var(--blue-700);
+  --sv-primary-light: var(--blue-100);
 
-  /* Safety Observation module brand — matches its standalone mobile app's own
-     blue identity (colors.primary/#1D4ED8). Referenced only inside .so-theme
-     (src/pages/safetyobservation/theme.css); change these three values here
-     to re-tint the whole module from one place. */
-  --so-primary: #1d4ed8;
-  --so-primary-dark: #1e3a8a;
-  --so-primary-light: #dbeafe;
+  --so-primary: var(--blue-600);
+  --so-primary-dark: var(--blue-700);
+  --so-primary-light: var(--blue-100);
 
-  /* Incident Report module brand — matches its standalone mobile app's own
-     orange identity (colors.primary/#C2410C). Referenced only inside
-     .ir-theme (src/pages/incidentreport/theme.css); change these three
-     values here to re-tint the whole module from one place. */
-  --ir-primary: #c2410c;
-  --ir-primary-dark: #7c2d12;
-  --ir-primary-light: #ffedd5;
+  --ir-primary: var(--blue-600);
+  --ir-primary-dark: var(--blue-700);
+  --ir-primary-light: var(--blue-100);
 
-  /* Machine Audit module brand — indigo. Referenced only inside .ma-theme
-     (src/pages/machineaudit/theme.css); change these three values here to
-     re-tint the whole module from one place. */
-  --ma-primary: #4338ca;
-  --ma-primary-dark: #312e81;
-  --ma-primary-light: #e0e7ff;
+  --ma-primary: var(--blue-600);
+  --ma-primary-dark: var(--blue-700);
+  --ma-primary-light: var(--blue-100);
 
-  /* FastAid module brand — the portal's default --blue-* IS already FastAid's
-     teal (see comment at top of this file), so the FastAid sub-app needs no
-     scoped override; it simply uses the portal's default button/nav colors. */
 }

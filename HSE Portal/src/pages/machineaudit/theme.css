@@ -19,10 +19,10 @@
 
 .ma-theme .btn-primary {
   background: linear-gradient(155deg, var(--ma-primary), var(--ma-primary-dark) 120%);
-  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 12px rgba(31, 78, 158, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 .ma-theme .btn-primary:hover {
-  box-shadow: 0 8px 20px rgba(67, 56, 202, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(31, 78, 158, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .ma-theme .btn-outline {
@@ -51,7 +51,7 @@
 
 .ma-theme .nav-item.active {
   background: linear-gradient(120deg, var(--ma-primary-dark), var(--ma-primary));
-  box-shadow: 0 8px 20px rgba(67, 56, 202, 0.35);
+  box-shadow: 0 8px 20px rgba(31, 78, 158, 0.35);
 }
 
 .ma-theme .table-link,

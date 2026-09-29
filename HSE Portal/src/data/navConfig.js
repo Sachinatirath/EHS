@@ -44,6 +44,7 @@ export const PORTAL_NAV = [
       { id: 'shift-schedule', label: 'Shift Schedule', icon: 'clock', isApp: true, appTarget: 'shiftschedule' },
       { id: 'safety-violation', label: 'Safety Violation', icon: 'alertTriangle', isApp: true, appTarget: 'safetyviolation' },
       { id: 'safety-observation', label: 'Safety Observation', icon: 'eye', isApp: true, appTarget: 'safetyobservation' },
+      { id: 'gemba-walk', label: 'Gemba Walk', icon: 'users', isApp: true, appTarget: 'gembawalk' },
       { id: 'incident-report', label: 'Incident Report', icon: 'flag', isApp: true, appTarget: 'incidentreport' },
       { id: 'fast-aid', label: 'FastAid', icon: 'firstAid', isApp: true, appTarget: 'fastaid' },
       {
@@ -100,6 +101,7 @@ export const PAGE_TITLES = {
   'my-tasks': 'My Tasks',
   'safety-violation': 'Safety Violation',
   'safety-observation': 'Safety Observation',
+  'gemba-walk': 'Gemba Walk',
   'incident-report': 'Incident Report',
   'permits-general': 'General Permit',
   'permits-height': 'Work at Height',
@@ -328,6 +330,13 @@ export const SAFETY_OBSERVATION_TITLES = {
   'so-hod-observations': 'All Observations',
   'so-hod-alerts': 'Alerts',
   'so-hod-profile': 'Profile',
+};
+
+export const GEMBA_WALK_TITLES = {
+  'gw-dashboard': 'Gemba Walk — Dashboard',
+  'gw-log': 'Gemba Walk — Log Observation',
+  'gw-records': 'Gemba Walk — All Observations Log',
+  'gw-escalations': 'Gemba Walk — Plant Head Escalations',
 };
 
 export const INCIDENT_REPORT_TITLES = {

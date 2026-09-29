@@ -1,4 +1,5 @@
 import { PORTAL_NAV } from '../data/navConfig';
+import BrandMark from './BrandMark';
 import {
   IconUser, IconGrid, IconClipboard, IconChevronDown, IconCap, IconCalendarCheck,
   IconAlertTriangle, IconEye, IconFlag, IconFileText, IconRepeat, IconCheckSquare,
@@ -34,8 +35,7 @@ export default function Sidebar({ activeId, expanded, onToggle, onNavigate }) {
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">
-        <IconShieldCheck size={22} />
-        SafeNextG
+        <BrandMark tone="dark" />
       </div>
       <nav className="sidebar-scroll">
         {PORTAL_NAV.map((group, groupIdx) => (

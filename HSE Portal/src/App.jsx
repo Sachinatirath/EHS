@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LoginPage from './pages/LoginPage';
 import Sidebar from './components/Sidebar';
 import ForkliftSidebar from './components/ForkliftSidebar';
 import SafetyViolationSidebar from './components/SafetyViolationSidebar';
 import SafetyObservationSidebar from './components/SafetyObservationSidebar';
+import GembaWalkSidebar from './components/GembaWalkSidebar';
 import IncidentReportSidebar from './components/IncidentReportSidebar';
 import FastAidSidebar from './components/FastAidSidebar';
 import MachineAuditSidebar from './components/MachineAuditSidebar';
@@ -17,10 +18,12 @@ import ShiftScheduleSidebar from './components/ShiftScheduleSidebar';
 import Header from './components/Header';
 import ToastStack from './components/Toast';
 import TodayPlanPopup from './components/TodayPlanPopup';
+import PageLoader, { skeletonVariant } from './components/PageLoader';
 import PortalContent from './pages/PortalContent';
 import ForkliftApp from './pages/forklift/ForkliftApp';
 import SafetyViolationApp from './pages/safetyviolation/SafetyViolationApp';
 import SafetyObservationApp from './pages/safetyobservation/SafetyObservationApp';
+import GembaWalkApp from './pages/gembawalk/GembaWalkApp';
 import IncidentReportApp from './pages/incidentreport/IncidentReportApp';
 import FastAidApp from './pages/fastaid/FastAidApp';
 import MachineAuditApp from './pages/machineaudit/MachineAuditApp';
@@ -34,7 +37,7 @@ import ShiftScheduleApp from './pages/shiftschedule/ShiftScheduleApp';
 import useToasts from './hooks/useToasts';
 import {
   PAGE_TITLES, FORKLIFT_TITLES, WEBSLING_TITLES, HOIST_TITLES, TRAINING_TITLES, MOC_TITLES, DOC_REVIEW_TITLES, FIRE_TITLES,
-  SAFETY_VIOLATION_TITLES, SAFETY_OBSERVATION_TITLES, INCIDENT_REPORT_TITLES, FASTAID_TITLES, MACHINE_AUDIT_TITLES, SHIFT_SCHEDULE_TITLES,
+  SAFETY_VIOLATION_TITLES, SAFETY_OBSERVATION_TITLES, GEMBA_WALK_TITLES, INCIDENT_REPORT_TITLES, FASTAID_TITLES, MACHINE_AUDIT_TITLES, SHIFT_SCHEDULE_TITLES,
   PORTAL_NAV,
 } from './data/navConfig';
 
@@ -50,6 +53,7 @@ const SUB_APPS = {
   firesafety: { defaultView: 'fs-dashboard', titles: FIRE_TITLES, Sidebar: FireSafetySidebar, App: FireSafetyApp },
   safetyviolation: { defaultView: 'sv-agent-home', titles: SAFETY_VIOLATION_TITLES, Sidebar: SafetyViolationSidebar, App: SafetyViolationApp },
   safetyobservation: { defaultView: 'so-agent-home', titles: SAFETY_OBSERVATION_TITLES, Sidebar: SafetyObservationSidebar, App: SafetyObservationApp },
+  gembawalk: { defaultView: 'gw-dashboard', titles: GEMBA_WALK_TITLES, Sidebar: GembaWalkSidebar, App: GembaWalkApp },
   incidentreport: { defaultView: 'ir-agent-home', titles: INCIDENT_REPORT_TITLES, Sidebar: IncidentReportSidebar, App: IncidentReportApp },
   fastaid: { defaultView: 'fa-ai-home', titles: FASTAID_TITLES, Sidebar: FastAidSidebar, App: FastAidApp },
   shiftschedule: { defaultView: 'ss-emp-schedule', titles: SHIFT_SCHEDULE_TITLES, Sidebar: ShiftScheduleSidebar, App: ShiftScheduleApp },
@@ -131,14 +135,20 @@ export default function App() {
   };
 
   const activeSubApp = SUB_APPS[appMode];
-  const title = activeSubApp ? activeSubApp.titles[subViews[appMode]] : (PAGE_TITLES[portalView] || 'SafeNextG');
+  const title = activeSubApp ? activeSubApp.titles[subViews[appMode]] : (PAGE_TITLES[portalView] || 'SafeNexG');
+  const viewId = activeSubApp ? subViews[appMode] : portalView;
+  const viewKey = `${appMode}:${viewId}`;
+
+  // Small screens: the sidebar is a slide-out drawer, closed after every navigation.
+  const [navOpen, setNavOpen] = useState(false);
+  useEffect(() => { setNavOpen(false); }, [viewKey]);
 
   if (!authed) {
     return <LoginPage onLogin={handleLoginSuccess} />;
   }
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell${navOpen ? ' nav-open' : ''}`}>
       {appMode === 'portal' ? (
         <Sidebar activeId={portalView} expanded={expanded} onToggle={toggleExpand} onNavigate={handlePortalNavigate} />
       ) : (
@@ -149,9 +159,12 @@ export default function App() {
         />
       )}
 
+      <button type="button" className="nav-backdrop" aria-label="Close menu" onClick={() => setNavOpen(false)} />
+
       <div className="main-col">
-        <Header title={title} onLogout={handleLogout} />
+        <Header title={title} onLogout={handleLogout} onMenu={() => setNavOpen((o) => !o)} />
         <div className="content-scroll">
+          <PageLoader viewKey={viewKey} variant={skeletonVariant(viewId)}>
           {appMode === 'portal' ? (
             <PortalContent key={portalView} view={portalView} pushToast={pushToast} onNavigate={handlePortalNavigate} onOpenTask={openTask} />
           ) : (
@@ -162,6 +175,7 @@ export default function App() {
               pushToast={pushToast}
             />
           )}
+          </PageLoader>
         </div>
       </div>
 
