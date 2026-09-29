@@ -4,25 +4,9 @@ import StatCard from '../components/StatCard';
 import {
   IconCheckSquare, IconAlertTriangle, IconClock, IconUsers, IconArrowRight, IconUser,
 } from '../components/icons';
-import { MODULES, collectTasks } from '../utils/myTasks';
+import { MODULES, collectTasks, dueInfo } from '../utils/myTasks';
 
 const REFRESH_MS = 1000;
-
-function countdown(ms) {
-  const total = Math.floor(Math.abs(ms) / 1000);
-  const d = Math.floor(total / 86400);
-  const hh = String(Math.floor((total % 86400) / 3600)).padStart(2, '0');
-  const mm = String(Math.floor((total % 3600) / 60)).padStart(2, '0');
-  const ss = String(total % 60).padStart(2, '0');
-  return `${d ? `${d}d ` : ''}${hh}:${mm}:${ss}`;
-}
-
-function dueInfo(task, now) {
-  if (!task.due_at) return null;
-  const left = Date.parse(task.due_at) - now;
-  if (left <= 0) return { text: `Overdue ${countdown(left)}`, color: 'var(--red-600)', overdue: true, left };
-  return { text: `${countdown(left)} left`, color: left < 3600000 ? 'var(--amber-600)' : 'var(--green-600)', left };
-}
 
 const isToday = (iso) => new Date(iso).toDateString() === new Date().toDateString();
 

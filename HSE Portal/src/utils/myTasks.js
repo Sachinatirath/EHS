@@ -162,3 +162,20 @@ export function collectTasks() {
     ...fastaidTasks(), ...shiftTasks(), ...planTasks(),
   ];
 }
+
+export function countdown(ms) {
+  const total = Math.floor(Math.abs(ms) / 1000);
+  const d = Math.floor(total / 86400);
+  const hh = String(Math.floor((total % 86400) / 3600)).padStart(2, '0');
+  const mm = String(Math.floor((total % 3600) / 60)).padStart(2, '0');
+  const ss = String(total % 60).padStart(2, '0');
+  return `${d ? `${d}d ` : ''}${hh}:${mm}:${ss}`;
+}
+
+/** Live due text + colour for a task: "02:10:05 left" or "Overdue 1d 03:00:00". */
+export function dueInfo(task, now) {
+  if (!task.due_at) return null;
+  const left = Date.parse(task.due_at) - now;
+  if (left <= 0) return { text: `Overdue ${countdown(left)}`, color: 'var(--red-600)', overdue: true, left };
+  return { text: `${countdown(left)} left`, color: left < 3600000 ? 'var(--amber-600)' : 'var(--green-600)', left };
+}

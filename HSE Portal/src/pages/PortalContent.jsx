@@ -36,7 +36,7 @@ export default function PortalContent({ view, pushToast, onNavigate, onOpenTask 
     case 'my-tasks':
       return <MyTasksPage onOpenTask={onOpenTask} />;
     case 'home':
-      return <HomePage onNavigate={onNavigate} />;
+      return <HomePage onNavigate={onNavigate} onOpenTask={onOpenTask} />;
     case 'permits-dashboard':
       return <Dashboard />;
     case 'ehs-powertools':
