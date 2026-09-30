@@ -134,18 +134,20 @@ export function ModuleCarousel({ modules, onOpen }) {
   const [stopped, setStopped] = useState(false);
   const resumeTimer = useRef(null);
   const rootRef = useRef(null);
+  const stageRef = useRef(null);
   // Staged entrance state lives in React (not a DOM class), so re-renders such as pausing
   // on hover can never wipe it and leave the carousel blank.
   const [staged, setStaged] = useState(() => reduceMotion());
 
   useEffect(() => {
-    const el = rootRef.current;
+    const el = stageRef.current;
     if (!el || reduceMotion() || !('IntersectionObserver' in window)) { setStaged(true); return undefined; }
+    // Watches the card row (not the whole block, which may never fully leave near the page end):
+    // play once most of it is on screen, reset once it has left, so it replays on every scroll-in.
     const io = new IntersectionObserver(([e]) => {
-      const fillsView = e.rootBounds && e.intersectionRect.height >= e.rootBounds.height * 0.4;
-      if (e.intersectionRatio >= 0.3 || fillsView) setStaged(true);
-      else if (!e.isIntersecting) setStaged(false);
-    }, { threshold: [0, 0.1, 0.2, 0.3, 0.5] });
+      if (e.intersectionRatio >= 0.45) setStaged(true);
+      else if (e.intersectionRatio < 0.2) setStaged(false);
+    }, { threshold: [0, 0.1, 0.19, 0.2, 0.3, 0.45, 0.6, 0.8, 1] });
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -260,7 +262,7 @@ export function ModuleCarousel({ modules, onOpen }) {
       onTouchStart={pause}
       onTouchEnd={() => resumeSoon(4000)}
     >
-      <div className="hc-stage">
+      <div className="hc-stage" ref={stageRef}>
         <span className="hc-badge" aria-hidden="true">
           <span key={current.id} className="hc-badge-icon"><current.icon size={26} /></span>
         </span>

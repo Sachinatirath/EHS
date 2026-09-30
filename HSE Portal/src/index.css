@@ -2270,19 +2270,14 @@ button.sidebar-brand:hover { background: rgba(255, 255, 255, 0.06); }
 @keyframes hcStagePrev { from { translate: -120px 0; opacity: 0; } }
 @keyframes hcStageNext { from { translate: 120px 0; opacity: 0; } }
 @keyframes hcStageBadge { from { translate: 0 -34px; scale: 0.4; opacity: 0; } }
-@keyframes hcStageFade { from { translate: 0 26px; opacity: 0; } }
 .hx .hc:not(.is-staged) .hc-card.active,
 .hx .hc:not(.is-staged) .hc-card.is-prev,
 .hx .hc:not(.is-staged) .hc-card.is-next,
-.hx .hc:not(.is-staged) .hc-badge,
-.hx .hc:not(.is-staged) .hc-panel-wrap,
-.hx .hc:not(.is-staged) .hc-controls { opacity: 0; }
+.hx .hc:not(.is-staged) .hc-badge { opacity: 0; }
 .hx .hc.is-entering .hc-badge { animation: hcStageBadge 0.6s var(--ease-spring) 0.05s backwards; }
 .hx .hc.is-entering .hc-card.active { animation: hcStageUp 0.75s var(--ease) 0.15s backwards; }
 .hx .hc.is-entering .hc-card.is-prev { animation: hcStagePrev 0.75s var(--ease) 0.35s backwards; }
 .hx .hc.is-entering .hc-card.is-next { animation: hcStageNext 0.75s var(--ease) 0.35s backwards; }
-.hx .hc.is-entering .hc-panel-wrap { animation: hcStageFade 0.6s var(--ease) 0.5s backwards; }
-.hx .hc.is-entering .hc-controls { animation: hcStageFade 0.5s var(--ease) 0.7s backwards; }
 
 /* next up: glides in from the right, one glass shine, rows cascade after it */
 @keyframes ydNextIn { from { opacity: 0; transform: translateX(36px) scale(0.98); } to { opacity: 1; transform: none; } }
