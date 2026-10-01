@@ -18,6 +18,8 @@ import ShiftScheduleSidebar from './components/ShiftScheduleSidebar';
 import Header from './components/Header';
 import ToastStack from './components/Toast';
 import TodayPlanPopup from './components/TodayPlanPopup';
+import SafetyTicker from './components/SafetyTicker';
+import AiChatbot from './components/AiChatbot';
 import PageLoader, { skeletonVariant } from './components/PageLoader';
 import PortalContent from './pages/PortalContent';
 import ForkliftApp from './pages/forklift/ForkliftApp';
@@ -202,9 +204,11 @@ export default function App() {
           )}
           </PageLoader>
         </div>
+        <SafetyTicker />
       </div>
 
       <TodayPlanPopup onViewPlan={openTodayPlan} />
+      <AiChatbot />
       <ToastStack toasts={toasts} onDismiss={dismiss} />
     </div>
   );
