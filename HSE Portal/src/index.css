@@ -3907,3 +3907,45 @@ button.ho-card:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
 @media (prefers-reduced-motion: reduce) {
   .ho-banner, .ho-step, .ho-task-edit li, .ho-banner-icon { animation: none !important; }
 }
+
+/* handover page "viewing as" picker (standalone portal page has no module sidebar) */
+.ho-viewas {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: #fff;
+  border: 1px solid var(--slate-200);
+  box-shadow: var(--shadow-sm);
+}
+.ho-viewas-label { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate-500); }
+.ho-viewas-seg { display: inline-flex; padding: 3px; border-radius: 10px; background: var(--slate-100); }
+.ho-viewas-seg button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-500);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.ho-viewas-seg button.is-active { background: #fff; color: var(--blue-700); box-shadow: var(--shadow-sm); }
+.ho-viewas select {
+  flex: 1 1 260px;
+  max-width: 420px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--slate-200);
+  font-size: 13px;
+  color: var(--slate-900);
+  background: #fff;
+}
+.ho-viewas select:focus { outline: none; border-color: var(--blue-400); box-shadow: var(--shadow-focus); }

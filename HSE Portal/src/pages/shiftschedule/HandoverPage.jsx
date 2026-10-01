@@ -1,21 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
 import Panel from '../../components/Panel';
 import StatCard from '../../components/StatCard';
 import Modal from '../../components/Modal';
 import {
   IconPlus, IconChevronLeft, IconClipboard, IconAlertTriangle, IconTool, IconCheckCircle,
-  IconClock, IconCheckSquare, IconFileText, IconClose, IconArrowRight, IconSend, IconEye,
+  IconClock, IconCheckSquare, IconFileText, IconClose, IconArrowRight, IconSend, IconEye, IconUser, IconUsers,
 } from '../../components/icons';
 import { peekFocusTarget, useFocusTarget } from '../../utils/focusTarget';
-import { SHIFTS, shiftInfo, shiftOn, useShiftAuth } from './store';
+import {
+  SHIFTS, SS_DEPARTMENTS, shiftInfo, shiftOn, useShiftAuth, selectRole, selectEmployee, selectHodDepartment, listEmployees, hodName,
+} from './store';
 import {
   PRIORITY, useHandoverNotes, notesForDay, findNote, incomingFor, nextShiftOf, receiversOf,
   saveNote, deleteNote, acknowledgeNote, toggleTask, todayKey, addDays,
 } from './handoverStore';
 import { ShiftPill, formatDay } from './shared';
 
-const VIEW = 'ss-emp-handover';
+const VIEW = 'shift-handover';
 const HISTORY_DAYS = 7;
 
 const formatTime = (iso) => new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -60,6 +62,11 @@ export default function HandoverPage({ pushToast }) {
   const dayNotes = dept ? notesForDay(notes, date, dept) : [];
   const { rowProps } = useFocusTarget(VIEW, dayNotes.map((n) => n.id), setOpenId);
 
+  // Standalone portal page: default to the employee view the first time.
+  useEffect(() => {
+    if (!user) selectRole('employee');
+  }, [user]);
+
   if (!user) return null;
 
   const isEmployee = user.role === 'employee';
@@ -90,6 +97,8 @@ export default function HandoverPage({ pushToast }) {
           </button>
         ) : null}
       />
+
+      <ViewAsBar user={user} />
 
       {isEmployee ? <IncomingBanner incoming={incoming} onOpen={setOpenId} /> : (
         <div className="stat-grid" style={{ marginBottom: 22 }}>
@@ -227,6 +236,34 @@ export default function HandoverPage({ pushToast }) {
           pushToast={pushToast}
         />
       ) : null}
+    </div>
+  );
+}
+
+/* ---------- who is viewing (employee or department HOD) ---------- */
+
+function ViewAsBar({ user }) {
+  const isHod = user.role === 'hod';
+  return (
+    <div className="ho-viewas">
+      <span className="ho-viewas-label">Viewing as</span>
+      <div className="ho-viewas-seg" role="tablist" aria-label="Role">
+        <button type="button" role="tab" aria-selected={!isHod} className={!isHod ? 'is-active' : ''} onClick={() => selectRole('employee')}>
+          <IconUser size={14} /> Employee
+        </button>
+        <button type="button" role="tab" aria-selected={isHod} className={isHod ? 'is-active' : ''} onClick={() => selectRole('hod')}>
+          <IconUsers size={14} /> HOD
+        </button>
+      </div>
+      {isHod ? (
+        <select value={user.department} onChange={(e) => selectHodDepartment(e.target.value)} aria-label="HOD department">
+          {SS_DEPARTMENTS.map((d) => <option key={d} value={d}>{d} HOD — {hodName(d)}</option>)}
+        </select>
+      ) : (
+        <select value={user.id} onChange={(e) => selectEmployee(e.target.value)} aria-label="Employee">
+          {listEmployees().map((e) => <option key={e.id} value={e.id}>{e.name} ({e.id}) · {e.department} · Shift {shiftOn(e.id, todayKey())}</option>)}
+        </select>
+      )}
     </div>
   );
 }

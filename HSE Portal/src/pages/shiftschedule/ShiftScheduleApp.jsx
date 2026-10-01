@@ -3,7 +3,6 @@ import NewRequestPage from './NewRequestPage';
 import MyRequestsPage from './MyRequestsPage';
 import HodDashboardPage from './HodDashboardPage';
 import HodRequestsPage from './HodRequestsPage';
-import HandoverPage from './HandoverPage';
 
 export default function ShiftScheduleApp({ view, onNavigate, pushToast }) {
   switch (view) {
@@ -15,9 +14,6 @@ export default function ShiftScheduleApp({ view, onNavigate, pushToast }) {
       return <HodDashboardPage onNavigate={onNavigate} pushToast={pushToast} />;
     case 'ss-hod-requests':
       return <HodRequestsPage pushToast={pushToast} />;
-    case 'ss-emp-handover':
-    case 'ss-hod-handover':
-      return <HandoverPage pushToast={pushToast} />;
     case 'ss-emp-schedule':
     case 'ss-hod-schedule':
     default:

@@ -7,6 +7,7 @@ import GenericAuditForm from './ehsAudit/GenericAuditForm';
 import PermitForm from './forms/PermitForm';
 import AuditTrainingPlanPage from './forms/AuditTrainingPlanPage';
 import TodayPlanPage from './forms/TodayPlanPage';
+import HandoverPage from './shiftschedule/HandoverPage';
 import Placeholder from '../components/Placeholder';
 import { PAGE_TITLES } from '../data/navConfig';
 import { PERMIT_TYPES } from '../data/formOptions';
@@ -43,6 +44,8 @@ export default function PortalContent({ view, pushToast, onNavigate, onOpenTask 
       return <PowerToolsAudit pushToast={pushToast} />;
     case 'atp-today':
       return <TodayPlanPage pushToast={pushToast} />;
+    case 'shift-handover':
+      return <HandoverPage pushToast={pushToast} />;
     case 'atp-plan':
       return <AuditTrainingPlanPage pushToast={pushToast} />;
     default:

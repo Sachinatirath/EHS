@@ -153,7 +153,7 @@ function handoverTasks() {
       module: 'handover', key: `ho-${n.id}-${e.id}`, ref: n.note_no, title: `Shift ${n.shift} → ${to.shift} handover from ${n.author_name}: ${n.summary}`,
       created_at: n.created_at, department: n.department, assignee: e.name, role: `Shift ${to.shift} · ${n.department}`,
       status: n.priority === 'critical' ? pill('Critical handover', 'pill-red') : pill('Takeover pending', 'pill-amber'), action: 'Read & acknowledge handover',
-      go: () => { ss.selectRole('employee'); ss.selectEmployee(e.id); setFocusTarget('ss-emp-handover', n.id); return { app: 'shiftschedule', view: 'ss-emp-handover' }; },
+      go: () => { ss.selectRole('employee'); ss.selectEmployee(e.id); setFocusTarget('shift-handover', n.id); return { portal: 'shift-handover' }; },
     }));
   });
 }

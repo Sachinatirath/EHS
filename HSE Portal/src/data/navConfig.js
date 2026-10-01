@@ -42,6 +42,7 @@ export const PORTAL_NAV = [
         ],
       },
       { id: 'shift-schedule', label: 'Shift Schedule', icon: 'clock', isApp: true, appTarget: 'shiftschedule' },
+      { id: 'shift-handover', label: 'Shift Handover Notes', icon: 'clipboard' },
       { id: 'safety-violation', label: 'Safety Violation', icon: 'alertTriangle', isApp: true, appTarget: 'safetyviolation' },
       { id: 'safety-observation', label: 'Safety Observation', icon: 'eye', isApp: true, appTarget: 'safetyobservation' },
       { id: 'gemba-walk', label: 'Gemba Walk', icon: 'users', isApp: true, appTarget: 'gembawalk' },
@@ -98,6 +99,7 @@ export const PAGE_TITLES = {
   'atp-today': "Today's Audit & Training Plan",
   'atp-plan': 'Audit & Training Plan',
   'shift-schedule': 'Shift Schedule',
+  'shift-handover': 'Shift Handover Notes',
   'my-tasks': 'My Tasks',
   'safety-violation': 'Safety Violation',
   'safety-observation': 'Safety Observation',
@@ -302,8 +304,6 @@ export const SHIFT_SCHEDULE_TITLES = {
   'ss-hod-dashboard': 'Shift Schedule — HOD Dashboard',
   'ss-hod-requests': 'Shift Requests — Approvals',
   'ss-hod-schedule': 'Shift Schedule',
-  'ss-emp-handover': 'Shift Handover Notes',
-  'ss-hod-handover': 'Shift Handover Log',
 };
 
 export const MACHINE_AUDIT_TITLES = {
