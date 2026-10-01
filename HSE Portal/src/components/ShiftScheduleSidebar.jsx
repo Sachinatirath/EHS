@@ -13,6 +13,7 @@ const GROUPS = [
       { id: 'ss-emp-schedule', label: "Today's Shift Schedule" },
       { id: 'ss-emp-new', label: 'Request Change / Swap' },
       { id: 'ss-emp-requests', label: 'My Requests' },
+      { id: 'ss-emp-handover', label: 'Shift Handover Notes' },
     ],
   },
   {
@@ -23,6 +24,7 @@ const GROUPS = [
       { id: 'ss-hod-dashboard', label: 'Dashboard' },
       { id: 'ss-hod-requests', label: 'Approvals' },
       { id: 'ss-hod-schedule', label: 'Shift Schedule' },
+      { id: 'ss-hod-handover', label: 'Handover Log' },
     ],
   },
 ];

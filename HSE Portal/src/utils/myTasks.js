@@ -9,6 +9,7 @@ import * as ir from '../pages/incidentreport/store';
 import * as ma from '../pages/machineaudit/store';
 import * as fa from '../pages/fastaid/store';
 import * as ss from '../pages/shiftschedule/store';
+import * as ho from '../pages/shiftschedule/handoverStore';
 import {
   SHIFTS, dateKey, planDate, tasksForShift, loadDone,
 } from '../data/auditPlan';
@@ -20,6 +21,7 @@ export const MODULES = {
   machine: 'Machine Audit',
   fastaid: 'FastAid',
   shift: 'Shift Schedule',
+  handover: 'Shift Handover',
   plan: "Today's Audit & Training Plan",
 };
 
@@ -142,6 +144,20 @@ function shiftTasks() {
   }));
 }
 
+// Unacknowledged handovers from the last two days go to the incoming shift's crew.
+function handoverTasks() {
+  const since = ho.addDays(ho.todayKey(), -1);
+  return ho.handoverSnapshot().filter((n) => !n.ack && n.date >= since).flatMap((n) => {
+    const to = ho.nextShiftOf(n.date, n.shift);
+    return ho.receiversOf(n).map((e) => ({
+      module: 'handover', key: `ho-${n.id}-${e.id}`, ref: n.note_no, title: `Shift ${n.shift} → ${to.shift} handover from ${n.author_name}: ${n.summary}`,
+      created_at: n.created_at, department: n.department, assignee: e.name, role: `Shift ${to.shift} · ${n.department}`,
+      status: n.priority === 'critical' ? pill('Critical handover', 'pill-red') : pill('Takeover pending', 'pill-amber'), action: 'Read & acknowledge handover',
+      go: () => { ss.selectRole('employee'); ss.selectEmployee(e.id); setFocusTarget('ss-emp-handover', n.id); return { app: 'shiftschedule', view: 'ss-emp-handover' }; },
+    }));
+  });
+}
+
 function planTasks() {
   const date = planDate();
   const done = loadDone(dateKey(date));
@@ -159,7 +175,7 @@ export function collectTasks() {
   so.checkSla?.();
   return [
     ...observationTasks(), ...violationTasks(), ...incidentTasks(), ...machineTasks(),
-    ...fastaidTasks(), ...shiftTasks(), ...planTasks(),
+    ...fastaidTasks(), ...shiftTasks(), ...handoverTasks(), ...planTasks(),
   ];
 }
 

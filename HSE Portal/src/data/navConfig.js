@@ -302,6 +302,8 @@ export const SHIFT_SCHEDULE_TITLES = {
   'ss-hod-dashboard': 'Shift Schedule — HOD Dashboard',
   'ss-hod-requests': 'Shift Requests — Approvals',
   'ss-hod-schedule': 'Shift Schedule',
+  'ss-emp-handover': 'Shift Handover Notes',
+  'ss-hod-handover': 'Shift Handover Log',
 };
 
 export const MACHINE_AUDIT_TITLES = {
