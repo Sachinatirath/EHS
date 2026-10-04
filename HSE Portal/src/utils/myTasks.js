@@ -19,7 +19,7 @@ export const MODULES = {
   violation: 'Safety Violation',
   incident: 'Incident Report',
   machine: 'Machine Audit',
-  fastaid: 'FastAid',
+  fastaid: 'OHC',
   shift: 'Shift Schedule',
   handover: 'Shift Handover',
   plan: "Today's Audit & Training Plan",

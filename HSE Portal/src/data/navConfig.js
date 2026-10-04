@@ -47,7 +47,7 @@ export const PORTAL_NAV = [
       { id: 'safety-observation', label: 'Safety Observation', icon: 'eye', isApp: true, appTarget: 'safetyobservation' },
       { id: 'gemba-walk', label: 'Gemba Walk', icon: 'users', isApp: true, appTarget: 'gembawalk' },
       { id: 'incident-report', label: 'Incident Report', icon: 'flag', isApp: true, appTarget: 'incidentreport' },
-      { id: 'fast-aid', label: 'FastAid', icon: 'firstAid', isApp: true, appTarget: 'fastaid' },
+      { id: 'fast-aid', label: 'OHC', icon: 'firstAid', isApp: true, appTarget: 'fastaid' },
       {
         id: 'permits',
         label: 'Permits',
@@ -354,7 +354,18 @@ export const INCIDENT_REPORT_TITLES = {
 };
 
 export const FASTAID_TITLES = {
-  'fa-welcome': 'FastAid',
+  'fa-welcome': 'OHC',
+  'dm-dashboard': 'OHC Command Dashboard',
+  'dm-employees': 'Employee Master',
+  'dm-op': 'OP Registration',
+  'dm-nurse': 'Nurse Assessment',
+  'dm-doctor': 'MBBS Doctor Consultation',
+  'dm-history': 'Employee Medical History',
+  'dm-medicines': 'Medicine Inventory',
+  'dm-prescriptions': 'Prescription & Pharmacy',
+  'dm-followup': 'Follow-up & Referral',
+  'dm-reports': 'Reports & Analytics',
+  'dm-settings': 'OHC Settings',
   'fa-ai-home': 'Home',
   'fa-ai-inspect': 'Start Inspection',
   'fa-ai-inspections': 'My Inspections',

@@ -9,8 +9,36 @@ import RecordsPage from './RecordsPage';
 import RefillsPage from './RefillsPage';
 import NotificationsPage from './NotificationsPage';
 import ProfilePage from './ProfilePage';
+import OhcDashboardDmPage from '../ohc/DashboardPage';
+import EmployeesPage from '../ohc/EmployeesPage';
+import OpRegistrationPage from '../ohc/OpRegistrationPage';
+import NursePage from '../ohc/NursePage';
+import DoctorPage from '../ohc/DoctorPage';
+import HistoryPage from '../ohc/HistoryPage';
+import MedicinesPage from '../ohc/MedicinesPage';
+import PrescriptionsPage from '../ohc/PrescriptionsPage';
+import FollowUpPage from '../ohc/FollowUpPage';
+import ReportsPage from '../ohc/ReportsPage';
+import SettingsPage from '../ohc/SettingsPage';
+
+// Digital Occupational Health Management (OHC clinic) screens.
+const OHC_PAGES = {
+  'dm-dashboard': OhcDashboardDmPage,
+  'dm-employees': EmployeesPage,
+  'dm-op': OpRegistrationPage,
+  'dm-nurse': NursePage,
+  'dm-doctor': DoctorPage,
+  'dm-history': HistoryPage,
+  'dm-medicines': MedicinesPage,
+  'dm-prescriptions': PrescriptionsPage,
+  'dm-followup': FollowUpPage,
+  'dm-reports': ReportsPage,
+  'dm-settings': SettingsPage,
+};
 
 function renderView(view, onNavigate, pushToast) {
+  const OhcPage = OHC_PAGES[view];
+  if (OhcPage) return <OhcPage onNavigate={onNavigate} pushToast={pushToast} />;
   switch (view) {
     case 'fa-ai-home':
       return <AreaInchargeHomePage onNavigate={onNavigate} pushToast={pushToast} />;

@@ -109,13 +109,13 @@ const MODULES = [
   },
   {
     id: 'fast-aid',
-    title: 'FastAid',
+    title: 'OHC',
     icon: IconFirstAid,
-    summary: 'Inspection and refill management for first-aid boxes across the site.',
+    summary: 'Digital occupational health centre plus first-aid box inspection and refill management.',
     features: [
-      'Attendants run box inspections and log findings',
-      'OHC dashboard for boxes, inspections and refill requests',
-      'Alerts for missing or expired items',
+      'OP registration, nurse vitals, doctor consultation and pharmacy issue',
+      'Employee medical history, follow-ups, referrals and MIS reports',
+      'First-aid box inspections, refill requests and expiry alerts',
     ],
   },
   {

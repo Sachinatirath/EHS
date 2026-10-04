@@ -57,7 +57,7 @@ const SUB_APPS = {
   safetyobservation: { defaultView: 'so-agent-home', titles: SAFETY_OBSERVATION_TITLES, Sidebar: SafetyObservationSidebar, App: SafetyObservationApp },
   gembawalk: { defaultView: 'gw-dashboard', titles: GEMBA_WALK_TITLES, Sidebar: GembaWalkSidebar, App: GembaWalkApp },
   incidentreport: { defaultView: 'ir-agent-home', titles: INCIDENT_REPORT_TITLES, Sidebar: IncidentReportSidebar, App: IncidentReportApp },
-  fastaid: { defaultView: 'fa-ai-home', titles: FASTAID_TITLES, Sidebar: FastAidSidebar, App: FastAidApp },
+  fastaid: { defaultView: 'dm-dashboard', titles: FASTAID_TITLES, Sidebar: FastAidSidebar, App: FastAidApp },
   shiftschedule: { defaultView: 'ss-emp-schedule', titles: SHIFT_SCHEDULE_TITLES, Sidebar: ShiftScheduleSidebar, App: ShiftScheduleApp },
   machineaudit: { defaultView: 'ma-officer-home', titles: MACHINE_AUDIT_TITLES, Sidebar: MachineAuditSidebar, App: MachineAuditApp },
 };

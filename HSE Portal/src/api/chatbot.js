@@ -72,7 +72,7 @@ For extinguishers use **P.A.S.S.**: Pull the pin, Aim at the base, Squeeze the h
 - **Bleeding** — apply firm direct pressure with a clean cloth and elevate the limb
 - **Eye contact with chemicals** — flush at the eye-wash station for 15 minutes
 
-Every first-aid case must be recorded in the **FastAid** module so the medical team can follow up.`,
+Every first-aid case must be recorded in the **OHC** module so the medical team can follow up.`,
   },
   {
     keys: ['hoist', 'crane', 'lifting', 'sling', 'web sling', 'websling', 'rigging'],

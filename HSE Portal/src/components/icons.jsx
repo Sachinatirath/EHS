@@ -387,6 +387,21 @@ export const IconFirstAid = (p) => (
   </svg>
 );
 
+export const IconStethoscope = (p) => (
+  <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
+    <path d="M5 3.5H4v5a5 5 0 0 0 10 0v-5h-1" />
+    <path d="M9 13.5v1.5a5 5 0 0 0 10 0v-2" />
+    <circle cx="19" cy="11" r="2" />
+  </svg>
+);
+
+export const IconPill = (p) => (
+  <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
+    <rect x="2.8" y="8.2" width="18.4" height="7.6" rx="3.8" transform="rotate(-45 12 12)" />
+    <path d="M8.6 8.6l6.8 6.8" />
+  </svg>
+);
+
 export const IconSettings = (p) => (
   <svg viewBox="0 0 24 24" width={p.size || 18} height={p.size || 18} {...base} {...p}>
     <circle cx="12" cy="12" r="3" />

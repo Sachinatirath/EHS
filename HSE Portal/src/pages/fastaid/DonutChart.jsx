@@ -1,6 +1,6 @@
 // Donut with no centre label — the mobile PieChart is `donut` with an empty
 // inner circle, so the portal port keeps the hole empty too.
-export default function DonutChart({ slices, size = 176, thickness = 28 }) {
+export default function DonutChart({ slices, size = 176, thickness = 28, showLegend = true }) {
   const total = slices.reduce((sum, s) => sum + s.value, 0);
   const r = (size - thickness) / 2;
   const cx = size / 2;
@@ -45,14 +45,14 @@ export default function DonutChart({ slices, size = 176, thickness = 28 }) {
         </g>
       </svg>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 12, justifyContent: 'center' }}>
+      {showLegend ? <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 12, justifyContent: 'center' }}>
         {slices.map((s) => (
           <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <span style={{ width: 9, height: 9, borderRadius: 5, background: s.color, display: 'inline-block' }} />
             <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--slate-700)' }}>{s.label}</span>
           </div>
         ))}
-      </div>
+      </div> : null}
     </div>
   );
 }
